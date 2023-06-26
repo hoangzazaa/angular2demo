@@ -1,0 +1,36 @@
+<section>
+    <div class="block-header bg-gray-lighter">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="block-title">リピート受注</h3>
+            </div>
+        </div>
+    </div>
+
+    <table class="block-content table table-condensed">
+        <thead>
+            <tr>
+                <th>注文日</th>
+                <th>状態</th>
+                <th>ﾘﾋﾟｰﾄ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let repeatDeal of repeatDeals">
+                <!-- 注文日 -->
+                <td>
+                    <a *ngIf="deal.id != repeatDeal.id" [routerLink]="['/home/deal', repeatDeal.dealCode]">
+                        {{repeatDeal.orderDate | date:'yyyy/MM/dd'}}
+                    </a>
+                    <span *ngIf="deal.id == repeatDeal.id">
+                        {{repeatDeal.orderDate | date:'yyyy/MM/dd'}}
+                    </span>
+                </td>
+                <!-- 状態 -->
+                <td>{{repeatDeal.dealStatusDisplayName}}</td>
+                <!-- リピート -->
+                <td>{{repeatDeal.isRepeatDeal ? 'ﾘﾋﾟｰﾄ' : ''}}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,57 @@
+<div class="modal-dialog" id="dialog-center">
+    <div class="modal-content">
+        <div class="modal-body remove-margin-t remove-margin-b remove-padding-b remove-padding-t">
+            <form class="form-horizontal">
+                <div class="form-group" style="margin-bottom: 0px !important;">
+                    <form id="sf00301Dropzone" class="dropzone push-30-t push-30 " action="index.html"></form>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 text-right">
+                        <label for="fileCode" class="control-label control-label--material">ファイルID</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-material remove-margin">
+                            <input type="text" class="form-control" id="fileCode" name="fileCode"
+                                   [disabled]="readOnly"
+                                   [(ngModel)]="item.objectFileId" maxlength="250">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-right">
+                        <label for="fileName" class="control-label control-label--material">ファイル名称</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-material remove-margin">
+                            <input type="text" class="form-control" id="fileName" name="fileName"
+                                   [disabled]="readOnly"
+                                   [(ngModel)]="item.objectFileName" maxlength="250">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 text-right">
+                        <label for="fileMemo" class="control-label control-label--material">メモ</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="form-material remove-margin">
+                            <input type="text" class="form-control" id="fileMemo" name="fileMemo"
+                                   [disabled]="readOnly"
+                                   [(ngModel)]="item.memo" maxlength="250">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer" style="border-top: none; padding-bottom: 0px; padding-top: 0px">
+            <div class="form-group">
+                <a class="btn btn-link text-danger pull-left" (click)="removeOrDeleteItem()"
+                   *ngIf="!!item.id && !readOnly && isProductFile">削除</a>
+                <button class="btn btn-link" (click)="cancel()">キャンセル</button>
+                <button class="btn btn-link" (click)="downloadFile()" *ngIf="!!item.id">ダウンロード</button>
+                <button type="button" class="btn btn-success pull-right" *ngIf="!readOnly"
+                        [disabled]="fileUploadInProgress"
+                        (click)="saveOrUpdateItem()">保存する
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

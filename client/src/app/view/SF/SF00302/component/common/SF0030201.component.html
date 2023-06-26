@@ -1,0 +1,128 @@
+<!--HEADING PRODUCT-->
+<div class="form-horizontal product-info-header">
+    <div class="form-group">
+        <label class="control-label col-sm-2 control-label--material">製品ID</label>
+        <div class="col-sm-4">
+            <div class="form-control-static form-control-static--material">
+                {{productCode}}
+            </div>
+        </div>
+        <label class="control-label col-sm-2 control-label--material">品目C</label>
+        <div class="col-sm-4">
+            <div class="control-label col-sm-2 control-label--material" style="width: 100%">
+                {{itemCode == null?'':itemCode}}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="productName" class="control-label col-sm-2 control-label--material">製品名</label>
+        <div class="col-sm-10">
+            <div class="form-material form-material-primary">
+                <input type="text" class="form-control input-lg-f" placeholder="製品名"
+                       value="東京ばな奈24個入り フタ" required
+                       [style.border]="checkBorderProductName.style"
+                       [style.border-radius]="checkBorderProductName.radius"
+                       [(ngModel)]="productName" id="productName"
+                       name="productName"
+                       (keypress)="sf00302Data.clearProductNameErrMsg()"
+                       maxlength="40" [disabled]="isView">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2 control-label--material">製品種類</label>
+        <div class="col-sm-4">
+            <div class="form-material">
+                <select class="form-control" [(ngModel)]="productType" disabled>
+                    <option *ngFor="let t of productTypeOption" [value]="t.id">{{t.name}}</option>
+                </select>
+            </div>
+        </div>
+        <label
+                class="control-label col-sm-2 control-label--material">製造依頼先</label>
+        <div class="col-sm-4">
+            <div class="form-material">
+                <select class="form-control" [(ngModel)]="requestProduction"
+                        [disabled]="isView"
+                        [style.border]="checkBorderFactoryId.style"
+                        [style.border-radius]="checkBorderFactoryId.radius">
+                    <option *ngFor="let t of factoryOption" [value]="t.id">{{t.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2 control-label--material">サンプルNo</label>
+        <div class="col-sm-4">
+            <div class="form-material">
+                <input type="text" class="form-control" placeholder="サンプルNo"
+                       [(ngModel)]="sampleNo" maxlength="10"
+                       [disabled]="isView">
+            </div>
+        </div>
+        <label class="control-label col-sm-2 control-label--material" [ngClass] = "{'hidden': isCarton}">フィルムNo</label>
+        <div class="col-sm-4" [ngClass] = "{'hidden': isCarton}">
+            <div class="form-material">
+                <input type="text" class="form-control" placeholder="フィルムNo"
+                       [(ngModel)]="filmNumber" maxlength="8"
+                       [disabled]="copyType!=1">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2 control-label--material">木型NO（１）</label>
+        <div class="col-sm-2">
+            <div class="form-material">
+                <input type="text" class="form-control" placeholder="木型No"
+                       [(ngModel)]="woodenCode1" maxlength="6" [disabled]="isView">
+            </div>
+        </div>
+        <div class="col-sm-2" style="padding-top:5px">
+            <label class="css-input css-checkbox css-checkbox-success" [class.css-input-disabled]="isView">
+                <input type="checkbox" (change)="shareWoodenFlag1($event)" [disabled]="isView"
+                       [checked]="shareWoodenFlag1Checked()" name="register4-terms"><span></span> 兼用
+            </label>
+        </div>
+        <label class="control-label col-sm-2 control-label--material">木型NO（２）</label>
+        <div class="col-sm-2">
+            <div class="form-material">
+                <input type="text" class="form-control" placeholder="木型No" value=""
+                       [(ngModel)]="woodenCode2" maxlength="6"
+                       [disabled]="isView || !isPaperbox">
+            </div>
+        </div>
+        <div class="col-sm-2" style="padding-top:5px">
+            <label class="css-input css-checkbox css-checkbox-success" [class.css-input-disabled]="isView || !isPaperbox">
+                <input type="checkbox"(change)="shareWoodenFlag2($event)" [disabled]="isView || !isPaperbox"
+                       [checked]="shareWoodenFlag2Checked()" name="register4-terms"><span></span> 兼用
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2 control-label--material" style="padding-top: 1px">得意先製品番号</label>
+        <div class="col-sm-4">
+            <div class="form-material">
+                <input type="text" class="form-control"
+                       [(ngModel)]="customerProductCode" maxlength="20"
+                       pattern="^[a-zA-Z0-9]+$"
+                       [disabled]="isView">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2 control-label--material">用途</label>
+        <div class="col-sm-10">
+            <div class="form-material">
+                <input type="text" class="form-control" placeholder="用途"
+                       [(ngModel)]="application" maxlength="20"
+                       [disabled]="isView">
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /HEADING PRODUCT-->

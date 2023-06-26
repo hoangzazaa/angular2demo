@@ -1,0 +1,48 @@
+<div class="panel-heading sfr-panel-concern-item">
+    <h3 class="panel-title">
+        <label class="label label-primary panel-title__label" *ngIf="isCustomer">得意先</label>
+        <label class="label label-warning panel-title__label" *ngIf="isSupplier">仕入先</label>
+        <span class="panel-title__note">{{ partner.code }}</span>
+        <button class="btn btn-link remove-padding panel-title__link" (click)="viewDetail()">
+            {{ partner.name }}
+        </button>
+        <div class="pull-right panel-title__flex-space">
+            <span class="panel-title__date panel-title__date_label">更新日</span>
+            <span class="panel-title__date panel-title__date_strong">{{ partner.updateDate | date: 'yyyy/MM/dd'}}</span>
+        </div>
+        <a role="button" class="pull-right accordion-toggle" (click)="toggleBox()">
+            <i class="glyphicon glyphicon-chevron-down"></i>
+        </a>
+    </h3>
+</div>
+<div class="panel-collapse collapse in" #boxBody>
+    <div class="panel-body block panel-body--has-tab_block">
+        <ul class="nav nav-tabs nav-tabs-alt">
+            <li [class.active]="isTabActive(1)">
+                <a role="button" (click)="selectTab(1)">基本情報</a>
+            </li>
+            <li [class.active]="isTabActive(2)">
+                <a role="button" (click)="selectTab(2)">取引実績</a>
+            </li>
+            <li [class.active]="isTabActive(4)" *ngIf="isCustomer">
+                <a role="button" (click)="selectTab(4)">製品一覧</a>
+            </li>
+            <li class="pull-right">
+                <div class="block-options-simple">
+                    <a class="btn btn-link" (click)="viewDetail()">詳細</a>
+                    <button class="btn btn-primary" *ngIf="canSelectCustomer" (click)="selectCustomer()" preventDC [valid]="canSelectPartner">
+                        案件の得意先として指定
+                    </button>
+                    <button class="btn btn-primary" *ngIf="canSelectSupplier" (click)="selectSupplier()" preventDC [valid]="canSelectPartner">
+                        案件の仕入先として指定
+                    </button>
+                </div>
+            </li>
+            <!-- /.nav --></ul>
+        <div class="tab-content">
+            <div class="tab-pane" [class.active]="isTabActive(1)" sfn040103></div>
+            <div class="tab-pane active" sfn040104 *ngIf="isTabActive(2)"></div>
+            <div class="tab-pane active" sfn040106 *ngIf="isTabActive(4)"></div>
+        </div>
+    </div>
+</div>

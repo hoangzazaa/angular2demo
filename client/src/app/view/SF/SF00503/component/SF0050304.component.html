@@ -1,0 +1,105 @@
+<div class="push-50-t">
+    <dt class="font-large">1. 既存得意先</dt>
+</div>
+
+<div class="form-group push-20-t">
+    <div class="panel panel-default panel--index">
+        <div class="panel-collapse collapse in" id="panel_body10">
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <div class="panel-collapse collapse in" id="search-customer">
+                        <div class="form-group">
+                            <label for="select_usernames" class="col-sm-2 text-right remove-margin-b label-padding-5-t" style="padding-top: 8px !important;">担当:</label>
+                            <div class="col-sm-3">
+                                <select id="select_usernames" name="select_usernames" class="form-control"
+                                        [(ngModel)]="userPic">
+                                    <option value="{{SELECT_ANY_SALE}}">部門全員</option>
+                                    <option *ngFor="let item of users; let idx = index" [ngValue]="item.id">
+                                        {{item.username}}
+                                    </option>
+                                </select>
+                            </div>
+                            <label for="customerNameFilter"
+                                   class="col-sm-3 text-right remove-margin-b label-padding-5-t" style="padding-top: 8px !important;">得意先名:</label>
+                            <div class="col-sm-4">
+                                <input id="customerNameFilter"
+                                       name="customerNameFilter"
+                                       type="text"
+                                       class="form-control"
+                                       maxlength="60"
+                                       [(ngModel)]="filters.customerName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 text-right remove-margin-b label-padding-5-t">表示件数:</label>
+                            <label class="col-sm-2 css-input css-radio css-radio-primary">
+                                <input name="radio-group10" checked=""
+                                       type="radio"
+                                       [checked]="filters.limitRule === sf00503Data.displayLimit.NONE"
+                                       value="{{sf00503Data.displayLimit.NONE}}"
+                                       (change)="onDisplayLimitChanged(sf00503Data.displayLimit.NONE)"><span></span>
+                                すべて
+                            </label>
+                            <label class="col-sm-2 css-input css-radio css-radio-primary">
+                                <input name="radio-group10" type="radio"
+                                       [checked]="filters.limitRule === sf00503Data.displayLimit.FIRST_10"
+                                       value="{{sf00503Data.displayLimit.FIRST_10}}"
+                                       (change)="onDisplayLimitChanged(sf00503Data.displayLimit.FIRST_10)"><span></span>
+                                10社
+                            </label>
+                            <label class="col-sm-2 css-input css-radio css-radio-primary">
+                                <input name="radio-group10" type="radio"
+                                       [checked]="filters.limitRule === sf00503Data.displayLimit.FIRST_20"
+                                       value="{{sf00503Data.displayLimit.FIRST_20}}"
+                                       (change)="onDisplayLimitChanged(sf00503Data.displayLimit.FIRST_20)"><span></span>
+                                20社
+                            </label>
+                            <label class="col-sm-2 css-input css-radio css-radio-primary">
+                                <input name="radio-group10" type="radio"
+                                       [checked]="filters.limitRule === sf00503Data.displayLimit.FIRST_30"
+                                       value="{{sf00503Data.displayLimit.FIRST_30}}"
+                                       (change)="onDisplayLimitChanged(sf00503Data.displayLimit.FIRST_30)"><span></span>
+                                30社
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 text-right remove-margin-b label-padding-5-t">ソート:</label>
+                            <label class="col-sm-2 css-input css-radio css-radio-primary">
+                                <input name="radio-group11"
+                                       [checked]="filters.sortRule === sf00503Data.sort.SALES_PERFORMANCE"
+                                       value="{{sf00503Data.sort.SALES_PERFORMANCE}}"
+                                       (change)="onSortingRuleChanged(sf00503Data.sort.SALES_PERFORMANCE)"
+                                       type="radio"><span></span> 売上順
+                            </label>
+                            <label class="col-sm-3 css-input css-radio css-radio-primary">
+                                <input name="radio-group11"
+                                       [checked]="filters.sortRule === sf00503Data.sort.ORDER_NUMBER"
+                                       value="{{sf00503Data.sort.ORDER_NUMBER}}"
+                                       (change)="onSortingRuleChanged(sf00503Data.sort.ORDER_NUMBER)"
+                                       type="radio"><span></span>
+                                受注件数順　
+                            </label>
+                            <div class="col-sm-5">
+                                <button class="btn btn-success pull-right" (click)="submitFilter()">絞り込む</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="customerGoalList">
+    <p class="font-medium">該当件数 <strong>{{record}}</strong> 件</p>
+    <template ngFor let-customerGoal [ngForOf]="paginatedCustomerGoals" let-idx="index">
+        <div class="panel panel-default panel--index" sf0050306
+             (onDataChanged)="emitDataChangedEvent(idx)"
+             (changeSaveCustomerGoal)="saveCustomerGoal($event)"
+             [index]="idx"
+        ></div>
+    </template>
+    <pagination-component [total]="sf00503Data.displayCustomerGoalOlds.length" [pageSize]="pageSize"
+                          (currentPageChange)="onPageChange($event)"></pagination-component>
+</div>

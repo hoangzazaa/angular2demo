@@ -1,0 +1,100 @@
+.sfn0504 .panel-heading .panel-title {
+    font-size: 24px;
+    opacity: 0.6;
+}
+
+.sfn0504 .filter-form .form-inline .form-group {
+    margin-bottom: 10px;
+}
+
+.sfn0504 .filter-form .form-inline .form-group label {
+    padding-right: 15px;
+}
+
+.sfn0504 .filter-form .form-inline .form-group label.label-clm-1 {
+    text-align: right;
+    min-width: 85px;
+}
+
+.sfn0504 .filter-form .form-inline .form-group label.label-clm-2 {
+    min-width: 40px;
+    padding-right: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .sfn0504 .filter-form .form-inline .form-group select,
+    .sfn0504 .filter-form .form-inline .form-group input {
+        width: 200px;
+    }
+}
+
+.sfn0504 .filter-form .fix-spacing {
+    display: inline-block;
+    width: 10px;
+}
+
+.sfn0504 .stock-table {
+    width: 100%;
+    overflow: auto;
+}
+
+.sfn0504 .stock-table table.htCore thead tr th {
+    color: white;
+    background-color: #9A9A9A;
+    /*font-weight: bold;*/
+}
+
+.sfn0504 .stock-table table.htCore th,
+.sfn0504 .stock-table table.htCore td {
+    border-color: #9A9A9A;
+}
+
+.sfn0504 .stock-table th:nth-child(3) span.colHeader,
+.sfn0504 .stock-table th:nth-child(4) span.colHeader,
+.sfn0504 .stock-table th:nth-child(5) span.colHeader {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+.sfn0504 .stock-table th span.colHeader.columnSorting::after {
+    color: #FFF !important;
+}
+
+.sfn0504 .stock-table th:nth-child(3) span.colHeader.columnSorting::after,
+.sfn0504 .stock-table th:nth-child(4) span.colHeader.columnSorting::after,
+.sfn0504 .stock-table th:nth-child(5) span.colHeader.columnSorting::after {
+    right: 5px !important;
+}
+
+.sfn0504 .stock-table table.htCore tbody tr td.htDimmed {
+    color: inherit;
+}
+
+.sfn0504 .stock-table tr td:nth-child(3),
+.sfn0504 .stock-table tr td:nth-child(4),
+.sfn0504 .stock-table tr td:nth-child(5) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sfn0504 .stock-table table.htCore tbody tr td:nth-child(1),
+.sfn0504 .stock-table table.htCore tbody tr td:nth-child(9) {
+    text-align: center;
+}
+
+.sfn0504 .stock-table table.htCore tbody tr td:nth-child(1) {
+    background-color: #F5F5F5;
+}
+
+.sfn0504 .stock-table table.htCore tbody tr td:nth-child(11) {
+    background-color: #E9F7FC;
+}
+
+.sfn0504 .stock-table table.htCore tbody tr td a {
+    white-space: nowrap;
+}
+
+.sfn0504 .pagination {
+    margin: 0;
+}

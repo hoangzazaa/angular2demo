@@ -1,0 +1,26 @@
+<div class="block-header bg-gray-lighter">
+    <h3 class="block-title">届け先</h3>
+</div>
+<div class="block-content">
+    <!--
+    <div *ngIf="shippingDestinationList.length <= 20">
+        <ul class="list-unstyled">
+            <li *ngFor="let shippingDestination of shippingDestinationList">
+                <a [routerLink]="['/home/customer', customer.code, 'shipping-destination', shippingDestination.id]">{{shippingDestination.deliveryName}}</a>
+            </li>
+        </ul>
+
+    </div>
+    -->
+    <div *ngIf="shippingDestinationList.length">
+        <p>編集したい届け先を選択してください。
+        <p>
+        <select class="form-control" (change)="moveTo($event.target.value)">
+            <option value="" disabled>選択してください</option>
+            <option *ngFor="let shippingDestination of shippingDestinationList" [value]="shippingDestination.id">{{shippingDestination.deliveryName}}</option>
+        </select>
+    </div>
+    <div class="alert alert-warning" *ngIf="!shippingDestinationList.length">
+        届け先は登録されていません。
+    </div>
+</div>

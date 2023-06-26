@@ -1,0 +1,49 @@
+<div class="content">
+    <div class="block overflow-hidden">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <div class="block-content block-content-narrow">
+                        <form (ngSubmit)="changePassword()" id="cc003-form"
+                              class="js-validation-material form-horizontal push-10-t">
+                            <div class="form-group">
+                                <label for="current-passwd" class="col-md-3 control-label">Current password</label>
+                                <div class="col-md-7">
+                                    <input class="form-control" type="password" id="current-passwd"
+                                           name="current-passwd"
+                                           placeholder="Please enter your current password"
+                                           [(ngModel)]="currentPassword" maxlength="30">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-passwd" class="col-md-3 control-label">New password</label>
+                                <div class="col-md-7">
+                                    <input class="form-control" type="password" id="new-passwd" name="new-passwd"
+                                           placeholder="Please enter new password"
+                                           [(ngModel)]="newPassword" minlength="6" maxlength="30">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-new-passwd" class="col-md-3 control-label">Confirm new
+                                    password</label>
+                                <div class="col-md-7">
+                                    <input class="form-control" type="password" id="confirm-new-passwd"
+                                           name="confirm-new-passwd"
+                                           placeholder="Please re-enter new password"
+                                           [(ngModel)]="confirmNewPassword" minlength="6" maxlength="30">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-9 col-md-offset-3">
+                                    <button class="btn btn-primary btn-sm" type="submit">
+                                        <i class="fa fa-gears push-5-r"></i>Save
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

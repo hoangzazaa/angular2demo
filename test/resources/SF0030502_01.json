@@ -1,0 +1,18 @@
+{
+  "recipients": [
+    "tungtengptit91@gmail.com"
+  ],
+  "cc": [
+    "nhocmnd@gmail.com"
+  ],
+  "subject": "Test send mail",
+  "mailContent": "test send mail 01",
+  "attachFiles": [
+    "見積書17S10222-M076"
+  ],
+  "mimeTypes": [
+    "sdfsd"
+  ],
+  "quotationCode": "17S00155-M155",
+  "timestamp": "1490166839760"
+}

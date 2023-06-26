@@ -1,0 +1,22 @@
+<div class="row push-50-t">
+    <div class="col-sm-3">
+        <dt class="font-large">3. 新規得意先</dt>
+    </div>
+
+    <div class="col-sm-9">
+        <button class="btn btn-info pull-right" [disabled]="sf00503Data.readOnlyCusGoal" (click)="addCustomerGoalNew()">
+            新規得意先を追加
+        </button>
+    </div>
+</div>
+
+<template ngFor let-customerGoalNew [ngForOf]="sf00503Data.customerGoalNews" let-idx="index">
+    <div class="panel panel-default panel--index"
+         *ngIf="sf00503Data.customerGoalNews[idx].createdUser != 272"
+         sf0050307
+         [index]="idx"
+         (onDataChanged)="emitCustomerGoalsDataChangedEvent()"
+         (changeCreateCustomerGoal)="saveCustomerGoal($event)"
+         (changeDeleteItem)="deleteCustomerGoal($event)"
+    ></div>
+</template>

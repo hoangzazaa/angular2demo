@@ -1,0 +1,57 @@
+<div class="form-horizontal deal-info-header push">
+    <div class="row">
+        <div class="form-group">
+            <label class="control-label col-sm-2 control-label--material">案件ID</label>
+            <div class="col-sm-10">
+                <div class="form-control-static form-control-static--material">{{dealInfo.dealCode}}</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 control-label--material">案件名</label>
+            <div class="col-sm-10">
+                <div class="form-control-static form-control-static--material"><strong>{{dealInfo.dealName}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 control-label--material">得意先ID</label>
+            <div class="col-sm-4">
+                <div class="form-control-static form-control-static--material">{{dealInfo.customerCode}}</div>
+            </div>
+            <label class="control-label col-sm-2 control-label--material">案件区分</label>
+            <div class="col-sm-4">
+                <div class="form-control-static form-control-static--material">{{dealType}}</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 control-label--material">得意先名</label>
+            <div class="col-sm-4">
+                <div class="form-control-static form-control-static--material">{{dealInfo.customerName}}</div>
+            </div>
+            <label class="control-label col-sm-2 control-label--material">納期</label>
+            <div class="col-sm-4">
+                <div class="form-control-static form-control-static--material">{{dealInfo.deliveryDate | date:
+                    'yyyy/MM/dd'}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 control-label--material">担当営業名</label>
+            <div class="col-sm-4">
+                <div class="form-control-static form-control-static--material">{{dealInfo.saleName}}</div>
+            </div>
+            <label class="control-label col-sm-2 control-label--material">受注予定金額</label>
+            <div class="col-sm-4">
+                <div class="form-control-static form-control-static--material"><strong>
+                    {{dealInfo.estimateTotal | numberFormat}}</strong> {{dealInfo.estimateTotal==null?'': '円'}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 deal-info-header__button-block">
+                <label class="label label__deal-status">{{dealStatus}}</label>
+            </div>
+            <div class="col-sm-10"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="sf00202 block-content deal-search-panel">
+    <div class="deal-search-panel__header">
+        <input class="js-tags-input form-control" type="text" style="width:95%" placeholder="Search.."
+               js-tags-input [tags]="pageData.keywords" (tagsChange)="onKeywordsChange($event)">
+        <div class="push-5-t text-right">
+            <a href="#search-panel_detail" aria-expanded="false" aria-controls="search-panel_detail"
+               data-toggle="collapse" class="btn btn-sm btn-link collapsed"><i class="fa fa-angle-up fa-lg"></i>詳細</a>
+        </div>
+    </div>
+    <sf0020202-filter (advanceSearchRequested)="setAdvancedSearchOnAndStartSearch($event)"></sf0020202-filter>
+</div>
+
+<div id="dealsList" class="block-content">
+
+    <p>該当件数 {{pageData.totalRecords}} 件</p>
+
+    <template ngFor let-deal [ngForOf]="pageData.deals" let-idx="index">
+        <sf0020201-deal-info [deal]="deal" [idx]="idx" [mstLaminations]="pageData.mstLaminations" (copyDealRequest)="copyDeal($event)"
+                             (viewDealDetailRequest)="viewDealDetail($event)"
+                             (bookmarkDealRequest)="bookmarkDeal($event)">
+        </sf0020201-deal-info>
+    </template>
+    <div *ngIf="pageData.deals.length > 0">
+        <pagination-component [total]="pageData.totalRecords" [pageSize]="pageData.CONSTANTS.PAGE_SIZE"
+                              (currentPageChange)="onPageChanged($event)"></pagination-component>
+    </div>
+    <!-- /.block-content -->
+</div>

@@ -1,0 +1,77 @@
+<!-- その他（製造単価に含める特殊加工工賃等） -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body11" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body11" role="button">
+                <i class="fa fa-circle-o text-gray push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateProductOther,'fa-circle-o text-gray':!stateProductOther}"></i>
+                <span>その他（製造単価に含める特殊加工工賃等）</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <!--TODO option after-->
+    <div class="panel-collapse collapse in" id="panel_body11">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" maxlength="16" [(ngModel)]="otherExpense1"
+                               [disabled]="isCreateNewProduct || isView" placeholder="費目">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" maxlength="6" placeholder="工賃" [defaultValue]="0"
+                               number-input [(numberValue)]="otherWage1" [maxValue]="9999999" [numberPrecision]="2"
+                               [disabled]="isCreateNewProduct || isView">
+                    </div>
+                    <label class="control-label col-sm-1">円</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" [disabled]="isCreateNewProduct || isView"
+                                [(ngModel)]="otherUnitType1">
+                            <option *ngFor="let t of unitTypes" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" maxlength="16" [(ngModel)]="otherExpense2"
+                               [disabled]="isCreateNewProduct || isView" placeholder="費目">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" maxlength="6" placeholder="工賃" [defaultValue]="0"
+                               number-input [(numberValue)]="otherWage2" [maxValue]="9999999" [numberPrecision]="2"
+                               [disabled]="isCreateNewProduct || isView">
+                    </div>
+                    <label class="control-label col-sm-1">円</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="otherUnitType2"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of unitTypes" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" maxlength="16" [(ngModel)]="otherExpense3"
+                               [disabled]="isCreateNewProduct || isView" placeholder="費目">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" maxlength="6" placeholder="工賃" [defaultValue]="0"
+                               number-input [(numberValue)]="otherWage3" [maxValue]="9999999" [numberPrecision]="2"
+                               [disabled]="isCreateNewProduct || isView">
+                    </div>
+                    <label class="control-label col-sm-1">円</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="otherUnitType3"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of unitTypes" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- その他（製造単価に含める特殊加工工賃等） -->

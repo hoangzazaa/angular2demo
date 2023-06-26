@@ -1,0 +1,249 @@
+<div class="deal-search-panel__body collapse" id="search-panel_detail">
+    <div class="deal-search-panel__block01">
+        <h3 class="h6 deal-search-panel__heading"><label class="text-nowrap" for="select-previod-type">対象期間</label></h3>
+        <div class="form-inline">
+            <select id="select-previod-type" name="select-previod-type" class="form-control input-sm" [(ngModel)]="periodType">
+                <option *ngFor="let item of mstPeriodType" [value]="item.id">{{item.name}}</option>
+            </select>
+            <div class="form-material form-material--group">
+                <span class="form-material--group__addon">自</span>
+                <input date-input class="form-control" type="text"
+                       id="startDate" [disabled]="view"
+                       placeholder="YYYY年M月D日" [(dateModel)]="ruleFilter.periodFrom" [defaultDate]="defaultPeriodFrom">
+            </div>
+            〜
+            <div class="form-material form-material--group">
+                <span class="form-material--group__addon">至</span>
+                <input date-input class="form-control" type="text"
+                       id="endDate" [disabled]="view"
+                       placeholder="YYYY年M月D日" [(dateModel)]="ruleFilter.periodTo" [defaultDate]="defaultPeriodTo">
+            </div>
+        </div>
+    </div>
+    <div class="deal-search-panel__block02">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 class="h6 deal-search-panel__heading text-nowrap">案件情報</h3>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">得意先ID</label>
+                        <div class="col-sm-8">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-sm" placeholder="" value="" [(ngModel)]="ruleFilter.customerCode"maxlength="8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">得意先名</label>
+                        <div class="col-sm-8">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-sm" placeholder="" value="" [(ngModel)]="ruleFilter.customerName"maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">得意先担当者名</label>
+                        <div class="col-sm-8">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-sm" placeholder="" value="" [(ngModel)]="ruleFilter.contactName"maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">案件ID</label>
+                        <div class="col-sm-8">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-sm" placeholder="" value="" [(ngModel)]="ruleFilter.dealCode"maxlength="10">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">案件名</label>
+                        <div class="col-sm-8">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-sm" placeholder="" value="" [(ngModel)]="ruleFilter.dealName"maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">担当営業名</label>
+                        <div class="col-sm-8">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-sm" placeholder="" value="" [(ngModel)]="ruleFilter.salesName"maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="select-deal-case" class="control-label col-sm-4 text-nowrap">案件区分</label>
+                        <div class="col-sm-8">
+                            <select id="select-deal-case" name="select-deal-case" class="form-control input-sm" [(ngModel)]="dealType">
+                                <option *ngFor="let t of dealTypes" [value]="t.id">{{t.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="h6 deal-search-panel__heading text-nowrap">製品仕様</h3>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">製品ID</label>
+                        <div class="col-sm-8">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-sm" placeholder="" value="" [(ngModel)]="ruleFilter.productCode"maxlength="8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">製品名</label>
+                        <div class="col-sm-8">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-sm" placeholder="" value="" [(ngModel)]="ruleFilter.productName"maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="select-paper-type" class="control-label col-sm-4 text-nowrap">紙器タイプ</label>
+                        <div class="col-sm-8">
+                            <select id="select-paper-type" name="select-paper-type" class="form-control input-sm" [(ngModel)]="shapeId">
+                                <option *ngFor="let item of mstShape" [value]="item.id">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">用途</label>
+                        <div class="col-sm-8">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-sm" placeholder="" value="" [(ngModel)]="ruleFilter.productApplication"maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">製品寸法</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="form-material">
+                                        <input type="number" class="form-control input-sm" placeholder="幅" value="" [(ngModel)]="ruleFilter.sizeW"maxlength="4">
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-material">
+                                        <input type="number" class="form-control input-sm" placeholder="奥行き" value="" [(ngModel)]="ruleFilter.sizeD"maxlength="4">
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-material">
+                                        <input type="number" class="form-control input-sm" placeholder="高さ" value="" [(ngModel)]="ruleFilter.sizeH"maxlength="4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">原紙</label>
+                        <div class="col-sm-8">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-sm" placeholder="" value="" [(ngModel)]="ruleFilter.paperName" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="select-print-method" class="control-label col-sm-4 text-nowrap">印刷方法</label>
+                        <div class="col-sm-8">
+                            <select id="select-print-method" name="select-print-method" class="form-control input-sm" [(ngModel)]="printMethod">
+                                <option *ngFor="let item of printMethods" [value]="item.id">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--http://fridaynight.vnext.vn/issues/2171-->
+            <div class="col-sm-4">
+                <h3 class="h6 deal-search-panel__heading">受注情報</h3>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">受注金額</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div class="form-material">
+                                        <input type="text" class="form-control input-sm" placeholder="" value=""
+                                               [(ngModel)]="ruleFilter.orderValueFrom"maxlength="9" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-xs-1">
+                                    <div class="form-control-static--material">〜</div>
+                                </div>
+                                <div class="col-xs-5">
+                                    <div class="form-material">
+                                        <input type="text" class="form-control input-sm" placeholder="" value=""
+                                               [(ngModel)]="ruleFilter.orderValueTo"maxlength="9" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 control-label--material text-nowrap">ロット数</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div class="form-material">
+                                        <input type="text" class="form-control input-sm" placeholder="" value=""
+                                               [(ngModel)]="ruleFilter.lotFrom"maxlength="9" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-xs-1">
+                                    <div class="form-control-static--material">〜</div>
+                                </div>
+                                <div class="col-xs-5">
+                                    <div class="form-material">
+                                        <input type="text" class="form-control input-sm" placeholder="" value=""
+                                               [(ngModel)]="ruleFilter.lotTo"maxlength="9" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="select-status" class="control-label col-sm-4 text-nowrap">ステータス</label>
+                        <div class="col-sm-8">
+                            <select id="select-status" name="select-status" class="form-control input-sm"
+                                    [(ngModel)]="dealStatus" disabled>
+                                <option *ngFor="let item of mstDealStatus" [value]="item.id">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group invisible">
+                        <div class="col-sm-12">
+                            <div class="form-control input-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group invisible">
+                        <div class="col-sm-12">
+                            <div class="form-control input-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group invisible">
+                        <div class="col-sm-12">
+                            <div class="form-control input-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button class="btn btn-success pull-right"
+                                    (click)="requestAdvanceSearch()">絞り込む</button>
+                            <button id="resetFilters" name="resetFilters"
+                                    class="btn btn-link btn-nooutline pull-right"
+                                    (click)="resetAllFilters()">検索条件クリア</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

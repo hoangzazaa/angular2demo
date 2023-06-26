@@ -1,0 +1,260 @@
+{
+  "product": {
+    "id": 50,
+    "createdUser": 188,
+    "updatedUser": 188,
+    "createdDate": "2017-03-02T07:06:10.000Z",
+    "updatedDate": "2017-03-02T07:06:10.000Z",
+    "productName": "asdasa",
+    "productType": 0,
+    "productCode": "P000050",
+    "application": "asdasd",
+    "memo1": "asdasdasda",
+    "paperNameId": 12,
+    "paperWeight": null,
+    "paperSizeH": 940,
+    "paperSizeW": 640,
+    "printMethod": 0,
+    "surfaceTreatmentIdF": null,
+    "surfaceTreatmentIdB": null,
+    "laminationFlute": 1,
+    "laminationMediumBasicWeight": 0,
+    "laminationMediumThroughWage": 0,
+    "laminationBackBasicWeight": 0,
+    "laminationBackThroughWage": 0,
+    "stampingId": null,
+    "pasteId": null,
+    "packingId": null,
+    "inspectionId": 1,
+    "customerProductCode": "asdas",
+    "factoryId": 1,
+    "pasteSpecialFormFlag": 0,
+    "otherUnitType1": 1,
+    "otherUnitType2": 1,
+    "otherUnitType3": 1,
+    "shippingCostId": null,
+    "stampingPointsNumber": 0,
+    "specialSizeFlag": 1,
+    "specialDieCuttingNumberFlag": 0,
+    "laminationPaperTypeBack": 8,
+    "laminationPaperTypeMedium": 8,
+    "paperHeadApprovalFlag": 0,
+    "colorF": {
+      "id": 5
+    },
+    "colorB": {
+      "id": 3
+    },
+    "packing": {
+      "id": 3
+    },
+    "paper": {
+      "id": 1
+    },
+    "paste": {},
+    "stamping": {
+      "id": 2
+    },
+    "dieCutting": {
+      "id": 1
+    },
+    "surfaceF": {
+      "id": 2
+    },
+    "surfaceB": {
+      "id": 2
+    },
+    "window": {
+      "id": 1
+    },
+    "wooden": {
+      "id": 1,
+      "createdUser": 8,
+      "updatedUser": 8,
+      "createdDate": "2017-01-06T06:34:21.000Z",
+      "updatedDate": "2017-01-06T06:34:21.000Z",
+      "woodenCode": "V010111",
+      "woodenTotalNumber": 12,
+      "woodenExpiredDate": "2020-12-10T03:05:41.000Z"
+    },
+    "productOutputs": [
+      {
+        "id": 231,
+        "createdUser": 8,
+        "updatedUser": 8,
+        "createdDate": "2017-05-01T04:17:55.000Z",
+        "updatedDate": "2017-01-13T09:06:25.350Z",
+        "paperTotalCost": 100,
+        "colorPrintTotalCostF": 0,
+        "colorPrintTotalCostB": 0,
+        "surfaceTreatmentBasicCostF": "",
+        "surfaceTreatmentBasicCostB": "",
+        "surfaceTreatmentThroughWageF": "",
+        "surfaceTreatmentThroughWageB": "",
+        "surfaceTreatmentTotalCostF": 0,
+        "surfaceTreatmentTotalCostB": 0,
+        "embossingTotalCost": 0,
+        "laminationTotalCost": 0,
+        "dieCuttingTotalCost": 0,
+        "stampingTotalCost": 0,
+        "windowTotalCost": 0,
+        "pasteTotalCost": 0,
+        "subtotal": 0,
+        "managementCost": 0,
+        "fareLineService": 0,
+        "estimatedTotal": 0,
+        "estimatedUnitPrice": 0,
+        "productId": 1,
+        "lot": 100,
+        "primaryFlag": 0,
+        "estimateDiff2": 0,
+        "dealProductId": 50,
+        "product": {
+          "id": 1
+        }
+      },
+      {
+        "id": 232,
+        "createdUser": 8,
+        "updatedUser": 8,
+        "createdDate": "2017-05-01T04:17:55.000Z",
+        "updatedDate": "2017-01-13T09:06:25.364Z",
+        "paperTotalCost": 0,
+        "colorPrintTotalCostF": 0,
+        "colorPrintTotalCostB": 0,
+        "surfaceTreatmentBasicCostF": "",
+        "surfaceTreatmentBasicCostB": "",
+        "surfaceTreatmentThroughWageF": "",
+        "surfaceTreatmentThroughWageB": "",
+        "surfaceTreatmentTotalCostF": 0,
+        "surfaceTreatmentTotalCostB": 0,
+        "embossingTotalCost": 0,
+        "laminationTotalCost": 0,
+        "dieCuttingTotalCost": 0,
+        "stampingTotalCost": 0,
+        "windowTotalCost": 0,
+        "pasteTotalCost": 0,
+        "subtotal": 0,
+        "estimatedTotal": 0,
+        "productId": 1,
+        "lot": 250,
+        "primaryFlag": 0,
+        "dealProductId": 50,
+        "product": {
+          "id": 1
+        }
+      },
+      {
+        "id": 233,
+        "createdUser": 8,
+        "updatedUser": 8,
+        "createdDate": "2017-05-01T04:17:55.000Z",
+        "updatedDate": "2017-01-13T09:06:25.370Z",
+        "paperTotalCost": 0,
+        "colorPrintTotalCostF": 0,
+        "colorPrintTotalCostB": 0,
+        "surfaceTreatmentBasicCostF": "",
+        "surfaceTreatmentBasicCostB": "",
+        "surfaceTreatmentThroughWageF": "",
+        "surfaceTreatmentThroughWageB": "",
+        "surfaceTreatmentTotalCostF": 0,
+        "surfaceTreatmentTotalCostB": 0,
+        "embossingTotalCost": 0,
+        "laminationTotalCost": 0,
+        "dieCuttingTotalCost": 0,
+        "stampingTotalCost": 0,
+        "windowTotalCost": 0,
+        "pasteTotalCost": 0,
+        "subtotal": 0,
+        "estimatedTotal": 0,
+        "productId": 1,
+        "lot": 500,
+        "primaryFlag": 0,
+        "dealProductId": 50,
+        "product": {
+          "id": 1
+        }
+      },
+      {
+        "id": 234,
+        "createdUser": 8,
+        "updatedUser": 8,
+        "createdDate": "2017-05-01T04:17:55.000Z",
+        "updatedDate": "2017-01-13T09:06:25.375Z",
+        "paperTotalCost": 0,
+        "colorPrintTotalCostF": 0,
+        "colorPrintTotalCostB": 0,
+        "surfaceTreatmentBasicCostF": "",
+        "surfaceTreatmentBasicCostB": "",
+        "surfaceTreatmentThroughWageF": "",
+        "surfaceTreatmentThroughWageB": "",
+        "surfaceTreatmentTotalCostF": 0,
+        "surfaceTreatmentTotalCostB": 0,
+        "embossingTotalCost": 0,
+        "laminationTotalCost": 0,
+        "dieCuttingTotalCost": 0,
+        "stampingTotalCost": 0,
+        "windowTotalCost": 0,
+        "pasteTotalCost": 0,
+        "subtotal": 0,
+        "estimatedTotal": 0,
+        "productId": 1,
+        "lot": 1000,
+        "primaryFlag": 0,
+        "dealProductId": 50,
+        "product": {
+          "id": 1
+        }
+      },
+      {
+        "id": 235,
+        "createdUser": 8,
+        "updatedUser": 8,
+        "createdDate": "2017-05-01T04:17:55.000Z",
+        "updatedDate": "2017-01-13T09:06:25.379Z",
+        "paperTotalCost": 0,
+        "colorPrintTotalCostF": 0,
+        "colorPrintTotalCostB": 0,
+        "surfaceTreatmentBasicCostF": "",
+        "surfaceTreatmentBasicCostB": "",
+        "surfaceTreatmentThroughWageF": "",
+        "surfaceTreatmentThroughWageB": "",
+        "surfaceTreatmentTotalCostF": 0,
+        "surfaceTreatmentTotalCostB": 0,
+        "embossingTotalCost": 0,
+        "laminationTotalCost": 0,
+        "dieCuttingTotalCost": 0,
+        "stampingTotalCost": 0,
+        "windowTotalCost": 0,
+        "pasteTotalCost": 0,
+        "subtotal": 0,
+        "estimatedTotal": 0,
+        "productId": 1,
+        "lot": 2000,
+        "primaryFlag": 0,
+        "dealProductId": 50,
+        "product": {
+          "id": 1
+        }
+      }
+    ],
+    "productCommon": {
+      "id": 1,
+      "createdUser": 8,
+      "updatedUser": 8,
+      "createdDate": "2017-01-09T10:22:22.000Z",
+      "updatedDate": "2017-01-13T08:44:16.000Z",
+      "designFee": 73737,
+      "plateMakingFee": 646,
+      "woodenFee": 575,
+      "resinFee": 938,
+      "productId": 1,
+      "product": {
+        "id": 1
+      }
+    },
+    "shippingCost": {
+      "id": 52
+    }
+  }
+}

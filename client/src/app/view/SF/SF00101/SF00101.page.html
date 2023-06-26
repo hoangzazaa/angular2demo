@@ -1,0 +1,53 @@
+<div class="content">
+    <div class="block">
+        <ul class="nav nav-tabs nav-tabs-alt" data-toggle="tabs">
+            <li class="active">
+                <a href="#salesTab" data-toggle="tab" (click)="onChangeTab(1)">営業状況</a>
+            </li>
+            <li>
+                <a href="#revenueTab" data-toggle="tab" (click)="onChangeTab(2)">売上実績</a>
+                <!--<a style="color: grey;">売上実績</a>-->
+            </li>
+            <li class="pull-right">
+                <div class="block-options-simple push-5-t">
+                    <button class="btn btn-link" (click)="viewSalesPerformance()">
+                        <span class="font-w600">営業実績管理</span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+        <div class="block-content tab-content">
+            <div class="tab-pane active" id="salesTab">
+                <div class="row">
+                    <sf0010101-filter-tab1></sf0010101-filter-tab1>
+                </div>
+                <div class="row">
+                    <sf0010102-graph></sf0010102-graph>
+                </div>
+            </div>
+            <div class="tab-pane" id="revenueTab">
+                <div class="row">
+                    <sf0010101-filter-tab2></sf0010101-filter-tab2>
+                </div>
+                <div class="row">
+                    <sf0010103-revenue></sf0010103-revenue>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dealInfo">
+        <p style="margin-left: 15px"><strong>仕掛り中案件</strong> 該当件数 {{pageData.totalRecords}} 件</p>
+
+        <!--list deal info-->
+        <template ngFor let-deal [ngForOf]="pageData.inprogressDeals" let-idx="index">
+            <sf0010104-dealInfo [deal]="deal" [idx]="idx"></sf0010104-dealInfo>
+        </template>
+
+        <!--paginator-->
+        <div *ngIf="totalRecords > 0">
+            <pagination-component [total]="totalRecords" [pageSize]="pageSize"
+                                  (currentPageChange)="onPageChange($event)"></pagination-component>
+        </div>
+    </div>
+</div>

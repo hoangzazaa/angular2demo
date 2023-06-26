@@ -1,0 +1,172 @@
+<!-- view mode -->
+<!-- blank row-->
+<template [ngIf]="viewMode && isBlank">
+    <td colspan="7">&nbsp;</td>
+    <td class="bg-gray-lighter"></td>
+</template>
+<!-- blank row END -->
+<!-- heading row -->
+<template [ngIf]="viewMode && isHeading">
+    <td></td>
+    <td colspan="6">
+        {{name | ellipsis:20}}&nbsp;
+    </td>
+    <td class="bg-gray-lighter"></td>
+</template>
+<!-- heading row END -->
+<!-- set row -->
+<template [ngIf]="viewMode && isGroups">
+    <td class="text-left">{{no}}</td>
+    <td class="text-left">{{name | ellipsis:20}}</td>
+    <td class="text-left">{{description | ellipsis:26}}</td>
+    <td class="text-right blank-if-empty-unit"><span>{{(quantity| numberFormat) }}</span></td>
+    <td class="text-center">
+        {{productUnit}}
+    </td>
+    <td class="text-right blank-if-empty-unit"><span>{{(submittedPrice| number:'1.2-2') }} 円</span></td>
+    <td class="text-right blank-if-empty-unit"><span>{{(total| numberFormat) }} 円</span></td>
+    <td class="text-center bg-gray-lighter"></td>
+</template>
+<!-- set row END -->
+<!-- product row -->
+<template [ngIf]="viewMode && isProduct">
+    <td class="text-left">{{no}}</td>
+    <td class="text-left" *ngIf="dealProductId == undefined">{{name | ellipsis:20}}</td>
+    <td class="text-left" *ngIf="dealProductId != undefined">
+        <a style="padding: 0px;" (click)="viewDetailProduct(product)" class="btn btn-link">{{name | ellipsis:20}}</a>
+    </td>
+    <td class="text-left">{{description | ellipsis : 26}}</td>
+    <td class="text-right blank-if-empty-unit"><span>{{(quantity| numberFormat) }}</span></td>
+    <td class="text-center">
+        {{productUnit}}
+    </td>
+    <td class="text-right blank-if-empty-unit"><span>{{(submittedPrice| number:'1.2-2') }} 円</span></td>
+    <td class="text-right blank-if-empty-unit"><span>{{(total| numberFormat) }} 円</span></td>
+    <td class="text-center bg-gray-lighter"></td>
+</template>
+<!-- product row END -->
+
+<!-- view mode END -->
+<!-- edit mode -->
+<!-- blank row -->
+<template [ngIf]="!viewMode && isBlank">
+    <td class="handle">
+      <span class="marker">
+        <i class="fa fa-bars"></i>
+      </span>
+    </td>
+    <td colspan="7">&nbsp;</td>
+    <td class="text-right">
+        <button class="btn btn-danger btn-remove btn-remove-group" (click)="remove()">
+            <i class="fa fa-times"></i>
+        </button>
+    </td>
+</template>
+<!-- blank row END -->
+<!-- heading row -->
+<template [ngIf]="!viewMode && isHeading">
+    <td class="handle">
+      <span class="marker">
+        <i class="fa fa-bars"></i>
+      </span>
+    </td>
+    <td></td>
+    <td colspan="6">
+        <input type="text" class="form-control input-sm font-w600" placeholder="見出し" (change)="eventChange()"
+               maxlength="30"
+               [(ngModel)]="name">
+    </td>
+    <td class="text-right">
+        <a class="btn btn-danger btn-remove btn-remove-group" (click)="remove()">
+            <i class="fa fa-times"></i>
+        </a>
+    </td>
+</template>
+<!-- heading row end -->
+<!-- set row -->
+<template [ngIf]="!viewMode && isGroups">
+    <td class="handle">
+      <span class="marker">
+        <i class="fa fa-bars"></i>
+      </span>
+    </td>
+    <td>
+        <a class="btn btn-link btn-group-toggle">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </td>
+    <td class="name">
+        <input type="text" class="form-control input-sm font-w600" placeholder="グループ名" (change)="eventChange()"
+               maxlength="21"
+               [(ngModel)]="name">
+    </td>
+    <td class="text-left note">
+        <textarea class="form-control input-sm" placeholder="内容" rows="2"
+                  maxlength="60" (change)="eventChange()"
+                  [(ngModel)]="description" style="resize:none"></textarea >
+    </td>
+    <td class="text-right quantity blank-if-empty-unit"><span>{{(quantity | numberFormat) }}</span></td>
+    <td class="text-center unit_type">
+        <select class="form-control productTypeQuoSelect"
+                id="productUnit_{{identity}}" name="productUnit_{{identity}}">
+            <option></option>
+        </select>
+    </td>
+    <td class="text-right unit blank-if-empty-unit"><span>{{(submittedPrice | number:'1.2-2') }} 円</span></td>
+    <td class="text-right sum blank-if-empty-unit"><span>{{(total| numberFormat)}} 円</span></td>
+    <td class="text-right">
+        <a class="btn btn-danger btn-remove btn-remove-group" (click)="remove()">
+            <i class="fa fa-times"></i>
+        </a>
+    </td>
+</template>
+<!-- set row END -->
+<!-- product row -->
+<template [ngIf]="!viewMode && isProduct">
+    <td class="handle" style="width: 16px">
+      <span class="marker">
+        <i class="fa fa-bars"></i>
+      </span>
+    </td>
+    <td></td>
+    <td *ngIf="dealProductId != undefined && product!=undefined" class="name text-left">
+        <a (click)="viewDetailProduct(product)" class="btn btn-link">{{name | ellipsis:20}}</a>
+    </td>
+    <td *ngIf="dealProductId == undefined" class="name">
+        <input type="text" class="form-control input-sm" placeholder="品名" (change)="eventChange()" [(ngModel)]="name" maxlength="255">
+    </td>
+    <td class="note" style="width: 320px;">
+        <textarea class="form-control input-sm" placeholder="内容" rows="2" (change)="eventChange()" style="resize:none"
+                  [(ngModel)]="description" maxlength="255"></textarea>
+    </td>
+    <td class="text-right blank-if-empty-unit" style="width: 80px;">
+        <input type="text" class="form-control input-sm"
+               number-input [(numberValue)]="quantity" [numberPrecision]="0"
+               (change)="eventChange()"
+               [maxValue]="9999999" [minValue]="0">
+    </td>
+    <td class="text-center unit_type" style="width: 90px;">
+        <select class="form-control input-sm productTypeQuoSelect"
+                id="productUnit_{{identity}}" name="productUnit_{{identity}}">
+            <option></option>
+        </select>
+    </td>
+    <td class="text-right unit blank-if-empty-unit" *ngIf="dealProductId == undefined" style="width: 100px;">
+        <input type="text" class="form-control input-sm" [numberPrecision]="2"
+               number-input [(numberValue)]="submittedPrice" [maxValue]="9999999" (change)="eventChange()"
+               [minValue]="0">
+    </td>
+    <td class="text-right unit blank-if-empty-unit" *ngIf="dealProductId != undefined" style="width: 120px;">
+        <span>{{(submittedPrice| number:'1.2-2')}} 円</span>
+    </td>
+    <td class="text-right sum blank-if-empty-unit" style="width: 120px;"><span>{{(total|numberFormat)}} 円</span>
+    </td>
+    <td class="text-right">
+        <a class="btn btn-danger btn-remove btn-remove-group" (click)="remove()">
+            <i class="fa fa-times"></i>
+        </a>
+    </td>
+</template>
+<!-- product row END -->
+<!-- edit mode END -->
+<td class="hidden">{{itemIndex}}</td>

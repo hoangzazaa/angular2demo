@@ -1,0 +1,134 @@
+/*!
+* Sefuri - v0.1.0 - Auto-compiled on 2017-03-15 - Copyright 2017
+* @author ...
+*/
+.sf00502 .pic-select {
+    padding: 0 0 30px 15px;
+}
+
+.sf00502 .pic-select .form-inline .form-group label {
+    padding-right: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    .sf00502 .pic-select .form-inline .form-group select {
+        width: 200px;
+    }
+}
+
+.sf00502 .pic-select .fix-spacing {
+    display: inline-block;
+    width: 84px;
+}
+
+.sf00502 .screen-mode {
+    border: 1px solid #cacaca;
+    border-radius: 20px;
+    padding: 4px;
+    margin: 15px 0;
+    text-align: center;
+    cursor: default;
+}
+
+@media screen and (min-width: 768px) {
+    .sf00502 .screen-mode {
+        width: 100px;
+    }
+}
+
+.sf00502 .panel-heading .panel-title {
+    font-size: 24px;
+    opacity: 0.6;
+}
+
+.sf00502 .panel-heading .panel-title > span {
+    font-size: 14px;
+}
+
+.sf00502 .summary-content .summary-table {
+    text-align: right;
+    border: none;
+}
+
+.sf00502 .summary-content .summary-table table {
+    width: 550px;
+    display: inline-table;
+    border: 1px solid #ddd;
+}
+
+.sf00502 .summary-content .summary-table table th,
+.sf00502 .summary-content .summary-table table td {
+    text-align: right;
+    width: 20%;
+}
+
+.sf00502 .summary-content .customer-list .company-name > span {
+    margin-left: 20px;
+}
+
+.sf00502 .summary-content .customer-list .company-dept {
+    display: none;
+}
+
+.sf00502 .summary-content .customer-list input {
+    background: #FFFFFF;
+}
+
+.sf00502 .summary-content .customer-list input.predict-input {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+    padding: 5px;
+    height: 28px;
+}
+
+.sf00502 .summary-content .customer-list table {
+    min-width: 980px;
+}
+
+.sf00502 .summary-content .customer-list table td {
+    padding: 5px !important;
+}
+
+.sf00502 .summary-content .customer-list table td.customer-name {
+    white-space: normal !important;
+}
+
+.sf00502 .summary-content .customer-list table td .a-select-done {
+    display: none;
+}
+
+.sf00502 .summary-content .customer-list table th.column-no {
+    width: 2%;
+}
+
+.sf00502 .summary-content .customer-list table th.column-name {
+    width: 20%;
+}
+
+.sf00502 .summary-content .customer-list table th.column-product,
+.sf00502 .summary-content .customer-list table th.column-total,
+.sf00502 .summary-content .customer-list table th.column-ratio {
+    width: 10%;
+}
+
+.sf00502 .summary-content .customer-list table th.column-comment {
+    width: 25%;
+}
+
+.sf00502 .summary-content .customer-list table th.column-action {
+    width: 3%;
+}
+
+.sf00502 .summary-content .customer-list.down-table {
+    margin-top: 40px;
+}
+
+.sf00502 .summary-content .action-buttons {
+    text-align: right;
+    margin-top: 40px;
+}
+
+.sf00502 .summary-content .action-buttons .btn-link {
+    color: #46c37b;
+}

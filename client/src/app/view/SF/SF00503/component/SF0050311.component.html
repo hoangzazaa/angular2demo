@@ -1,0 +1,22 @@
+<div class="row push-50-t">
+    <div class="col-sm-3">
+        <dt class="font-large">2. 既存得意先（その他合計）</dt>
+    </div>
+
+    <div class="col-sm-9">
+        <button class="btn btn-info pull-right" [disabled]="sf00503Data.readOnlyCusGoal" (click)="addCustomerGoalOther()">
+            既存得意先（その他合計）を追加
+        </button>
+    </div>
+</div>
+
+<template ngFor let-customerGoalOther [ngForOf]="sf00503Data.customerGoalOthers" let-idx="index">
+    <div class="panel panel-default panel--index"
+         *ngIf="sf00503Data.customerGoalOthers[idx].createdUser != 272"
+         sf0050312
+         [index]="idx"
+         (onDataChanged)="emitCustomerGoalsDataChangedEvent()"
+         (changeCreateCustomerGoal)="saveCustomerGoal($event)"
+         (changeDeleteItem)="deleteCustomerGoal($event)"
+    ></div>
+</template>

@@ -1,0 +1,105 @@
+.sfn0401 .search-panel__header .detail-filter-button {
+    float: right;
+    width: 80px;
+    text-align: right;
+}
+
+.sfn0401 .search-panel__header .freetext-input {
+    margin-right: 80px;
+}
+
+.sfn0401 .search-panel__header .freetext-input > input {
+    background-color: inherit;
+}
+
+.sfn0401 .search-panel__body .form-horizontal label.control-label {
+    text-align: right;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.sfn0401 .freetext-input > .tagsinput {
+    border: 1px solid #646464 !important;
+}
+
+.sfn0401 .search-panel__body .form-horizontal input.form-control {
+    background-color: inherit;
+    border-color: #C0C0C0;
+}
+
+.sfn0401 .filter-panel {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.sfn0401 .filter-panel .search-panel {
+    border-bottom: none;
+}
+
+.sfn0401 .triangle {
+    padding-top: 20px;
+}
+
+.sfn0401 .triangle:after,
+.sfn0401 .triangle:before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    width: 50%;
+    border-bottom: 25px solid #f5f5f5;
+    -moz-transform: rotate(0.000001deg);
+    -webkit-transform: rotate(0.000001deg);
+    -o-transform: rotate(0.000001deg);
+    -ms-transform: rotate(0.000001deg);
+    transform: rotate(0.000001deg);
+}
+
+.sfn0401 .triangle:before {
+    right: 50%;
+    border-right: 75px solid transparent;
+}
+
+.sfn0401 .triangle:after {
+    left: 50%;
+    border-left: 75px solid transparent;
+}
+
+.sfn0401 h3.panel-title .panel-title__label {
+    border-radius: 15px;
+    font-size: 14px;
+    padding: 2px;
+    width: 75px;
+}
+
+.sfn0401 .basic-info-table {
+    table-layout: fixed;
+    margin-top: 15px;
+}
+
+.sfn0401 .basic-info-table tr td.title-1,
+.sfn0401 .basic-info-table tr td.title-2 {
+    text-align: right;
+}
+
+.sfn0401 .basic-info-table tr td.title-1 {
+    width: 100px;
+}
+
+.sfn0401 .basic-info-table tr td.title-2 {
+    width: 120px;
+}
+
+.sfn0401 .basic-info-table tr td.data-1,
+.sfn0401 .basic-info-table tr td.data-2 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.sfn0401 .basic-info-table tr td.data-2 {
+    width: 190px;
+}
+
+.sfn0401 .basic-info-table tr.note-row {
+    border-top: 1px solid #eee;
+}

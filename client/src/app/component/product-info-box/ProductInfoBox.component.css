@@ -1,0 +1,116 @@
+.pib-component input[type="number"].input-sm{
+    padding-right: 1px;
+}
+
+.pib-component .input-required {
+    border: 2px solid #5c90d2;
+    border-radius: 3px;
+}
+
+.pib-component .panel-title > label.css-checkbox {
+    padding-right: 10px;
+}
+
+.pib-component .basic-info td {
+    padding-right: 0;
+    padding-bottom: 0;
+}
+
+.pib-component .basic-info td.title-1,
+.pib-component .basic-info td.title-2 {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.pib-component .basic-info td.title-1 {
+    width: 75px;
+}
+
+.pib-component .basic-info td.title-2 {
+    width: 120px;
+}
+
+.pib-component .basic-info td.amount-row {
+    line-height: 30px;
+}
+
+.pib-component .basic-info .amount-value {
+    width: 120px;
+    font-size: 21px;
+    text-align: right;
+    display: inline-block;
+}
+
+.pib-component .basic-info .form-control.amount-value {
+    border-color: #C0C0C0;
+}
+
+.pib-component .basic-info .total-amount {
+    min-width: 120px;
+    width: auto;
+}
+
+.pib-component .basic-info .total-amount.amount-display {
+    min-width: unset;
+}
+
+.pib-component .pib-block {
+    margin: 15px 30px 0;
+}
+
+.pib-component .pib-block > .block-header > .block-title {
+    font-size: 24px;
+}
+
+.pib-component input,
+.pib-component input:focus,
+.pib-component input[readonly],
+.pib-component select,
+.pib-component select:focus {
+    background: #ffffff;
+}
+
+.pib-component .pib-block .form-horizontal .control-label {
+    text-align: right;
+    padding-right: 0;
+}
+
+.pib-component .pib-block .pib_destination-detail {
+    padding: 10px 0;
+}
+
+.pib-component .pib-block .manufacture-radio {
+    padding-right: 0px;
+    height: 30px;
+}
+
+.pib-component .pib-block .manufacture-radio .css-radio {
+    padding-left: 5px;
+}
+
+/* loading address */
+.pib-component .pib_loading-address .block-title {
+    font-size: 24px;
+}
+
+.pib_address-table .wtBorder {
+    display: none !important;
+}
+
+.pib_address-table tr td.selected-address {
+    background-color: #81d0f2;
+}
+
+.pib_address-table table.htCore tbody {
+    cursor: pointer;
+}
+
+.pib_address-table table.htCore .htDimmed {
+    color: black;
+}
+
+.pib_address-table table.htCore thead tr th {
+    color: white;
+    background-color: #9a9a9a;
+    font-weight: bold;
+}

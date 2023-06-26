@@ -1,0 +1,107 @@
+{
+  "customerGoal":{
+    "id":5001,
+    "year": 2017,
+    "customerId": 1,
+    "picId":1,
+    "activityPolicy":"automation test",
+    "goalItems": [
+      {
+        "id":5000,
+        "type": 1,
+        "goal": 5555,
+        "month": 1,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5001,
+        "type": 2,
+        "goal": 5555,
+        "month": 2,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5002,
+        "type": 2,
+        "goal": 5555,
+        "month": 3,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5003,
+        "type": 2,
+        "goal": 5555,
+        "month": 4,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5004,
+        "type": 2,
+        "goal": 5555,
+        "month": 5,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5005,
+        "type": 2,
+        "goal": 5555,
+        "month": 6,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5006,
+        "type": 2,
+        "goal": 5555,
+        "month": 7,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5007,
+        "type": 2,
+        "goal": 5555,
+        "month": 8,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5008,
+        "type": 2,
+        "goal": 5555,
+        "month": 9,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5009,
+        "type": 2,
+        "goal": 5555,
+        "month": 10,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5010,
+        "type": 2,
+        "goal": 5555,
+        "month": 11,
+        "customerGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5011,
+        "type": 2,
+        "goal": 5555,
+        "month": 12,
+        "customerGoalId": 5000,
+        "customerType": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+<!-- view mode mode -->
+<ng-container *ngIf="!isEditMode">
+    <td class="text-right">{{ rowNo }}</td>
+    <td class="customer-name"><a role="button" (click)="goCustomerDetail()">{{ customerName }}</a></td>
+    <td class="text-right">
+        {{ convertYenToThousanYen(newAmount1) | number:'1.0-0' }}<br>
+        ({{ convertYenToThousanYen(oldAmount1) | number:'1.0-0' }})
+    </td>
+    <td class="text-right">
+        {{ convertYenToThousanYen(newAmount2) | number:'1.0-0' }}<br>
+        ({{ convertYenToThousanYen(oldAmount2) | number:'1.0-0' }})
+    </td>
+    <td class="text-right">
+        {{ convertYenToThousanYen(newAmount3) | number:'1.0-0' }}<br>
+        ({{ convertYenToThousanYen(oldAmount3) | number:'1.0-0' }})
+    </td>
+    <td class="text-right">
+        <strong>{{ convertYenToThousanYen(totalNewAmount) | number:'1.0-0' }}</strong><br>
+        <strong>({{ convertYenToThousanYen(totalOldAmount) | number:'1.0-0' }})</strong>
+    </td>
+    <td class="text-right" *ngIf="isNanDiffRate">-<br>&#8203;</td>
+    <td class="text-right" *ngIf="!isNanDiffRate">{{ diffRate | number:'1.1-1' }}%<br>&#8203;</td>
+    <td>{{ comment }}</td>
+</ng-container>
+
+<!-- edit mode, view achievement -->
+<ng-container *ngIf="isEditMode && !isPrediction">
+    <td class="text-right">{{ rowNo }}</td>
+    <td class="customer-name"><a role="button" (click)="goCustomerDetail()">{{ customerName }}</a></td>
+    <td class="text-right">
+        {{ convertYenToThousanYen(newAmount1) | number:'1.0-0' }}<br>
+        ({{ convertYenToThousanYen(oldAmount1) | number:'1.0-0' }})
+    </td>
+    <td class="text-right">
+        {{ convertYenToThousanYen(newAmount2) | number:'1.0-0' }}<br>
+        ({{ convertYenToThousanYen(oldAmount2) | number:'1.0-0' }})
+    </td>
+    <td class="text-right">
+        {{ convertYenToThousanYen(newAmount3) | number:'1.0-0' }}<br>
+        ({{ convertYenToThousanYen(oldAmount3) | number:'1.0-0' }})
+    </td>
+    <td class="text-right">
+        <strong>{{ convertYenToThousanYen(totalNewAmount) | number:'1.0-0' }}</strong><br>
+        <strong>({{ convertYenToThousanYen(totalOldAmount) | number:'1.0-0' }})</strong>
+    </td>
+    <td class="text-right" *ngIf="isNanDiffRate">-<br>&#8203;</td>
+    <td class="text-right" *ngIf="!isNanDiffRate">{{ diffRate | number:'1.1-1' }}%<br>&#8203;</td>
+    <td *ngIf="isEditMode"><input type="text" class="form-control" [(ngModel)]="comment"></td>
+</ng-container>
+
+<!-- edit mode, view prediction mode, not wait row -->
+<ng-container *ngIf="isEditMode && isPrediction && !isWaitRow">
+    <td class="text-right">{{ rowNo }}</td>
+    <td class="customer-name"><a role="button" (click)="goCustomerDetail()">{{ customerName }}</a></td>
+    <td class="text-right">
+        <input class="form-control predict-input" number-input [(numberValue)]="newAmount1"
+               [minValue]="0" [maxValue]="999999" [defaultValue]="0"><br>
+        ({{ oldAmount1 | number:'1.0-0' }})
+    </td>
+    <td class="text-right">
+        <input class="form-control predict-input" number-input [(numberValue)]="newAmount2"
+               [minValue]="0" [maxValue]="999999" [defaultValue]="0"><br>
+        ({{ oldAmount2 | number:'1.0-0' }})
+    </td>
+    <td class="text-right">
+        <input class="form-control predict-input" number-input [(numberValue)]="newAmount3"
+               [minValue]="0" [maxValue]="999999" [defaultValue]="0"><br>
+        ({{ oldAmount3 | number:'1.0-0' }})
+    </td>
+    <td class="text-right">
+        <strong>{{ totalNewAmount | number:'1.0-0' }}</strong><br>
+        <strong>({{ totalOldAmount | number:'1.0-0' }})</strong>
+    </td>
+    <td class="text-right" *ngIf="isNanDiffRate">-<br>&#8203;</td>
+    <td class="text-right" *ngIf="!isNanDiffRate">{{ diffRate | number:'1.1-1' }}%<br>&#8203;</td>
+    <td>
+        <input type="text" class="form-control" [(ngModel)]="comment">
+    </td>
+    <td>
+        <button class="btn btn-danger" (click)="removeRow()"><i class="fa fa-times"></i></button>
+    </td>
+</ng-container>
+
+<!-- wait row -->
+<ng-container *ngIf="isWaitRow">
+    <td class="text-right">{{ rowNo }}</td>
+    <td class="customer-name">
+        <select #sf0050204Select class="form-control">
+            <option></option>
+            <option *ngFor="let customer of customerList" [value]="customer.id">{{ customer.name }}</option>
+        </select>
+    </td>
+    <td class="text-right"></td>
+    <td class="text-right"></td>
+    <td class="text-right"></td>
+    <td class="text-right"></td>
+    <td class="text-right"></td>
+    <td></td>
+    <td>
+        <button class="btn btn-success" (click)="addRow()"><i class="fa fa-plus"></i></button>
+    </td>
+</ng-container>

@@ -1,0 +1,455 @@
+<!-- Page Content -->
+<div class="content main-content">
+    <input value="{{productCode}}" id="productCode" type="hidden">
+    <input value="{{dealCode}}" id="dealCode" type="hidden">
+    <!-- SF008 -->
+    <!-- sf008-content -->
+    <div class="sf008-content">
+
+        <div class="row">
+            <div class="left-content">
+
+                <div class="block">
+                    <div class="block-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>得意先名：<span id="customer_name"></span></p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>製品名：<span id="product_name"></span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block-content">
+                        <div>
+                            <canvas id="canvas1" width="640" height="800" style="background-color:#275181"></canvas>
+                        </div>
+                        <div class="block-content__info">
+                            <div id="canvasInfo">
+                                <p class="content01">展開寸法 <span id="sizeW">314</span>mm x <span id="sizeH">278</span>mm
+                                </p>
+                                <p class="content02">展開寸法(合計) <span id="sizeW_all">314</span>mm x <span id="sizeH_all">278</span>mm
+                                </p>
+                            </div>
+                            <div id="canvasControl">
+                                <input id="scaleSlider" class="hidden" type="range" min="10" max="400" step="1"
+                                       value="100">
+                                <div>
+                                    <div><input id="scaleDown" type="button" value="縮小"/></div>
+                                    <div>
+                                        <span id="scaleSliderValue"></span>
+                                    </div>
+                                    <div><input id="scaleUp" type="button" value="拡大"/></div>
+                                    <div>
+                                        <a id="fitToShape" class="content01">全体表示</a>
+                                        <a id="fitToPaper" class="content02">全体表示</a>
+                                    </div>
+                                    <div>
+                                        目盛り：<span id="meterUnit">10</span>mm
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- /.block-content --></div>
+                    <div id="sf008Info" class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-xs-1">
+                                    <button class="btn btn-link" (click)="goBack()">戻る</button>
+                                </div>
+                                <div class="col-xs-11">
+                                    <div id="errorMessage" class="content02">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .content01 --></div>
+
+                    <!-- /.block --></div>
+                <!-- /.col-sm-8 --></div>
+
+
+            <div class="right-content">
+
+                <div class="block-header">
+                    <div class="content01">
+                        <h3>1. 図面作成・読込</h3>
+                    </div>
+                    <div class="content02">
+                        <h3>2. 面付け試算</h3>
+                    </div>
+                </div>
+
+                <div class="block">
+                    <div class="content01">
+
+                        <input id="group1_1" class="hidden" type="radio" name="group1" value="0" checked="checked">
+                        <input id="group1_2" class="hidden" type="radio" name="group1" value="1">
+
+                        <div id="tabGroup1-header" class="block-header">
+                            <ul class="nav nav-tabs text-center">
+                                <li class="col-xs-6 active"><a><label for="group1_1">図面の作成</label></a></li>
+                                <li class="col-xs-6"><a><label for="group1_2">図面の読込</label></a></li>
+                            </ul>
+                        </div>
+                        <div class="block-content">
+                            <div id="tabGroup1_1" class="tabGroup">
+                                <div class="tabGroup__body">
+
+                                    <div id="shapes" href="#search-shapes">
+                                        <div class="form-material form-material-primary input-group remove-margin-t remove-margin-b">
+
+                                            <input id="shape_name" class="span2" type="text" value="" readonly>
+                                            <span class="popup-modal input-group-addon btn btn-link"><i class="si si-magnifier"></i></span>
+                                        </div>
+                                        <!-- #shapes -->
+                                    </div>
+
+                                    <div id="params">
+                                        <div class="row">
+                                            <div class="col-xs-3"><span>長さ</span></div>
+                                            <div class="col-xs-6"><div><input id="paramWidth" class="paramText" type="number" value="0.0" /></div></div>
+                                            <div class="col-xs-3"><span>mm</span></div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-3"><span>幅</span></div>
+                                            <div class="col-xs-6"><div><input id="paramDepth" class="paramText" type="number" value="0.0" /></div></div>
+                                            <div class="col-xs-3"><span>mm</span></div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-xs-3"><span>高さ</span></div>
+                                            <div class="col-xs-6"><div><input id="paramHeight" class="paramText" type="number" value="0.0" /></div></div>
+                                            <div class="col-xs-3"><span>mm</span></div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-3"><span>フラップ</span></div>
+                                            <div class="col-xs-6"><div><input id="paramFlap" class="paramText" type="number" value="0.0" /></div></div>
+                                            <div class="col-xs-3"><span>mm</span></div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-3"><span>差し込み</span></div>
+                                            <div class="col-xs-6"><div><input id="paramInsertion" class="paramText" type="number" value="0.0" /></div></div>
+                                            <div class="col-xs-3"><span>mm</span></div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-3"><span>糊付け</span></div>
+                                            <div class="col-xs-6"><div><input id="paramGluing" class="paramText" type="number" value="0.0" /></div></div>
+                                            <div class="col-xs-3"><span>mm</span></div>
+                                        </div>
+
+                                        <div id="paper_TY" class="row">
+                                            <div class="col-xs-4"><span>紙目</span></div>
+                                            <div class="col-xs-8">
+                                                <div>
+                                                    <label class="radio">
+                                                        <input id="groupTY_1" type="radio" name="groupTY" value="0"
+                                                               checked="checked"> T (縦目)
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input id="groupTY_2" type="radio" name="groupTY" value="1"> Y
+                                                        (横目)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- #params --></div>
+
+                                </div>
+                                <!-- #tabGroup1_1 --></div>
+
+                            <div id="tabGroup1_2" class="tabGroup">
+                                <div class="tabGroup__body">
+                                    <div id="custom_paper_file">
+                                        <div id="drop_zone">
+                                            <img src="/assets/img/blank.png">
+                                            <div>
+                                                <div>
+                                                    <div>
+                                                        <p class="text-center"><span>ファイルを選択</span><br/>
+                                                            （ドラッグアンドドロップ可）
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="drop_zone_text">
+                                            <p>形式：PNG（背景透明）<br/>
+                                                　サイズ：5MBまで</p>
+                                        </div>
+                                    </div>
+                                    <div id="custom_paper_sizes">
+                                        <div class="row">
+                                            <div class="col-xs-12 title">
+                                                <span>展開寸法</span>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="row">
+                                                    <span class="col-xs-5"><input id="paramPSW" class="paramPSW" placeholder="ヨコ" type="text" value="0.0" /></span>
+                                                    <span class="col-xs-2 text-center">x</span>
+                                                    <span class="col-xs-5"><input id="paramPSH" class="paramPSH" placeholder="タテ" type="text" value="0.0" /></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- #params --></div>
+                                    <div id="custom_paper_TY">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <span>紙目</span>
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <div>
+                                                    <label class="radio">
+                                                        <input id="groupCustomPTY_1" type="radio" name="groupCustomPTY"
+                                                               value="0" checked="checked"> T (縦目)
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input id="groupCustomPTY_2" type="radio" name="groupCustomPTY"
+                                                               value="1"> Y (横目)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="block-footer row">
+                                <div class="col-xs-6">
+
+                                </div>
+                                <div class="col-xs-6">
+                                    <p class="text-right"><button id="SFBtn01" class="btn btn-primary">面付け試算へ</button></p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- .content01 --></div>
+
+                    <div class="content02">
+
+                        <input id="group2_1" class="hidden" type="radio" name="group2" value="0" checked="checked">
+                        <input id="group2_2" class="hidden" type="radio" name="group2" value="1">
+
+                        <div id="tabGroup2-header" class="block-header">
+                            <ul class="nav nav-tabs text-center">
+                                <li class="col-xs-6 active"><a><label for="group2_1">標準規格</label></a></li>
+                                <li class="col-xs-6"><a><label for="group2_2">特寸規格</label></a></li>
+                            </ul>
+                        </div>
+                        <div class="block-content">
+
+                            <div id="papers">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <select id="paper_names">
+                                            <option value="1" selected>タイタンコート</option>
+                                            <option value="2">タイタンコート</option>
+                                            <option value="3">タイタンコート</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <select id="paper_weights">
+                                            <option value="1" selected>270g</option>
+                                            <option value="2">300g</option>
+                                            <option value="3">320g</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div id="paperPrice"><span>105</span> 円k@</div>
+                                    </div>
+                                </div>
+
+                                <div id="custom_paper_margin" class="row">
+                                    <div class="col-xs-2">
+                                        <span>ドブ</span>
+                                    </div>
+                                    <div class="col-xs-3 pdl0">
+                                        <input id="paperMargin" type="number" value="10"  maxlength="3"  style="text-align:left;width:100%"/>
+                                    </div>
+                                    <div class="col-xs-3 pdl0">
+                                        <span>mm</span>
+                                    </div>
+                                </div>
+
+                                <div id="custom_wooden_fee" class="row">
+                                    <div class="col-xs-12">
+                                        <h4>木型代を含めて試算する場合</h4>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <span>木型代</span>
+                                    </div>
+                                    <div class="col-xs-3 pdl0">
+                                        <input id="woodenFee" type="number" value="10"  maxlength="8" />
+                                    </div>
+                                    <div class="col-xs-1 pdl0">
+                                        <span>円</span>
+                                    </div>
+                                    <div class="col-xs-3 pdl0">
+                                        <span>想定ロット数</span>
+                                    </div>
+                                    <div class="col-xs-3 pdl0">
+                                        <input id="numOfLots" type="number" value="1" maxlength="8" />
+                                    </div>
+                                </div>
+
+
+                                <div class="block-footer row">
+                                <div class="col-xs-7">
+                                    <p class="text-left"><span id="numShapes">2</span>丁 × <span
+                                            id="priceOfShapes">@4.2</span>円</p>
+
+                                </div>
+                                <div class="col-xs-5">
+                                    <p class="text-right">
+                                        <button id="saveBtn2" class="btn btn-primary btn-block">製品情報に追加</button>
+                                    </p>
+                                </div>
+                            </div>
+                        <!-- #papers --></div>
+
+                            <div id="tabGroup2_1" class="tabGroup">
+                                <div class="tabGroup__body">
+                                    <div id="sheet_sizes" class="row">
+                                        <div class="col-xs-12">
+                                            <table class="table table-condensed table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>断裁サイズ</th>
+                                                    <th>可否</th>
+                                                    <th>枚単価</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- #sheet_sizes --></div>
+                                </div>
+                                <!-- #tabGroup2_1 --></div>
+
+
+                            <div id="tabGroup2_2" class="tabGroup">
+                                <div class="tabGroup__body">
+
+                                    <div id="custom_sheet_sizes">
+                                        <div class="row">
+                                            <div class="col-xs-12 title">
+                                                <span>特寸サイズ</span>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="row">
+                                                    <span class="col-xs-5"><input id="paramSSW" class="paramSSW" placeholder="ヨコ" type="number" max="999" min="10"  value="800.0" /></span>
+                                                    <span class="col-xs-2">x</span>
+                                                    <span class="col-xs-5"><input id="paramSSH" class="paramSSH" placeholder="タテ" type="number" max="999" min="10"  value="550.0" /></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- #custom_sheet_sizes --></div>
+
+                                    <div id="custom_sheet_price">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <span>シート単価</span>
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <span class="priceOfShapes">14.7円</span>
+                                            </div>
+                                        </div>
+                                        <!-- #custom_sheet_price --></div>
+
+                                    <div id="custom_sheet_TY">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <span>紙目</span>
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <div>
+                                                    <label class="radio">
+                                                        <input id="groupCustomTY_1" type="radio" name="groupCustomTY"
+                                                               value="0" checked="checked"> T (縦目)
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input id="groupCustomTY_2" type="radio" name="groupCustomTY"
+                                                               value="1"> Y (横目)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- #custom_sheet_TY --></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- .content01 --></div>
+
+                    <div class="push-30-t col-sm-12 content01">
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <button id="print1" class="btn btn-default">図面を出力</button>
+                                <button id="saveBtn1" class="btn" [disabled]="checkProduct">保存</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="push-30-t col-sm-12 content02">
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <button id="print2" class="btn btn-default">図面を出力</button>
+                                <button id="SFBtn02" class="btn btn-primary" [disabled]="checkProduct">図面作成・読み込みに戻る</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="inlineContent">
+            <div id="search-shapes">
+                <div class="row">
+                    <div id="shapeList" class="col-sm-8">
+                        <table class="table table-condensed table-hover">
+                            <thead><tr><th>紙器タイプ</th></tr></thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="shapeDetail" class="col-sm-4">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <button class="popup-modal-dismiss btn btn-link">キャンセル</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="popup-modal-selective btn btn-primary btn-block">選択</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- .sf008-content --></div>
+    <!-- /SF008 -->
+
+</div>
+<!-- END Page Content -->
+<div class="hidden">
+    <button id="sf008-saveBtn" class="hidden" (click)="setDataProduct()"></button>
+</div>

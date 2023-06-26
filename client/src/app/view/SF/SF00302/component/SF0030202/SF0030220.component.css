@@ -1,0 +1,4 @@
+#handProcessing .form-control[disabled]{
+    background-color: white;
+    color:grey;
+}

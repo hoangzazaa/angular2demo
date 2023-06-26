@@ -1,0 +1,137 @@
+<div class="block-header bg-gray-lighter">
+    <h3 class="block-title">製造指示</h3>
+</div>
+<div class="block-content bg-gray-lighter">
+    <div class="row">
+        <div class="col-md-7 form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">製造仕様書</label>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_ps_{{radioId}}" [(ngModel)]="manufacture.pib_productionSpecs" [value]="1"><span></span> 新
+                    </label>
+                </div>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_ps_{{radioId}}" [(ngModel)]="manufacture.pib_productionSpecs" [value]="2"><span></span> 改
+                    </label>
+                </div>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_ps_{{radioId}}" [(ngModel)]="manufacture.pib_productionSpecs" [value]="3"><span></span> 修
+                    </label>
+                </div>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_ps_{{radioId}}" [(ngModel)]="manufacture.pib_productionSpecs" [value]="4"><span></span> 有
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">印刷版</label>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_pv_{{radioId}}" [(ngModel)]="manufacture.pib_printVersion" [value]="1"><span></span> なし
+                    </label>
+                </div>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_pv_{{radioId}}" [(ngModel)]="manufacture.pib_printVersion" [value]="2"><span></span> 新
+                    </label>
+                </div>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_pv_{{radioId}}" [(ngModel)]="manufacture.pib_printVersion" [value]="3"><span></span> 修
+                    </label>
+                </div>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_pv_{{radioId}}" [(ngModel)]="manufacture.pib_printVersion" [value]="4"><span></span> 有
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">木型</label>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_wd_{{radioId}}" [(ngModel)]="manufacture.pib_wooden" [value]="1"><span></span> なし
+                    </label>
+                </div>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_wd_{{radioId}}" [(ngModel)]="manufacture.pib_wooden" [value]="2"><span></span> 新
+                    </label>
+                </div>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_wd_{{radioId}}" [(ngModel)]="manufacture.pib_wooden" [value]="3"><span></span> 修
+                    </label>
+                </div>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_wd_{{radioId}}" [(ngModel)]="manufacture.pib_wooden" [value]="4"><span></span> 有
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">金型</label>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_md_{{radioId}}" [(ngModel)]="manufacture.pib_mold" [value]="1"><span></span> なし
+                    </label>
+                </div>
+                <div class="col-sm-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_md_{{radioId}}" [(ngModel)]="manufacture.pib_mold" [value]="2"><span></span> 新
+                    </label>
+                </div>
+                <div class="col-sm-2 col-md-offset-2 manufacture-radio">
+                    <label class="radio-inline css-input css-radio css-radio-default">
+                        <input type="radio" name="pib_m_md_{{radioId}}" [(ngModel)]="manufacture.pib_mold" [value]="4"><span></span> 有
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">通函受注No.</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control input-sm text-right"
+                           [(ngModel)]="manufacture.pib_passageOrder"
+                           maxlength="8" pattern="^[a-zA-Z0-9]+$">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">特記事項記入</label>
+                <div class="col-sm-7">
+                    <textarea class="form-control input-sm" [(ngModel)] = "manufacture.pib_specialNote" maxlength="60"
+                              style="background-color: white" rows="2"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-6 control-label">サンプル（抜上り）</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control input-sm text-right"
+                           number-input [(numberValue)]="manufacture.pib_sampleLift"
+                           [numberPrecision]="0" [minValue]="0" [maxValue]="999" [defaultValue]="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 control-label">サンプル（営業）</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control input-sm text-right"
+                           number-input [(numberValue)]="manufacture.pib_sampleSales"
+                           [numberPrecision]="0" [minValue]="0" [maxValue]="999" [defaultValue]="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 control-label">サンプル（得意先）</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control input-sm text-right"
+                           number-input [(numberValue)]="manufacture.pib_sampleCustomer"
+                           [numberPrecision]="0" [minValue]="0" [maxValue]="999" [defaultValue]="0">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

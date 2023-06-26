@@ -1,0 +1,283 @@
+<div class="block">
+    <ul class="nav nav-tabs">
+        <li class="active tabOutput">
+            <a (click)="pageProductOutput(0)" id="tab00" class="btn btn-link">A</a>
+        </li>
+        <li class="tabOutput">
+            <a (click)="pageProductOutput(1)" id="tab01" class="btn btn-link">B</a>
+        </li>
+        <li class="tabOutput">
+            <a (click)="pageProductOutput(2)" id="tab02" class="btn btn-link">C</a>
+        </li>
+        <li class="tabOutput">
+            <a (click)="pageProductOutput(3)" id="tab03" class="btn btn-link">D</a>
+        </li>
+        <li class="tabOutput">
+            <a (click)="pageProductOutput(4)" id="tab04" class="btn btn-link">E</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <div class="block-content">
+                <div class="form-horizontal material-form-group">
+                    <div class="form-group">
+                        <label
+                                class="control-label control-label--material col-sm-4">ロット</label>
+                        <div class="col-sm-6">
+                            <div class="form-material">
+                                <input type="text" class="form-control input-xlg-f text-right"
+                                       [defaultValue]="0" number-input [(numberValue)]="lot" [numberPrecision]="0"
+                                       [maxValue]="9999999" [disabled]="isCreateNewProduct || isView "
+                                       [style.border]="checkBorderLot.style"
+                                       [style.border-radius]="checkBorderLot.radius">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label
+                                class="control-label control-label--material col-sm-4">提出単価</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control input-lg-f text-right" value="86"
+                                   [defaultValue]="0" number-input [(numberValue)]="unitPrice" [numberPrecision]="2"
+                                   [maxValue]="9999999.99" [disabled]="isCreateNewProduct || isView "
+                                   [style.border]="checkBorderUnitPrice.style"
+                                   [style.border-radius]="checkBorderUnitPrice.radius"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <div
+                                    class="form-control-static form-control-static--material">
+                                円
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">提出金額</label>
+                        <div class="col-sm-6">
+                            <div class="form-control-static text-right">
+                                <strong class="h4">{{total|numberFormat}}</strong>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div
+                                    class="form-control-static form-control-static--material">
+                                円
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">利益率</label>
+                        <div class="col-sm-6">
+                            <div class="form-control-static text-right"
+                                 [ngClass]="{'sf00302-minus-profit': profitRate<0 }">
+                                {{profitRate|number:'1.1-1'}}
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div
+                                    class="form-control-static form-control-static--material">
+                                %
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="push-20-t text-center">
+                    <button class="btn btn-sm btn-primary" (click)="resetOffer()" *ngIf="checkProductCreated"
+                            [disabled]="isCreateNewProduct || isView ">キャンセル
+                    </button>
+                    <button class="btn btn-sm btn-primary" (click)="saveOutput()"
+                            *ngIf="checkProductCreated" [disabled]="isCreateNewProduct || isView ">保存する
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-content">
+        <hr class="hidden-print remove-margin-t">
+
+        <table class="table table-condensed table-font-s12 js-table-sections">
+            <thead>
+            <tr>
+                <th colspan="2" style="width:60%">費目</th>
+                <th class="text-right" style="width:40%">金額</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <i class="fa fa-angle-right"></i>
+                    材料代・加工代
+                </td>
+                <td class="text-right"><strong><span>{{cartonMaterialTotalCost|number:'1.0-0'}}</span> 円</strong></td>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <th class="col-sm-2" rowspan="5"></th>
+                <th class="col-sm-6">材料代(@㎡）</th>
+                <td class="text-right col-sm-4"><span>{{cartonMaterialCost|number:'1.2-2'}}</span> 円/㎡</td>
+            </tr>
+            <tr>
+                <th>ロス(@㎡）</th>
+                <td class="text-right"><span>{{cartonMaterialLoss|number:'1.2-2'}}</span> 円/㎡</td>
+            </tr>
+            <tr>
+                <th>貼合料／製函料(@㎡）</th>
+                <td class="text-right"><span>{{cartonMaterialLamination|number:'1.2-2'}}</span> 円/㎡</td>
+            </tr>
+            <tr>
+                <th>枚単価</th>
+                <td class="text-right"><span>{{cartonMaterialUnitPrice|number:'1.2-2'}}</span> 円</td>
+            </tr>
+            <tr>
+                <th>材料代合計</th>
+                <td class="text-right"><span>{{cartonMaterialTotalCost|number:'1.0-0'}}</span> 円</td>
+            </tr>
+            </tbody>
+
+
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <i class="fa fa-angle-right"></i>
+                    配送代
+                </td>
+                <td class="text-right"><strong><span>{{cartonFareCost|number:'1.0-0'}}</span> 円</strong></td>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <th class="col-sm-2" rowspan="4"></th>
+                <th class="col-sm-5">運賃(@㎡）</th>
+                <td class="text-right col-sm-5"><span>{{cartonShipFare|number:'1.2-2'}}</span> 円/㎡</td>
+            </tr>
+            <tr>
+                <th class="col-sm-5">才数</th>
+                <td class="text-right col-sm-5"><span>{{squareMeter|number:'1.4-4'}}</span> ㎡</td>
+            </tr>
+            <tr>
+                <th>割増運賃</th>
+                <td class="text-right"><span>{{cartonAdditionalShipFare|number:'1.0-0'}}</span> 円/㎡</td>
+            </tr>
+            <tr>
+                <th class="col-sm-6">運賃合計</th>
+                <td class="text-right col-sm-4"><span>{{cartonFareCost|number:'1.0-0'}}</span> 円</td>
+            </tr>
+            </tbody>
+
+            <!--印刷-->
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <i class="fa fa-angle-right"></i>
+                    別加工代
+                </td>
+                <td class="text-right"><strong><span>{{cartonProcessingTotalCost|number:'1.0-0'}}</span> 円</strong></td>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <th class="col-sm-2" rowspan="7"></th>
+                <th class="col-sm-6">使用色工賃(@㎡）</th>
+                <td class="text-right col-sm-4"><span>{{cartonUsageColorCost|number:'1.2-2'}}</span> 円/㎡</td>
+            </tr>
+            <tr>
+                <td>テープカット(@ｍ）</td>
+                <td class="text-right"><span>{{cartonTapeCut|number:'1.2-2'}}</span> 円/㎡</td>
+            </tr>
+            <tr>
+                <th>ライナーカット(@㎡）</th>
+                <td class="text-right"><span>{{cartonLinerCut|number:'1.2-2'}}</span> 円/㎡</td>
+            </tr>
+            <tr>
+                <th>手穴加工</th>
+                <td class="text-right"><span>{{cartonHandProcessing|number:'1.2-2'}}</span> 円</td>
+            </tr>
+            <tr>
+                <th>撥水加工(@㎡）</th>
+                <td class="text-right"><span>{{cartonWaterRepellent|number:'1.2-2'}}</span> 円/㎡</td>
+            </tr>
+            <tr>
+                <th>枚単価</th>
+                <td class="text-right"><span>{{cartonProcessingUnitPrice|number:'1.2-2'}}</span> 円/㎡</td>
+            </tr>
+            <tr>
+                <th>別加工費合計</th>
+                <td class="text-right"><span>{{cartonProcessingTotalCost|number:'1.0-0'}}</span> 円</td>
+            </tr>
+            </tbody>
+            <!--その他-->
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <i class="fa fa-angle-right"></i>
+                    その他
+                </td>
+                <td class="text-right"><strong><span>{{otherFeeTotalCost|number:'1.0-0'}}</span> 円</strong></td>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <th class="col-sm-2" rowspan="3"></th>
+                <th class="col-sm-5">{{otherFeeExpense1}}</th>
+                <td class="text-right col-sm-5"><span>{{otherFee1|number}}</span> 円</td>
+            </tr>
+            <tr>
+                <th>{{otherFeeExpense2}}</th>
+                <td class="text-right"><span>{{otherFee2|number}}</span> 円</td>
+            </tr>
+            <tr>
+                <th>{{otherFeeExpense3}}</th>
+                <td class="text-right"><span>{{otherFee3|number}}</span> 円</td>
+            </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <i class="fa fa-angle-right"></i>
+                        特別費用
+                    </td>
+                    <td class="text-right">
+                        <strong>
+                            <span>{{additionalTotalCarton|number:'1.0-0'}}</span> 円</strong>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <th class="col-sm-2" rowspan="6"></th>
+                    <th class="col-sm-6">ロット格差</th>
+                    <td class="text-right col-sm-4"><span>{{cartonLotGap|number:'1.0-0'}}</span> 円</td>
+                </tr>
+                <tr>
+                    <th class="col-sm-6">ロット格差（＠ロット）</th>
+                    <td class="text-right col-sm-4"><span>{{cartonLotGapPerLot|number:'1.2-2'}}</span> 円</td>
+                </tr>
+                <tr>
+                    <th class="col-sm-6">特別運賃（助手手当など）</th>
+                    <td class="text-right col-sm-4">
+                        <span>{{cartonSpecialFare|number:'1.0-0'}}</span> 円</td>
+                </tr>
+            </tbody>
+
+            <!--見積金額-->
+            <tbody class="has-strong-top-border js-table-sections-footer">
+            <tr>
+                <th rowspan="3" style="width:25%">見積金額</th>
+                <th class="sub" style="width:40%">合計</th>
+                <td class="text-right" style="width:40%"><strong>{{estimatedTotal|numberFormat}} 円</strong></td>
+            </tr>
+            <tr>
+                <th class="sub remove-padding-r" style="width:40%">単価（ロット)</th>
+                <td class="text-right remove-padding-l" style="width:40%"><strong>{{estimatedUnitPrice|number:'1.2-2'}} 円</strong></td>
+            </tr>
+            <tr>
+                <th class="sub remove-padding-r" style="width:40%"> 単価（㎡あたり）</th>
+                <td class="text-right remove-padding-l" style="width:40%"><strong>{{calcEstimatedM2PriceCarton|number:'1.2-2'}} 円</strong></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

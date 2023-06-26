@@ -1,0 +1,27 @@
+version: '2.1'
+services:
+  # db:
+  #   image: mysql:5.7
+  #   command: mysqld --character-set-server=utf8
+  #   environment:
+  #     MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+  app:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      args:
+        workdir: /sefuri
+    # command: activator run
+    volumes:
+      - .:/sefuri
+      - ~/.ssh:/root/.ssh
+    # links:
+    #   - db
+    volumes_from:
+      - bundle
+  bundle:
+    image: sgsksefurisf_app
+    volumes:
+      - /activator-dist-1.3.10/repository
+

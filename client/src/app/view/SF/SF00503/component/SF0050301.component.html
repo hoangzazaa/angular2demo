@@ -1,0 +1,187 @@
+<div class="form-group">
+    <table class="table table-borderless">
+        <tr class="tr-border-bottom-grey">
+            <th class="remove-padding-l" style="padding-bottom: 5px; width: 15%">
+                <select class="form-control" [(ngModel)]="year">
+                    <option *ngFor="let year of years" [value]="year">{{year}} 年</option>
+                </select>
+            </th>
+            <th class="remove-padding-b" style="width: 15%"></th>
+            <th class="remove-padding-b" style="width: 15%"></th>
+            <th class="text-right remove-padding-b" style="width: 10%"><label class="control-label font-medium">
+                <dt>段ボール</dt>
+            </label>
+            </th>
+            <th class="text-right remove-padding-b" style="width: 10%"><label class="control-label font-medium">
+                <dt>紙器</dt>
+            </label>
+            </th>
+            <th class="text-right remove-padding-b" style="width: 10%"><label class="control-label font-medium">
+                <dt>商事</dt>
+            </label>
+            </th>
+            <th class="text-right remove-padding-b" style="width: 15%"><label class="control-label font-medium">
+                <dt>合計</dt>
+            </label>
+            </th>
+            <th class="text-right remove-padding-b" style="width: 10%"><label class="control-label font-medium">
+                <dt>前年比</dt>
+            </label>
+            </th>
+        </tr>
+        <tbody>
+        <tr>
+            <td class="remove-padding-l">
+                <dt class="font-large">{{departmentName}}</dt>
+            </td>
+            <td class="text-right remove-padding-r"><p class="c8-color font-medium"><strong>1. 既存得意先</strong></p></td>
+            <td class="text-right remove-padding-r">
+                <div>
+                    <label class="control-label c8-color">次年度目標</label>
+                </div>
+                <div>
+                    <label class="control-label c8-color" style="font-size: small; padding-top: 5px;">(今年度実績)</label>
+                </div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <div>
+                    <label class="control-label font-large">{{type1OldAfter | numberFormat}}</label>
+                </div>
+                <div>
+                    <label class="control-label">({{type1OldBefore | numberFormat}})</label>
+                </div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <div>
+                    <label class="control-label font-large">{{type2OldAfter | numberFormat}}</label>
+                </div>
+                <div>
+                    <label class="control-label">({{type2OldBefore | numberFormat}})</label>
+                </div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <div>
+                    <label class="control-label font-large">{{type3OldAfter | numberFormat}}</label>
+                </div>
+                <div>
+                    <label class="control-label">({{type3OldBefore | numberFormat}})</label>
+                </div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <div>
+                    <label class="control-label font-large">
+                        <dt>{{totalOldAfter | numberFormat}}</dt>
+                    </label>
+                </div>
+                <div>
+                    <label class="control-label font-medium">
+                        <dt>({{totalOldBefore | numberFormat}})</dt>
+                    </label>
+                </div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <label class="control-label font-large">{{interestRateOld | numberFormat}} %</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="remove-padding-t remove-padding-l remove-padding-r"></td>
+            <td class="remove-padding-t text-right remove-padding-r"><p class="c8-color font-medium"><strong>2.
+                新規得意先</strong></p></td>
+            <td class="remove-padding-t text-right remove-padding-r"><p class="c8-color">次年度目標</p></td>
+            <td class="text-right remove-padding-t remove-padding-r">
+                <div><label class="control-label remove-padding font-large">{{type1New | numberFormat}}</label></div>
+            </td>
+            <td class="text-right remove-padding-t remove-padding-r">
+                <div><label class="control-label remove-padding font-large">{{type2New | numberFormat}}</label></div>
+            </td>
+            <td class="text-right remove-padding-t remove-padding-r">
+                <div><label class="control-label remove-padding font-large">{{type3New | numberFormat}}</label></div>
+            </td>
+            <td class="text-right remove-padding-t remove-padding-r">
+                <div><label class="control-label remove-padding font-large">
+                    <dt>{{totalNew | numberFormat}}</dt>
+                </label></div>
+            </td>
+            <td class="text-right remove-padding-t remove-padding-r">
+                <div></div>
+            </td>
+        </tr>
+
+        <tr class="tr-border-top-DDDDDD">
+            <td class="text-right remove-padding-r" colspan="2">
+                <div><label class="control-label font-medium c8-color">合計</label></div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <div><label class="control-label c8-color">次年度目標</label></div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <div><label class="control-label font-medium">{{type1 | numberFormat}}</label></div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <div><label class="control-label font-medium">{{type2 | numberFormat}}</label></div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <div><label class="control-label font-medium">{{type3 | numberFormat}}</label></div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <div><label class="control-label font-medium">
+                    <dt>{{sumTotal | numberFormat}}</dt>
+                </label></div>
+            </td>
+            <td class="text-right remove-padding-r">
+                <div><label class="control-label font-medium">{{interestRate | numberFormat}} %</label></div>
+            </td>
+        </tr>
+
+        <!--TODO: growing up or down-->
+        <tr *ngIf="checkTab">
+            <td class="remove-padding-b text-right c8-color font-medium remove-padding-r" colspan="2">得意先別目標合計</td>
+            <td class="remove-padding-b remove-padding-r"></td>
+            <td class="text-right remove-padding-b remove-padding-r">
+                <label class="control-label font-medium c8-color">{{type1Customer | numberFormat}}</label>
+            </td>
+            <td class="text-right remove-padding-b remove-padding-r">
+                <label class="control-label font-medium c8-color">{{type2Customer | numberFormat}}</label>
+            </td>
+            <td class="text-right remove-padding-b remove-padding-r">
+                <label class="control-label font-medium c8-color">{{type3Customer | numberFormat}}</label>
+            </td>
+            <td class="text-right remove-padding-b remove-padding-r">
+                <label class="control-label font-medium c8-color">{{totalCustomer | numberFormat}}</label>
+            </td>
+            <td class="text-right remove-padding-b remove-padding-r">
+            </td>
+        </tr>
+        <tr *ngIf="checkTab">
+            <td class="remove-padding-t remove-padding-r text-right c8-color font-medium" colspan="2">過不足</td>
+            <td class="remove-padding"></td>
+            <td class="text-right remove-padding-t remove-padding-r">
+                <span [ngClass]="{'fa': type1GronwDown, 'fa-shield': type1GronwDown, 'fa-rotate-270': type1GronwDown, 'si': type1GronwDown, 'si-control-play': type1GronwDown, 'c8-color': true}"
+                      aria-hidden="true">{{type1GronwUp ? "超" : type1GronwSame ? "〇" : ""}}</span>
+                <label [ngClass]="{'control-label': true, 'font-medium': true, 'text-danger':type1GronwDown, 'text-primary':type1GronwUp}">{{type1Diff
+                    | numberFormat}}</label>
+            </td>
+            <td class="text-right remove-padding-t remove-padding-r">
+                <span [ngClass]="{'fa': type2GronwDown, 'fa-shield': type2GronwDown, 'fa-rotate-270': type2GronwDown, 'si': type2GronwDown, 'si-control-play': type2GronwDown, 'c8-color': true}"
+                      aria-hidden="true">{{type2GronwUp ? "超" : type2GronwSame ? "〇" : ""}}</span>
+                <label [ngClass]="{'control-label': true, 'font-medium': true, 'text-danger':type2GronwDown, 'text-primary':type2GronwUp}">{{type2Diff
+                    | numberFormat}}</label>
+            </td>
+            <td class="text-right remove-padding-t remove-padding-r">
+                <span [ngClass]="{'fa': type3GronwDown, 'fa-shield': type3GronwDown, 'fa-rotate-270': type3GronwDown, 'si': type3GronwDown, 'si-control-play': type3GronwDown, 'c8-color': true}"
+                      aria-hidden="true">{{type3GronwUp ? "超" : type3GronwSame ? "〇" : ""}}</span>
+                <label [ngClass]="{'control-label': true, 'font-medium': true, 'text-danger':type3GronwDown, 'text-primary':type3GronwUp}">{{type3Diff
+                    | numberFormat}}</label>
+            </td>
+            <td class="text-right remove-padding-t remove-padding-r">
+                <span [ngClass]="{'fa': totalGrownDown, 'fa-shield': totalGrownDown, 'fa-rotate-270': totalGrownDown, 'si': totalGrownDown, 'si-control-play': totalGrownDown, 'c8-color': true}"
+                      aria-hidden="true">{{totalGrownUp ? "超" : totalGrownSame ? "〇" : ""}}</span>
+                <label [ngClass]="{'control-label': true, 'font-medium': true, 'text-danger':totalGrownDown, 'text-primary':totalGrownUp}">{{totalDiff
+                    | numberFormat}}</label>
+            </td>
+            <td class="text-right remove-padding-r">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

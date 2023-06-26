@@ -1,0 +1,14 @@
+<div id="myboxItems" class="block-content">
+
+    <p>該当件数 {{pageData.totalRecords}} 件</p>
+
+    <template ngFor let-deal [ngForOf]="pageData.deals" let-idx="index">
+        <deal-detail [deal]="deal" [idx]="idx" (copyDealRequest)="copyDeal($event)"
+                     (viewDealDetailRequest)="viewDealDetail($event)"></deal-detail>
+    </template>
+    <div *ngIf="pageData.deals.length > 0">
+        <pagination-component [total]="pageData.totalRecords" [pageSize]="pageData.CONSTANTS.PAGE_SIZE"
+                              (currentPageChange)="getResult($event)"></pagination-component>
+    </div>
+    <!-- /.block-content -->
+</div>

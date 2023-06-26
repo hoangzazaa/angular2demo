@@ -1,0 +1,318 @@
+<div class="content sfn040281">
+
+    <div class="text-right">
+        <button class="btn btn-link" (click)="exportShippingDestinationKarte()" [disabled]="changed">届け先カルテ(PDF)</button>
+    </div>
+
+    <div class="panel block-content">
+        <div class="form-horizontal">
+            <div class="row">
+                <!-- 届け先セレクタ -->
+                <div class=" col-sm-9">
+                    <div class="form-group row">
+                        <label class="control-label col-sm-2">届け先</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" (change)="moveTo($event.target.value)" [(ngModel)]="currentId">
+                                <option *ngFor="let shippingDestination of shippingDestinationList" [value]="shippingDestination.id">{{shippingDestination.deliveryName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+
+                <!-- 操作ボタン -->
+                <div class="form-group col-sm-3 text-right">
+                    <button class="btn btn-link" (click)="cancel()">キャンセル</button>
+                    <button class="btn btn-primary" (click)="save()" [disabled]="!changed">保存する</button>
+                </div>
+            </div>
+
+            <!-- 得意先基本情報 -->
+
+            <!-- 納入先情報 (電脳管理) -->
+            <div class="shipping-destination-basic-info">
+                <div class="form-group">
+                    <div class="col-sm-2 shipping-destination-delivery-name-label form-group-header">届け先名</div>
+                    <div class="col-sm-10">
+                        <span class="shipping-destination-delivery-name">{{destination.deliveryName}}</span> / {{destination.furigana}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 form-group-header">略称</div>
+                    <div class="col-sm-10">
+                        {{destination.abbreviation}} / {{destination.abbrFurigana}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 form-group-header">郵便番号</div>
+                    <div class="col-sm-6">
+                        {{destination.postalCode}}
+                    </div>
+                    <div class="col-sm-2 form-group-header">地区コード</div>
+                    <div class="col-sm-2">
+                        {{district}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 form-group-header">住所1</div>
+                    <div class="col-sm-10">
+                        {{destination.deliveryAddress1}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 form-group-header">住所2</div>
+                    <div class="col-sm-10">
+                        {{destination.deliveryAddress2}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 form-group-header">TEL</div>
+                    <div class="col-sm-10">
+                        {{destination.tel}}
+                        <span *ngIf="destination.extension && destination.extension.length">({{destination.extension}})</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 form-group-header">FAX</div>
+                    <div class="col-sm-10">
+                        {{destination.fax}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 form-group-header">伝票指定</div>
+                    <div class="col-sm-10">
+                        {{extraMethod}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- 入力フォーム -->
+            <div class="shipping-destination-detail" (input)="onFormChange($event)" (change)="onFormChange($event)">
+                <!-- 納入先情報 (SF 管理) -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2">路線会社指定</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" maxlength="255" [(ngModel)]="destination.deliveryCompany">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">配送車両指定</label>
+                    <div class="col-sm-10 form-inline">
+                        <label class="radio-inline">
+                            <input name="specifyVehicle" type="radio" value="1" [checked]="destination.specifyVehicle==1"><span></span>
+                            2t未満
+                        </label>
+                        <label class="radio-inline">
+                            <input name="specifyVehicle" type="radio" value="2"
+                                    [checked]="destination.specifyVehicle==2"><span></span>
+                            2t迄
+                        </label>
+                        <label class="radio-inline">
+                            <input name="specifyVehicle" type="radio" value="3"
+                                    [checked]="destination.specifyVehicle==3"><span></span>
+                            4t迄
+                        </label>
+                        <label class="radio-inline">
+                            <input name="specifyVehicle" type="radio" value="4" [checked]="destination.specifyVehicle==4"><span></span>
+                            10t可
+                        </label>
+                        <label class="radio-inline form-inline">
+                            <input name="specifyVehicle" type="radio" value="9999" [checked]="destination.specifyVehicle==9999"><span></span>
+                            その他
+                        </label>
+                        <input name="specifyVehicleOthers" type="text" class="form-control" maxlength="255"
+                                [(ngModel)]="destination.specifyVehicleOthers">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">納品時間</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" maxlength="255" [(ngModel)]="destination.deliveryTime">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">納品前TEL</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input name="telBeforeDelivery" type="radio" value="true" [checked]="destination.telBeforeDelivery==true"><span></span>
+                            要
+                        </label>
+                        <label class="radio-inline">
+                            <input name="telBeforeDelivery" type="radio" value="false" [checked]="destination.telBeforeDelivery==false"><span></span>
+                            不要
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">エボ添付</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input name="attachmentEbo" type="radio" value="true" [checked]="destination.attachmentEbo==true"><span></span>
+                            要
+                        </label>
+                        <label class="radio-inline">
+                            <input name="attachmentEbo" type="radio" [value]="false" [checked]="destination.attachmentEbo==false"><span></span>
+                            不要
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">天候不良時納品</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input name="deliveryInCaseOfBadWeather" type="radio" value="true" [checked]="destination.deliveryInCaseOfBadWeather==true"><span></span>
+                            可
+                        </label>
+                        <label class="radio-inline">
+                            <input name="deliveryInCaseOfBadWeather" type="radio" value="false" [checked]="destination.deliveryInCaseOfBadWeather==false"><span></span>
+                            不可
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">ストレッチフィルム巻き</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input name="stretchFilm" type="radio" value="true" [checked]="destination.stretchFilm==true"><span></span>
+                            有
+                        </label>
+                        <label class="radio-inline">
+                            <input name="stretchFilm" type="radio" value="false" [checked]="destination.stretchFilm==false"><span></span>
+                            無
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">2F上げ</label>
+                    <div class="col-sm-10 form-inline">
+                        <div>
+                            <label class="radio-inline">
+                                <input name="upstairs" type="radio" value="true" [checked]="destination.upstairs==true"><span></span>
+                                有
+                            </label>
+                            <label class="radio-inline">
+                                <input name="upstairsDetail" type="radio" value="1" [checked]="destination.upstairsDetail==1"><span></span>
+                                昇降機
+                            </label>
+                            <label class="radio-inline">
+                                <input name="upstairsDetail" type="radio" value="2" [checked]="destination.upstairsDetail==2"><span></span>
+                                階段
+                            </label>
+                            <label class="radio-inline">
+                                <input name="upstairsDetail" type="radio" value="9999" [checked]="destination.upstairsDetail==9999"><span></span>
+                                その他
+                            </label>
+                            <input name="upstairsDetailOthers" type="text" class="form-control" maxlength="255"
+                                    [(ngModel)]="destination.upstairsDetailOthers">
+                        </div>
+                        <div>
+                            <label class="radio-inline">
+                                <input name="upstairs" type="radio" value="false" [checked]="destination.upstairs==false"><span></span>
+                                無
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">パレット納品</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input name="paletteDelivery" type="radio" value="true" [checked]="destination.paletteDelivery==true"><span></span>
+                            有
+                        </label>
+                        <label class="radio-inline">
+                            <input name="paletteDelivery" type="radio" value="false" [checked]="destination.paletteDelivery==false"><span></span>
+                            無
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">パレット引取</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input name="paletteTakeBack" type="radio" value="true" [checked]="destination.paletteTakeBack==true"><span></span>
+                            有
+                        </label>
+                        <label class="radio-inline">
+                            <input name="paletteTakeBack" type="radio" value="false" [checked]="destination.paletteTakeBack==false"><span></span>
+                            無
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">数量制限</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" [(ngModel)]="destination.limitQuantity">
+                            <option [value]="null"></option>
+                            <option *ngFor="let option of limitQuantityOptions" [value]="option.value">{{option.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">降ろし場所指定</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" maxlength="255" [(ngModel)]="destination.unloadingPlace">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">車両停車位置</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" maxlength="255" [(ngModel)]="destination.parkingPlace">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">荷降ろし時のリフト使用者</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input name="liftUserInUnloading" type="radio" value="1" [checked]="destination.liftUserInUnloading==1"><span></span>
+                            納品先担当者
+                        </label>
+                        <label class="radio-inline">
+                            <input name="liftUserInUnloading" type="radio" value="2" [checked]="destination.liftUserInUnloading==2"><span></span>
+                            配送ドライバー
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">荷降ろし形態</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" maxlength="255" [(ngModel)]="destination.unloadForm">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">業務用メモ</label><!-- 新規届け先登録フォームに項目あり -->
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="8" maxlength="510" [(ngModel)]="memo" placeholder="業務用メモにつき得意先管理ファイルには出力されませんのでご注意ください"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">その他注意事項</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="8" [(ngModel)]="destination.attention"></textarea>
+                    </div>
+                </div>
+
+                <!-- 画像フォーム -->
+                <div class="js-gallery">
+                    <h5 class="font-w300 push">添付画像</h5>
+                    <div class="form-group" *ngFor="let image of destination.imageList">
+                        <div class="col-sm-3 gallery-content">
+                            <div class="gallery-trash font-w600" role="button" (click)="removeImage(image)">
+                                <i class="fa fa-trash-o fa-2x"></i>
+                            </div>
+                            <a class="img-link img-thumb" [href]="image.image">
+                                <img [src]="image.image">
+                            </a>
+                        </div>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" rows="5" [(ngModel)]="image.memo"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 画像アップロードフォーム -->
+            <form class="dropzone" #dropzone></form>
+        </div>
+    </div><!-- /panel -->
+</div><!-- /content sfn040281 -->

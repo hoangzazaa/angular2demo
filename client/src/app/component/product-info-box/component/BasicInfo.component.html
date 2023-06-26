@@ -1,0 +1,91 @@
+<div class="row basic-info">
+    <div class="col-md-4 panel-body__thumb">
+        <!--<img class="img-responsive" src="{{ product.pib_image }}" style="max-height: 150px;">-->
+        <file-viewer [srcFile]="product.pib_image"></file-viewer>
+    </div><!-- /.col-md-4 -->
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12 pad-10-t">
+                <table class="table table-condensed">
+                    <tbody class="no-border">
+                    <tr *ngIf="(product.pib_orderCode != undefined)">
+                        <td class="title-1">受注番号</td>
+                        <td>{{product.pib_orderCode}}</td>
+                        <td class="title-2"><span *ngIf="(product.pib_orderCode2 != undefined)">多久受注番号</span></td>
+                        <td>{{product.pib_orderCode2}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title-1">製品ID</td>
+                        <td><span class="text-ellipsis w200-md w150-xs">{{product.pib_code}} [{{product.pib_type_name}}]</span></td>
+                        <td class="title-2">得意先製品番号</td>
+                        <td>{{product.pib_customerProductCode}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title-1">相手管理No</td>
+                        <td>
+                            <input type="text" class="form-control input-sm"
+                                   [(ngModel)]="product.pib_customerManagedId" maxlength="20">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title-1">製品名</td>
+                        <td><span class="text-ellipsis w200-md w150-xs">{{ product.pib_name }}</span></td>
+                        <td class="title-2">製造依頼先</td>
+                        <td>{{ product.pib_manufacture }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title-1 amount-row">品目C</td>
+                        <td class="amount-row">{{ product.pib_itemCode }}</td>
+                        <td class="title-2 amount-row">ロット</td>
+                        <td *ngIf="!isInputLot">
+                            <span class="amount-value total-amount" [class.amount-display]="isDisplayAmount">{{ product.pib_lot | numberFormat }}</span>
+                        </td>
+                        <td *ngIf="isInputLot">
+                            <input type="text" class="form-control input-sm amount-value"
+                                   number-input [(numberValue)]="product.pib_lot"
+                                   [numberPrecision]="0" [minValue]="0" [maxValue]="999999">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title-1 amount-row">サイズ</td>
+                        <td class="amount-row">{{ product.pib_size }}</td>
+                        <td class="title-2 amount-row">提出単価</td>
+                        <td *ngIf="!isInputPrice">
+                            <span class="amount-value total-amount" [class.amount-display]="isDisplayAmount">{{ product.pib_unitPrice | number:'1.2-2' }}</span><span> 円</span>
+                        </td>
+                        <td *ngIf="isInputPrice">
+                            <input type="text" class="form-control input-sm amount-value"
+                                   number-input [(numberValue)]="product.pib_unitPrice"
+                                   [numberPrecision]="2" [minValue]="0" [maxValue]="9999.99">
+                            <span>円</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title-1 amount-row">材料</td>
+                        <td class="amount-row"><span class="text-ellipsis w200-md w150-xs">{{ product.pib_material }}</span></td>
+                        <td class="title-2 amount-row">提出金額</td>
+                        <td style="min-width: 150px;">
+                            <span class="amount-value total-amount" [class.amount-display]="isDisplayAmount">{{ product.pib_total | number }}</span><span> 円</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title-1 amount-row">木型</td>
+                        <td colspan="3" class="amount-row" [ngSwitch]="product.pib_woodenExpireType">
+                            <ng-container *ngSwitchCase="'NONE'">なし</ng-container>
+                            <div class="text-danger" *ngSwitchCase="'NO'">木型の利用実績が取得できませんでした。木型の有無を確認の上、受注登録してください。</div>
+                            <div class="text-danger" *ngSwitchCase="'EXPIRED'">木型の有効期限を過ぎています。木型の有無を確認の上、受注登録をしてください。</div>
+                            <ng-container *ngSwitchCase="'OK'">有効期限 {{product.pib_woodenExpireDate}}</ng-container>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title-1">備考欄</td>
+                        <td colspan="3">
+                            <div class="block-with-text">{{product.pib_memo}}</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.col-md-8 -->
+</div><!-- /.row -->

@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/312556ead6370d3aeed0d0c782aee9a501f228a6/jquery.slimscroll/index.d.ts",
+    "raw": "registry:dt/jquery.slimscroll#1.3.8+20160819211420",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/312556ead6370d3aeed0d0c782aee9a501f228a6/jquery.slimscroll/index.d.ts"
+  }
+}

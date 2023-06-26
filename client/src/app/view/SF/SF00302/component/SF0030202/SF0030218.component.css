@@ -1,0 +1,4 @@
+#laminationA .form-control[disabled],#laminationB .form-control[disabled]{
+    background-color: white;
+    color:grey;
+}

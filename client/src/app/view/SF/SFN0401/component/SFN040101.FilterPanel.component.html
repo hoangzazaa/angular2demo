@@ -1,0 +1,55 @@
+<div class="search-panel__header">
+    <div class="detail-filter-button">
+        <a href="#search-panel_detail" aria-expanded="false" aria-controls="search-panel_detail" data-toggle="collapse"
+           class="btn btn-sm btn-link collapsed">詳細 <i class="fa fa-angle-up fa-lg"></i></a>
+    </div>
+    <div class="freetext-input">
+        <input class="form-control" type="text" placeholder="Search.." js-tags-input [(tags)]="keywords">
+    </div>
+</div><!-- /.search-panel__header -->
+<div class="search-panel__body collapse" id="search-panel_detail">
+    <div class="search-panel__block02">
+        <div class="row">
+            <div class="col-sm-12 form-horizontal">
+                <div class="form-group" *ngIf="canChangeType">
+                    <label class="control-label col-sm-1">取引先区分</label>
+                    <div class="col-sm-11">
+                        <label class="css-input css-radio css-radio-default pad-10-r">
+                            <input type="radio" name="customer-filter-type" [(ngModel)]="filter.type" [value]="1"><span></span> 得意先
+                        </label>
+                        <label class="css-input css-radio css-radio-default">
+                            <input type="radio" name="customer-filter-type" [(ngModel)]="filter.type" [value]="2"><span></span> 仕入先
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-1">得意先ID</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control input-sm" maxlength="11" placeholder="" [(ngModel)]="filter.code">
+                    </div>
+                    <label class="control-label col-sm-2 col-sm-offset-1">得意先担当者名</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control input-sm" maxlength="30" placeholder="" [(ngModel)]="filter.contactName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-1">得意先名</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control input-sm" maxlength="30" placeholder="" [(ngModel)]="filter.name">
+                    </div>
+                    <label class="control-label col-sm-2 col-sm-offset-1">担当営業名</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control input-sm" maxlength="30" placeholder="" [(ngModel)]="filter.salesName">
+                    </div>
+                </div>
+                <div class="form-group">
+
+                </div>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.search-panel__block02 -->
+    <div class="search-panel__button-block">
+        <button class="btn btn-link" (click)="clearFilter()" preventDC [valid]="filterEnable">検索条件クリア</button>
+        <button class="btn btn-success" (click)="doFilter()" preventDC [valid]="filterEnable">絞り込む</button>
+    </div>
+</div><!-- /.search-panel__body -->

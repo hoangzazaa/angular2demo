@@ -1,0 +1,387 @@
+<div class="content SF00303-page">
+    <form onkeypress="return event.keyCode != 13;" id="SF00303-deal-info"
+          class="form-horizontal js-validation-material push-30-t push-50">
+        <div class="block">
+            <div class="block-content">
+                <!--header data quotation-->
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-horizontal material-form-group">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 control-label--material">見積ID</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control-static form-control-static--material">
+                                        {{quotationCode}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 control-label--material">見積件名</label>
+                                <div class="col-sm-10">
+                                    <div class="form-material">
+                                        <input type="text" class="form-control input-lg-f"
+                                               [disabled]="pageData.view"
+                                               id="quotationName"
+                                               name="quotationName"
+                                               maxlength="30"
+                                               (change)="eventChange()"
+                                               [(ngModel)]="subject" placeholder="見積件名">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 control-label--material">得意先名</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control-static form-control-static--material">
+                                        <label>{{customerName}}</label>
+                                        <label style="margin-left: 45px">({{customerCode}})</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 control-label--material">担当営業</label>
+                                <div class="col-sm-4">
+                                    <div class="form-control-static form-control-static--material">
+                                        {{saleName}}
+                                    </div>
+                                </div>
+                                <label class="control-label col-sm-2 control-label--material">案件区分</label>
+                                <div class="col-sm-4">
+                                    <div class="form-control-static form-control-static--material">
+                                        {{dealType}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-horizontal material-form-group">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 control-label--material">見積提出日</label>
+                                <div class="col-sm-8">
+                                    <div class="form-material">
+                                        <input date-input class="form-control" type="text"
+                                               id="estimateDate" name="estimateDate" [disabled]="pageData.view"
+                                               placeholder="YYYY年M月D日"
+                                               [dateModel]="pageData.quotation?.estimateDate" [defaultDate]="defaultEstimateDate"
+                                               (dateModelChange)="_estimateDate($event)"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group push-10-t">
+                                <label class="control-label col-sm-4">見積メモ</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" [(ngModel)]="memo" name="memo"
+                                              (change)="eventChange()"
+                                              maxlength="60" [disabled]="pageData.view"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="hidden-print">
+                <!--data quotation items-->
+                <div class="panel panel-default panel--index">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            明細
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <!--quotation item date-->
+                        <SF0030302-Component></SF0030302-Component>
+
+                    </div>
+                </div>
+
+                <!--data content quotation-->
+                <div class="panel panel-default panel--index">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            条件
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-horizontal material-form-group">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">納期</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <input type="text" class="form-control" placeholder="別途打ち合わせにて"
+                                                       name="invoiceDeliveryDate"
+                                                       [(ngModel)]="invoiceDeliveryDate"
+                                                       maxlength="24" (change)="eventChange()" (blur)="parseInvoiceDeliveryDate()"
+                                                       [disabled]="pageData.view"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">納入場所</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <input type="text" class="form-control" placeholder="貴社指定の場所"
+                                                       name="invoiceDeliveryPlace"
+                                                       [(ngModel)]="invoiceDeliveryPlace"
+                                                       maxlength="24" (change)="eventChange()"
+                                                       [disabled]="pageData.view"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">納入方法</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <input type="text" class="form-control"
+                                                       placeholder="{{pageData.placeholder}}"
+                                                       [disabled]="pageData.view"
+                                                       name="invoiceDeliveryMethod" [(ngModel)]="invoiceDeliveryMethod"
+                                                       maxlength="24" (change)="eventChange()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-horizontal material-form-group">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">支払い条件</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <input type="text" class="form-control" placeholder="従来通り"
+                                                       value="貴社指定の場所" name="invoicePaymentTerm"
+                                                       [(ngModel)]="invoicePaymentTerm"
+                                                       maxlength="24" (change)="eventChange()"
+                                                       [disabled]="pageData.view"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">見積有効期限</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <input date-input class="form-control" type="text"
+                                                       [disabled]="pageData.view"
+                                                       placeholder="次回お見積りまで" (change)="eventChange()"
+                                                       [dateModel]="invoiceExpirationDate" [defaultDate]="defaultInvoiceExpirationDate"
+                                                       (dateModelChange)="_invoiceExpirationDate($event)"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--data content quotation-->
+                <div class="panel panel-default panel--index">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            備考
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" rows="6" [(ngModel)]="remark"
+                                          name="remark" (change)="eventChange()"
+                                          maxlength="120"
+                                          [disabled]="pageData.view"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label class="css-input css-checkbox css-checkbox-success">
+                                    <input type="checkbox" id="stereoType1Flag" name="stereoType1Flag"
+                                           [disabled]="pageData.view"
+                                           [(ngModel)]="stereoType1Flag" (change)="eventChange()">
+                                    <span></span> 特にご契約上の定めのない場合は、紙器製品は3ヶ月、段ボールは1ヶ月以内に受納されるものとします。
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label class="css-input css-checkbox css-checkbox-success">
+                                    <input type="checkbox" id="stereoType2Flag" name="stereoType2Flag"
+                                           [disabled]="pageData.view"
+                                           [(ngModel)]="stereoType2Flag" (change)="eventChange()">
+                                    <span></span> お得意様のご都合により、指定納品期日が経過しても受納されない製品に関しては、その代金及び倉庫に要する費用を請求させていただきます。
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label class="css-input css-checkbox css-checkbox-success">
+                                    <input type="checkbox" id="stereoType3Flag" name="stereoType3Flag"
+                                           [disabled]="pageData.view"
+                                           [(ngModel)]="stereoType3Flag" (change)="eventChange()">
+                                    <span></span> お預かり品については、ご注文後６ヶ月以内に受納されるものとします。
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label class="css-input css-checkbox css-checkbox-success">
+                                    <input type="checkbox" id="stereoType4Flag" name="stereoType4Flag"
+                                           [disabled]="pageData.view"
+                                           [(ngModel)]="stereoType4Flag" (change)="eventChange()">
+                                    <span></span> 一定期間リピート注文をいただかない場合、段ボール版は２年、木型は３年間で廃棄処分となります。予めご了承ください。
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--data content quotation-->
+                <div class="panel panel-default panel--index">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            見積書提出先
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-horizontal material-form-group">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">得意先名</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <input type="text" *ngIf="isHasCustomer"
+                                                       class="form-control SF003-03_has-customer_place-holder"
+                                                       placeholder="{{customerName}}"
+                                                       name="invoiceCustomerName"
+                                                       [(ngModel)]="invoiceCustomerName"
+                                                       [disabled]="pageData.view" (change)="eventChange()"
+                                                       maxlength="24"
+                                                >
+                                                <input type="text" *ngIf="!isHasCustomer"
+                                                       class="form-control"
+                                                       placeholder="得意先名" name="invoiceCustomerName"
+                                                       [(ngModel)]="invoiceCustomerName"
+                                                       [disabled]="pageData.view" (change)="eventChange()"
+                                                       maxlength="24"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">担当部署</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="invoiceDeptName" (change)="eventChange()"
+                                                       [(ngModel)]="invoiceDeptName" maxlength="24"
+                                                       [disabled]="pageData.view"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">担当者名</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="invoicePic" (change)="eventChange()"
+                                                       [(ngModel)]="invoicePic" maxlength="24"
+                                                       [disabled]="pageData.view"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">敬称</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <div class="col-sm-6">
+                                                    <label class="css-input css-radio css-radio-primary">
+                                                        <input name="radio-group11" [disabled]="pageData.view" type="radio"
+                                                               [checked]="title==1"
+                                                               (change)="_title(1)"><span></span>
+                                                        御中
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="css-input css-radio css-radio-primary">
+                                                        <input name="radio-group11" [disabled]="pageData.view" type="radio"
+                                                               [checked]="title==2"
+                                                               (change)="_title(2)"><span></span>
+                                                        様
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-horizontal material-form-group">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">見積書送付先住所</label>
+                                        <div class="col-sm-8">
+                                        <textarea class="form-control" rows="6" [disabled]="pageData.view"
+                                                  maxlength="48"
+                                                  [(ngModel)]="invoiceAddress" (change)="eventChange()"
+                                                  name="invoiceAddress"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">ご連絡先電話番号</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <input type="tel" class="form-control" placeholder="ご連絡先電話番号" value=""
+                                                       [(ngModel)]="invoicePhoneNumber"
+                                                       [disabled]="pageData.view"
+                                                       pattern="[0-9]{0,11}"
+                                                       maxlength="11" (change)="eventChange()"
+                                                       name="invoicePhoneNumber">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4 control-label--material">メールアドレス</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-material">
+                                                <input type="email" class="form-control" placeholder="メールアドレス"
+                                                       name="invoiceMailAddress" [disabled]="pageData.view"
+                                                       (change)="eventChange()" maxlength="24"
+                                                       [(ngModel)]="invoiceMailAddress">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--action footer-->
+                <div class="push-30-t push-20 row">
+                    <div class="col-sm-6 text-left">
+                        <a class="btn btn-link text-danger" *ngIf="!pageData.view && checkCreateQuotation"
+                           (click)="deleteQuotationInfo()">削除</a>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a class="btn btn-link" (click)="cancelQuotation()">キャンセル</a>
+                        <button class="btn btn-primary" *ngIf="!pageData.view && checkCreateQuotation"
+                                (click)="saveAndCopy()">複製して保存
+                        </button>
+                        <button class="btn btn-primary" *ngIf="!pageData.view" (click)="saveQuotation()">保存する
+                        </button>
+                        <a (click)="redirectSF0304()" *ngIf="!pageData.view" class="btn btn-primary">保存して出力</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

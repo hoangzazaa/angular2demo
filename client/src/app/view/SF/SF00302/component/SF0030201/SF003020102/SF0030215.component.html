@@ -1,0 +1,295 @@
+<!-- 材料 -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body01" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body15" role="button">
+                <i class="fa push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateLamination,'fa-circle-o text-gray':!stateLamination}"></i>
+                <span>材料</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body15">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('laminationFlute') }">フルート</label>
+                    <div class="col-sm-7">
+                        <select class="form-control" [(ngModel)]="laminationFlute"
+                                [disabled]="isCreateNewProduct || isView"
+                                [style.border]="checkBorderLaminationFlute.style"
+                                [style.border-radius]="checkBorderLaminationFlute.radius"
+                                style="font-family: Meiryo,sans-serif !important;">
+                            <option *ngFor="let t of laminationFluteOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('paperSize') }">原紙巾
+                        <br>
+                        <small>（mm）</small>
+                    </label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" value="" placeholder="巾" [defaultValue]="0" number-input [maxValue]="9999.9" [(numberValue)]="paperSizeW"
+                            [numberPrecision]="1" [style.border]="checkBorderPaperSizeW.style" [style.border-radius]="checkBorderPaperSizeW.radius"
+                            [disabled]="isCreateNewProduct || isView">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" style="padding-top: 25px;"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('cutPaperSize') }">シート寸法(mm)</label>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px;"><small>縦(巾)</small></span>
+                        <input type="text" class="form-control" placeholder="縦(巾)"
+                               [disabled]="isCreateNewProduct || isView" value="640"
+                               [defaultValue]="0"
+                               number-input [maxValue]="9999"
+                               [(numberValue)]="cutPaperSizeW" [numberPrecision]="0"
+                               [style.border]="checkBorderCutPaperSizeW.style"
+                               [style.border-radius]="checkBorderCutPaperSizeW.radius">
+                    </div>
+                    <div class="col-sm-1 text-center">
+                        <div class="form-control-static" style="padding-top: 25px;">×</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px;"><small>横(流れ)</small></span>
+                        <input type="text" class="form-control" placeholder="横(流れ)"
+                               [disabled]="isCreateNewProduct || isView" value="640"
+                               [defaultValue]="0"
+                               number-input [maxValue]="9999"
+                               [(numberValue)]="cutPaperSizeH" [numberPrecision]="0"
+                               [style.border]="checkBorderCutPaperSizeH.style"
+                               [style.border-radius]="checkBorderCutPaperSizeH.radius">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" style="padding-top: 25px;"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('blankPaperSize') }">展開寸法 (mm)</label>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px;"><small>縦(巾)</small></span>
+                        <input type="text" class="form-control" placeholder="縦(巾)"
+                               [disabled]="isCreateNewProduct || isView" value="640"
+                               [defaultValue]="0"
+                               number-input [maxValue]="9999"
+                               [(numberValue)]="blankPaperSizeW" [numberPrecision]="0"
+                               [style.border]="checkBorderBlankPaperSizeW.style"
+                               [style.border-radius]="checkBorderBlankPaperSizeW.radius">
+                    </div>
+                    <div class="col-sm-1 text-center">
+                        <div class="form-control-static" style="padding-top: 25px;">×</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px;"><small>横(流れ)</small></span>
+                        <input type="text" class="form-control" placeholder="横(流れ)"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0"
+                               number-input
+                               [(numberValue)]="blankPaperSizeH" [maxValue]="9999"
+                               [numberPrecision]="0"
+                               [style.border]="checkBorderBlankPaperSizeH.style"
+                               [style.border-radius]="checkBorderBlankPaperSizeH.radius">
+                    </div>
+                    <!--<div class="col-sm-2">-->
+                    <!--<div class="form-control-static">T目</div>-->
+                    <!--</div>-->
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3 remove-padding-r"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('laminationFrontBasicWeight') }">表ライナー（g/㎡）</label>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-4">
+                        <select class="form-control" [(ngModel)]="laminationPaperTypeFront"
+                                [disabled]="isCreateNewProduct || isView || shapeId==100 "
+                                [style.border]="checkBorderLaminationPaperTypeFront.style"
+                                [style.border-radius]="checkBorderLaminationPaperTypeFront.radius">
+                            <option value="0">指定なし</option>
+                            <optgroup label="中芯">
+                                <option *ngFor="let t of laminationFirstOption" [value]="t.id">{{t.name}}</option>
+                            </optgroup>
+                            <optgroup label="ライナ">
+                                <option *ngFor="let t of laminationSecondOption" [value]="t.id">{{t.name}}</option>
+                            </optgroup>
+                            <option *ngIf="paperTmp1.paperName" value="100">{{paperTmp1.paperName}}
+                            </option>
+                            <option value="8">その他</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" [(ngModel)]="laminationFrontBasicWeight"
+                                [disabled]="isCreateNewProduct || isView || shapeId==100"
+                                *ngIf="laminationPaperTypeFront!=8"
+                                [style.border]="checkBorderLaminationFrontBasicWeight.style"
+                                [style.border-radius]="checkBorderLaminationFrontBasicWeight.radius">
+                            <option *ngFor="let t of laminationWeightFrontOption" [value]="t">{{t}}</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView" *ngIf="laminationPaperTypeFront==8"
+                               [defaultValue]="0" number-input [maxValue]="9999" [(numberValue)]="laminationFrontBasicWeight"
+                               [numberPrecision]="0"
+                               [style.border]="checkBorderLaminationFrontBasicWeight.style"
+                               [style.border-radius]="checkBorderLaminationFrontBasicWeight.radius">
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-control-static text-center" *ngIf="laminationPaperTypeFront!=8">
+                            {{laminationFrontThroughWage +'円（k@）'}}
+                        </div>
+                        <div class="form-material--group" *ngIf="laminationPaperTypeFront==8">
+                            <input class="form-control text-right ng-untouched ng-pristine ng-valid"
+                                   [disabled]="isCreateNewProduct || isView || shapeId==100" [defaultValue]="0"
+                                   number-input [maxValue]="9999"
+                                   [(numberValue)]="laminationFrontThroughWage" [numberPrecision]="0"
+                                   [style.border]="checkBorderLaminationFrontThroughWage.style"
+                                   [style.border-radius]="checkBorderLaminationFrontThroughWage.radius">
+                            <span class="form-material--group__unit">円（k@）</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('laminationMediumBasicWeight') }">中芯（g/㎡）</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationPaperTypeMedium"
+                                [disabled]="isCreateNewProduct || isView"
+                                [style.border]="checkBorderLaminationPaperTypeMedium.style"
+                                [style.border-radius]="checkBorderLaminationPaperTypeMedium.radius">
+                            <option value="0">指定なし</option>
+                            <optgroup label="中芯">
+                                <option *ngFor="let t of laminationFirstOption" [value]="t.id">{{t.name}}</option>
+                            </optgroup>
+                            <optgroup label="ライナ">
+                                <option *ngFor="let t of laminationSecondOption" [value]="t.id">{{t.name}}</option>
+                            </optgroup>
+                            <option *ngIf="paperTmp3.paperName" value="102">{{paperTmp3.paperName}}
+                            </option>
+                            <option value="8">その他</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationMediumBasicWeight"
+                                [disabled]="isCreateNewProduct || isView"
+                                *ngIf="laminationPaperTypeMedium!=8"
+                                [style.border]="checkBorderLaminationMediumBasicWeight.style"
+                                [style.border-radius]="checkBorderLaminationMediumBasicWeight.radius">
+                            <option *ngFor="let t of laminationWeightMediumOption" [value]="t">{{t}}</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView"
+                               *ngIf="laminationPaperTypeMedium==8"
+                               [defaultValue]="0" number-input [maxValue]="9999"
+                               [(numberValue)]="laminationMediumBasicWeight"
+                               [numberPrecision]="0"
+                               [style.border]="checkBorderLaminationMediumBasicWeight.style"
+                               [style.border-radius]="checkBorderLaminationMediumBasicWeight.radius">
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-control-static text-center" *ngIf="laminationPaperTypeMedium!=8">
+                            {{laminationMediumThroughWage + '円（k@）'}}
+                        </div>
+                        <div class="form-material--group" *ngIf="laminationPaperTypeMedium==8">
+                            <input class="form-control text-right ng-untouched ng-pristine ng-valid"
+                                   [disabled]="isCreateNewProduct || isView" [defaultValue]="0"
+                                   number-input
+                                   [(numberValue)]="laminationMediumThroughWage" [numberPrecision]="0" [maxValue]="9999"
+                                   [style.border]="checkBorderLaminationMediumThroughWage.style"
+                                   [style.border-radius]="checkBorderLaminationMediumThroughWage.radius">
+                            <span class="form-material--group__unit">円（k@）</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3 remove-padding-r"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('laminationBackBasicWeight') }">裏ライナー（g/㎡）</label>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-4">
+                        <select class="form-control" [(ngModel)]="laminationPaperTypeBack"
+                                [disabled]="isCreateNewProduct || isView"
+                                [style.border]="checkBorderLaminationPaperTypeBack.style"
+                                [style.border-radius]="checkBorderLaminationPaperTypeBack.radius">
+                            <option value="0">指定なし</option>
+                            <optgroup label="中芯">
+                                <option *ngFor="let t of laminationFirstOption" [value]="t.id">{{t.name}}</option>
+                            </optgroup>
+                            <optgroup label="ライナ">
+                                <option *ngFor="let t of laminationSecondOption" [value]="t.id">{{t.name}}</option>
+                            </optgroup>
+                            <option *ngIf="paperTmp5.paperName" value="104">{{paperTmp5.paperName}}
+                            </option>
+                            <option value="8">その他</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" [(ngModel)]="laminationBackBasicWeight"
+                                [disabled]="isCreateNewProduct || isView" *ngIf="laminationPaperTypeBack!=8"
+                                [style.border]="checkBorderLaminationBackBasicWeight.style"
+                                [style.border-radius]="checkBorderLaminationBackBasicWeight.radius">
+                            <option *ngFor="let t of laminationWeightBackOption" [value]="t">{{t}}</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView" *ngIf="laminationPaperTypeBack==8"
+                               [defaultValue]="0" number-input [maxValue]="9999" [(numberValue)]="laminationBackBasicWeight"
+                               [numberPrecision]="0"
+                               [style.border]="checkBorderLaminationBackBasicWeight.style"
+                               [style.border-radius]="checkBorderLaminationBackBasicWeight.radius">
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-control-static text-center" *ngIf="laminationPaperTypeBack!=8">
+                            {{laminationBackThroughWage + '円（k@）'}}
+                        </div>
+                        <div class="form-material--group" *ngIf="laminationPaperTypeBack==8">
+                            <input class="form-control text-right ng-untouched ng-pristine ng-valid"
+                                   [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                                   [(numberValue)]="laminationBackThroughWage" [maxValue]="9999" [numberPrecision]="0"
+                                   [style.border]="checkBorderLaminationBackThroughWage.style"
+                                   [style.border-radius]="checkBorderLaminationBackThroughWage.radius">
+                            <span class="form-material--group__unit">円（k@）</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('takenNumber') }">シート取数（丁）</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView" [maxValue]="999"
+                               [defaultValue]="0" number-input
+                               [(numberValue)]="takenNumber"
+                               [numberPrecision]="0"
+                               [style.border]="checkBorderTakenNumber.style"
+                               [style.border-radius]="checkBorderTakenNumber.radius">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('impositionNumber') }">面付数（丁）</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView" [maxValue]="999"
+                               [defaultValue]="0" number-input
+                               [(numberValue)]="impositionNumber"
+                               [numberPrecision]="0"
+                               [style.border]="checkBorderImpositionNumber.style"
+                               [style.border-radius]="checkBorderImpositionNumber.radius">
+                    </div>
+                </div>
+                <div style="background:#FCDFDF" class="text-center" style="padding:10px" *ngIf="checkImposition">
+                    <p style="color: #b95e5e;font-size:16px"><strong>材料の在庫有無を購買に確認してください</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /材料 -->
+<div class="modal fade"
+     [mstPapersBackground]="mstPapersBackground"
+     paper-modal (emitSubmitData)="setPaperModalResult($event)"
+     tabindex="-1" role="dialog" id="paperModal"
+     data-backdrop="static" data-keyboard="false" (emitClosed)="closedModal()" [helper]="helper">
+</div>

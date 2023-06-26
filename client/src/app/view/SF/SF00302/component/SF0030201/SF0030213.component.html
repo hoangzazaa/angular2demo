@@ -1,0 +1,102 @@
+<!-- 検品・梱包・配送 -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body10" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body10" role="button">
+                <i class="fa fa-circle-o text-gray push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateProductOther,'fa-circle-o text-gray':!stateProductOther}"></i>
+                <span>検品・梱包・配送</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body10">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('inspectionId') }">検品</label>
+                    <div class="col-sm-7">
+                        <select class="form-control" [(ngModel)]="inspectionId"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of inspectionOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('packingId') }">梱包</label>
+                    <div class="col-sm-7">
+                        <select class="form-control" [(ngModel)]="packingId"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of packingOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('dieCuttingThroughNumber') }">入り数 </label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" number-input
+                               [maxValue]="99999" [numberPrecision]="0" [defaultValue]="0"
+                               [disabled]="isCreateNewProduct || isView"
+                               [(numberValue)]="packingInputNumber">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('dieCuttingThroughNumber') }">通函No </label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" value="" placeholder=""
+                               maxlength="9"
+                               [disabled]="isCreateNewProduct || isView"
+                               [(ngModel)]="passageNo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('dieCuttingThroughNumber') }">梱包備考 </label>
+                    <div class="col-sm-7">
+                        <textarea type="text" class="form-control"
+                               [(ngModel)]="packingNote" maxlength="60"
+                                  [disabled]="isCreateNewProduct || isView" ></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('shippingCostId') }">納入先距離</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" [(ngModel)]="shippingCostId"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of shippingCostOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('requiredAdditionalWork')}">付帯作業有無（助手の要否）</label>
+                    <div class="col-sm-9">
+                        <label class="css-input css-radio css-radio-primary push-30-r" style="width: 57px;">
+                            <input name="radio-group12" checked="" type="radio" [checked]="requiredAdditionalWork==0" (change)="setRequiredAdditionalWork(0)"
+                                [disabled]="isCreateNewProduct || isView">
+                            <span [style.border]="checkBorderRequiredAdditionalWork.style" [style.border-radius]="checkBorderRequiredAdditionalWork.radius"></span> なし
+                        </label>
+                        <label class="css-input css-radio css-radio-primary push-30-r" style="width: 57px">
+                            <input name="radio-group12" checked="" type="radio" [checked]="requiredAdditionalWork==1" (change)="setRequiredAdditionalWork(1)"
+                                [disabled]="isCreateNewProduct || isView">
+                            <span [style.border]="checkBorderRequiredAdditionalWork.style" [style.border-radius]="checkBorderRequiredAdditionalWork.radius"></span> あり
+                        </label>
+                
+                    </div>
+                </div>
+            </div>
+            <div style="background:#FCDFDF" class="text-center" style="padding:10px" *ngIf="checkOverWeight">
+                <p style="color: #b95e5e;font-size:16px">
+                    <strong>積載量が4,500kg以上のためチャーター便の手配が必要です。その他項目を使用して別途試算・計上してください。</strong></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /検品・梱包・配送 -->

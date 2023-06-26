@@ -1,0 +1,58 @@
+<div class="row" style="padding-top: 10px;">
+ <div class="col-md-7">
+  <div class="form-inline">
+   <div class="form-group">
+    <label class="table-transaction-stock">直近のお取引状況</label>
+    <button type="button" class="btn btn-link" disabled style="display: none;">詳細</button>
+   </div>
+  </div>
+  <table class="table table-condensed table-border-none">
+   <thead>
+   <tr>
+    <th>日付</th>
+    <th>案件名</th>
+    <th>注文数</th>
+    <th>単価</th>
+    <th>金額</th>
+   </tr>
+   </thead>
+   <tbody>
+   <tr *ngFor="let si of item.stockItems">
+    <td>{{si.orderItem.quotationItem.updatedDate | date:'yyyy/MM/dd'}}</td>
+    <td>{{si.orderItem.quotationItem.dealProduct.product.productName | ellipsis:20}}</td>
+    <td>{{si.stockQuantity | number}} ロット</td>
+    <td>@{{si.orderItem.quotationItem.submittedPrice | number}}</td>
+    <td>{{si.orderItem.quotationItem.total | number}} 円</td>
+   </tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="col-md-5">
+  <div class="form-inline">
+   <div class="form-group">
+    <label class="table-transaction-stock">在庫リスト</label>
+    <button type="button" class="btn btn-link" disabled style="display: none;">詳細</button>
+   </div>
+  </div>
+  <table class="table table-condensed table-border-none">
+   <thead>
+   <tr>
+    <th>製品名</th>
+    <th>在庫数</th>
+    <th>単価</th>
+    <th>日数</th>
+   </tr>
+   </thead>
+   <tbody>
+   <tr *ngFor="let si of item.stockItems">
+    <td>{{si.orderItem.quotationItem.dealProduct.product.productName |
+     ellipsis:20}}
+    </td>
+    <td>{{si.remainQuantity | number}}</td>
+    <td>@{{si.orderItem.quotationItem.submittedPrice | number}}</td>
+    <td>{{si.totalExpiredMonth | number}} 日</td>
+   </tr>
+   </tbody>
+  </table>
+ </div>
+</div>

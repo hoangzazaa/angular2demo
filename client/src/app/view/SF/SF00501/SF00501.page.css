@@ -1,0 +1,138 @@
+/*!
+* Sefuri - v0.1.0 - Auto-compiled on 2017-03-21 - Copyright 2017
+* @author ...
+*/
+.sf00501 .summary-filter {
+    position: relative;
+    padding-bottom: 25px;
+    font-size: 16px;
+}
+
+.sf00501 .summary-filter .form-inline {
+    padding-bottom: 10px;
+}
+
+.sf00501 .summary-filter .form-inline .form-group label {
+    margin-right: 20px;
+}
+
+.sf00501 .summary-filter .form-inline .form-group label:first-child {
+    width: 60px;
+}
+
+.sf00501 .summary-filter .form-inline .form-group label:last-child {
+    margin-right: 0px;
+}
+
+.sf00501 .summary-filter .form-inline .form-group label.deal-count {
+    width: 140px;
+}
+
+@media screen and (min-width: 768px) {
+    .sf00501 .summary-filter .form-inline .form-group select {
+        width: 200px;
+    }
+}
+
+.sf00501 .summary-filter .fix-spacing {
+    display: inline-block;
+    width: 84px;
+}
+
+.sf00501 .summary-filter .triangle:after,
+.sf00501 .summary-filter .triangle:before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    width: 50%;
+    border-bottom: 25px solid #f5f5f5;
+    -moz-transform: rotate(0.000001deg);
+    -webkit-transform: rotate(0.000001deg);
+    -o-transform: rotate(0.000001deg);
+    -ms-transform: rotate(0.000001deg);
+    transform: rotate(0.000001deg);
+}
+
+.sf00501 .summary-filter .triangle:before {
+    right: 50%;
+    border-right: 75px solid transparent;
+}
+
+.sf00501 .summary-filter .triangle:after {
+    left: 50%;
+    border-left: 75px solid transparent;
+}
+
+.sf00501 .summary-content .panel-heading .panel-title {
+    font-size: 24px;
+    opacity: 0.6;
+}
+
+.sf00501 .summary-content .panel-heading .panel-title > span {
+    font-size: 14px;
+}
+
+.sf00501 .summary-content .summary-content-title span {
+    display: inline-block;
+}
+
+.sf00501 .summary-content .summary-table {
+    text-align: right;
+    border: none;
+}
+
+.sf00501 .summary-content .summary-table table {
+    width: 500px;
+    display: inline-table;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+}
+
+.sf00501 .summary-content .summary-table table th {
+    white-space: nowrap;
+}
+
+.sf00501 .summary-content .view-mode {
+    width: 150px;
+    float: right;
+}
+
+.sf00501 .summary-content #sf0050104-table_wrapper td.revenue-total {
+    background-color: #379e4f;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.sf00501 .summary-content #sf0050104-table_wrapper td.revenue-total.on-going {
+    background-color: #f8bf3d;
+}
+
+.sf00501 .summary-content #sf0050104-table_wrapper td.goal-total {
+    background-color: #97ebab;
+    font-weight: bold;
+}
+
+.sf00501 .summary-content #sf0050104-table_wrapper tr th {
+    white-space: nowrap;
+}
+
+.sf00501 .summary-content #sf0050104-table_wrapper tr td {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-align: right;
+    min-width: 60px;
+}
+
+.sf00501 .summary-content #sf0050104-table_wrapper tr td.title-column {
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.sf00501 .summary-content #sf0050104-table_wrapper .DTFC_LeftWrapper > div {
+    border-right: 1px solid #ddd;
+}
+
+.sf00501 .summary-content #sf0050104-table_wrapper #revenue-table {
+    width: 100% !important;
+}

@@ -1,0 +1,38 @@
+<nav [class.hidden]="isHidden">
+    <ul class="pagination pagination-sm">
+        <li class="previous" [class.disabled]="previousDisabled">
+            <a (click)="goPrevious()"><i class="fa fa-angle-double-left"></i></a>
+        </li>
+        <li [class.active]="currentPage == 1">
+            <a (click)="goPage(1)">1</a>
+        </li>
+        <li [class.hidden]="prevEtcHidden">
+            <span>...</span>
+        </li>
+        <li [class.hidden]="mid1Hidden" [class.active]="currentPage == mid1Page">
+            <a (click)="goPage(mid1Page)">{{ mid1Page }}</a>
+        </li>
+        <li [class.hidden]="mid2Hidden" [class.active]="currentPage == mid2Page">
+            <a (click)="goPage(mid2Page)">{{ mid2Page }}</a>
+        </li>
+        <li [class.hidden]="mid3Hidden" [class.active]="currentPage == mid3Page">
+            <a (click)="goPage(mid3Page)">{{ mid3Page }}</a>
+        </li>
+        <li [class.hidden]="mid4Hidden" [class.active]="currentPage == mid4Page">
+            <a (click)="goPage(mid4Page)">{{ mid4Page }}</a>
+        </li>
+        <li [class.hidden]="mid5Hidden" [class.active]="currentPage == mid5Page">
+            <a (click)="goPage(mid5Page)">{{ mid5Page }}</a>
+        </li>
+        <li [class.hidden]="nextEtcHidden">
+            <span>...</span>
+        </li>
+        <li [class.hidden]="lastHidden" [class.active]="currentPage == totalPage">
+            <a (click)="goPage(totalPage)">{{ totalPage }}</a>
+        </li>
+        <li class="next" [class.disabled]="nextDisabled">
+            <a (click)="goNext()"><i class="fa fa-angle-double-right"></i></a>
+
+        </li>
+    </ul>
+</nav>

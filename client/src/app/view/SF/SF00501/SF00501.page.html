@@ -1,0 +1,27 @@
+<div class="content sf00501">
+    <div class="block summary-filter">
+        <div class="block-content" sf0050101></div><!-- /.block-content -->
+        <div class="triangle"></div>
+    </div><!-- /.block -->
+
+    <!-- 実績パネル -->
+    <div class="panel panel-default summary-content">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                営業実績
+                <span class="pull-right">(単位: 千円)</span>
+            </h3>
+        </div><!-- /.panel-heading -->
+        <div class="panel-body" sf0050102></div><!-- /.panel-body -->
+    </div><!-- /.panel -->
+    <!-- /実績パネル -->
+
+    <div sf0050106 *ngIf="isViewDeal" (viewPageDealDetail) = "dealDetail($event)"></div>
+
+    <div class="push-30-t push-20 row">
+        <div class="col-sm-6">
+            <button class="btn btn-link" (click)="goBack()">戻る</button>
+        </div>
+    </div>
+</div><!-- /.content -->
+<!-- END Page Content -->

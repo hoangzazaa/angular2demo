@@ -1,0 +1,44 @@
+<!--checklist-->
+<div class="panel panel-default sfr-panel-concern-item checkSheet" id="#checkSheet">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <h3 class="panel-title">
+                <button class="btn btn-link remove-padding panel-title__link"
+                        (click)="viewCheckSheet()"
+                        [disabled]="!pageData.canEdit">案件チェックシート
+                </button>
+                <div class="pull-right panel-title__flex-space"></div>
+                <a role="button" data-toggle="collapse" class="pull-right accordion-toggle"
+                   href="#panel_body01" aria-expanded="true" aria-controls="panel_body01">
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            </h3>
+        </div>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body01">
+        <div class="panel-body block panel-body--has-tab_block">
+            <ul class="nav nav-tabs nav-tabs-alt">
+                <li class="active"><a data-toggle="tab" href="#checkSheetTab1">用途・注文</a></li>
+                <li><a data-toggle="tab" href="#checkSheetTab2">形状・デザイン</a></li>
+                <li><a data-toggle="tab" href="#checkSheetTab3">製造仕様</a></li>
+                <li><a data-toggle="tab" href="#checkSheetTab4">梱包・配送</a></li>
+                <li class="pull-right">
+                    <div class="block-options-simple">
+                        <button class="btn btn-link remove-padding"
+                                (click)="viewCheckSheet()"
+                                [disabled]="!pageData.canEdit">詳細
+                        </button>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="tab-content div-scroll-y">
+                <div id="checkSheetTab1" component-tab1 [dataTab]="pageData" class="tab-pane fade in active"></div>
+                <div id="checkSheetTab2" component-tab2 [dataTab]="pageData" class="tab-pane fade"></div>
+                <div id="checkSheetTab3" component-tab3 [dataTab]="pageData" class="tab-pane fade"></div>
+                <div id="checkSheetTab4" component-tab4 [dataTab]="pageData" class="tab-pane fade"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end checklist-->

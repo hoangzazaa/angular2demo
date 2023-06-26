@@ -1,0 +1,106 @@
+<div class="block-header bg-gray-lighter">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="block-title">活動状況</h3>
+        </div>
+    </div>
+</div>
+
+<div class="block-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <textarea type="text" class="form-control" [(ngModel)]="stagingValue"
+                      name="value" id="value"
+                      [disabled]="!canShowMore"
+                      [ngClass]="{'resize': canShowMore }"
+                      maxlength="100"
+                      rows="3"></textarea>
+        </div>
+    </div>
+
+    <div class="row push-20-t">
+        <div class="col-sm-5">
+            <button class="btn btn-primary" (click)="addComment()" *ngIf="canShowMore" [disabled]="!readyToComment">
+                書き込む
+            </button>
+        </div>
+        <div class="col-sm-6">
+            <div class="btn-group">
+                <button class="btn btn-primary dropdown-toggle" [disabled]="!deal.isSaved || deal.isImmutableDeal"
+                        data-toggle="dropdown">依頼する <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <!--http://fridaynight.vnext.vn/issues/2310-->
+                    <!--<li [ngClass]="{'disabled': noProductHighlight}">-->
+                    <li>
+                        <a tabindex="-1" role="button" (click)="sendRequestMail(3)">サンプル作成依頼</a>
+                    </li>
+                    <li>
+                        <a tabindex="-1" role="button" (click)="sendRequestMail(4)">サンプル作成依頼（一次包装）</a>
+                    </li>
+                    <li>
+                        <a tabindex="-1" role="button" (click)="sendRequestMail(5)">デザイン依頼</a>
+                    </li>
+                    <li>
+                        <a tabindex="-1" role="button" (click)="sendRequestMail(6)">版下依頼</a>
+                    </li>
+                    <li>
+                        <a tabindex="-1" role="button" (click)="sendRequestMail(7)">ダミー作成依頼</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row push-20-t">
+        <div class="col-sm-12">
+            <ul class="list" *ngFor="let hst of history; let i = index" [attr.data-index]="i">
+                <li role="button" data-toggle="modal" [attr.data-target]="'#exampleModalLong_' + i">
+                    <blockquote class="blockquote_activity">
+                        <span class="font-w600" >{{hst.title | ellipsis:200}}</span><br/>
+                        <span class="font-w100" ><div [innerHTML]="hst.shortenValue()"></div></span>
+                        <small class="text-muted">{{hst.getUpdatedDate('YYYY/MM/DD HH:mm')}} {{hst.username}}</small>
+                    </blockquote>
+                </li>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalLong_{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">{{hst.getUpdatedDate('YYYY/MM/DD HH:mm')}} </h5>
+                                <div class="">{{hst.username}}</div>
+                            </div>
+                            <div class="modal-body">
+                                <div [innerHTML]="hst.title"></div>
+                                <br>
+                                <hr>
+                                <div [innerHTML]="hst.value"></div>
+
+                                <ul *ngIf="hst.commentFiles.length > 0" class="comment-files">
+                                    <li *ngFor="let file of hst.commentFiles; let fi = index">
+                                        <a href="#" (click)="fileDownload($event, file)">
+                                            <i class="fa fa-download"></i>
+                                            {{file.originalName}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="block-content-full">
+                <a class="btn btn-success btn-block" (click)="showMore()" *ngIf="canShowMore && totalRows > 0"
+                   [class.disabled]="isDisabled">もっと見る</a>
+            </div>
+        </div>
+    </div>
+</div>

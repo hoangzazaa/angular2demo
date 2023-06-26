@@ -1,0 +1,15 @@
+<div class="content sf00502">
+    <div sf0050201 class="pic-select"></div>
+
+    <!-- 実績パネル -->
+    <div sf0050202 class="panel panel-default summary-content"
+            [selectedMonthTerm]="pageData.selectedMonthTerm" (changeMonth)="selectMonth($event)">
+    </div><!-- /.panel -->
+    <!-- /実績パネル -->
+
+    <div class="push-30-t push-20 row">
+        <div class="col-sm-6">
+            <button class="btn btn-link" (click)="goBack()">戻る</button>
+        </div>
+    </div>
+</div><!-- /.content -->

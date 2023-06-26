@@ -1,0 +1,27 @@
+
+.sf00202 .padding-30-l {
+    padding-left: 30px;
+}
+
+.sf00202 .padding-55-l {
+    padding-left: 55px;
+}
+
+.sf00202 .padding-40-l {
+    padding-left: 40px;
+}
+.sf00202 .nav .active > a{
+    color: black;
+}
+.sf00202 .nav > li > a{
+    color: grey;
+}
+.sf00202 .row-h-36{
+    height: 37px;
+}
+.sf00202 .col-xs-2{
+    width: 11.67%;
+}
+.sf00202 .col-xs-4{
+    width: 38.33%;
+}

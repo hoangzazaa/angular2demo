@@ -1,0 +1,58 @@
+<div class="row" *ngIf="!showSummaryTable">
+    <div class="col-md-12">
+        <h4 class="summary-content-title" [innerHTML]="headLine">
+        </h4>
+    </div>
+</div>
+<div class="row" *ngIf="showSummaryTable">
+    <div class="col-md-6">
+        <h4 class="summary-content-title" [innerHTML]="headLine">
+        </h4>
+    </div>
+    <div class="col-md-6">
+        <div class="table-responsive summary-table">
+            <table class="table table-borderless table-condensed">
+                <thead>
+                <tr>
+                    <th class="col-sm-3">段ボール</th>
+                    <th class="col-sm-3">紙器</th>
+                    <th class="col-sm-3">商事</th>
+                    <th class="col-sm-3">合計</th>
+                    <th class="col-sm-1">前年比</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        {{ convertYenToThousanYen(summaryNewAmount1) | number:'1.0-0' }}<br>
+                        ({{ convertYenToThousanYen(summaryOldAmount1) | number:'1.0-0' }})
+                    </td>
+                    <td>
+                        {{ convertYenToThousanYen(summaryNewAmount2) | number:'1.0-0' }}<br>
+                        ({{ convertYenToThousanYen(summaryOldAmount2) | number:'1.0-0' }})
+                    </td>
+                    <td>
+                        {{ convertYenToThousanYen(summaryNewAmount3) | number:'1.0-0' }}<br>
+                        ({{ convertYenToThousanYen(summaryOldAmount3) | number:'1.0-0' }})
+                    </td>
+                    <td>
+                        {{ convertYenToThousanYen(summaryNewTotal) | number:'1.0-0' }}<br>
+                        ({{ convertYenToThousanYen(summaryOldTotal) | number:'1.0-0' }})
+                    </td>
+                    <td *ngIf="isNanDiffRate">-<br>&#8203;</td>
+                    <td *ngIf="!isNanDiffRate">{{ summaryDiffRate | number:'1.1-1' }}%<br>&#8203;</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row push-20" sf0050103 *ngIf="displayGraph"></div>
+<div class="row" *ngIf="hasViewModes">
+    <div class="col-sm-12">
+        <select class="form-control view-mode" [(ngModel)]="viewMode">
+            <option *ngFor="let viewmode of viewModes" [ngValue]="viewmode">{{ viewmode.name }}</option>
+        </select>
+    </div>
+</div>
+<div sf0050104 *ngIf="displayTable"></div>

@@ -1,0 +1,45 @@
+<!-- 印刷 -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body23" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body23" role="button">
+                <i class="fa push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateOtherNote,'fa-circle-o text-gray':!stateOtherNote}"></i>
+                <span>備考（製造仕様書に表示）</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body23">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('otherNote1') }">備考1</label>
+                    <div class="col-sm-9">
+                    <input type="text" class="form-control"
+                           [disabled]="isCreateNewProduct || isView" [(ngModel)]="memo1" maxlength="60">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('otherNote2') }">備考2</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control"
+                               [disabled]="isCreateNewProduct || isView" [(ngModel)]="memo2" maxlength="60">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('otherNote3') }">備考3</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control"
+                               [disabled]="isCreateNewProduct || isView" [(ngModel)]="memo3" maxlength="60">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

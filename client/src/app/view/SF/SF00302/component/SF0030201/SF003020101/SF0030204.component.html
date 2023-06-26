@@ -1,0 +1,88 @@
+<!-- 製品仕様 -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body01" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body01" role="button">
+                <i class="fa push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateProductSpec,'fa-circle-o text-gray':!stateProductSpec}"></i>
+                <span>製品仕様</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body01">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('shapeId') }">紙器タイプ</label>
+                    <div class="col-sm-7">
+                        <select class="form-control" [(ngModel)]="shapeId"
+                                [disabled]="isCreateNewProduct || isView ||shapeId==98||shapeId==100">
+                            <option value="0"> なし</option>
+                            <option *ngFor="let shape of mstShapes" [value]="shape.id"> {{shape.name}}</option>
+                            <option value="98" *ngIf="shapeId==98">美粧</option>
+                            <option value="100" *ngIf="shapeId==100">美粧（片段）</option>
+                            <option value="99">その他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="shapeId!=98&&shapeId!=100">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('size') }">製品寸法<br>
+                        <small>（mm)</small>
+                    </label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" value="" placeholder="長さ"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [maxValue]="9999.9"
+                               [(numberValue)]="sizeW" [numberPrecision]="1">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" value="" placeholder="幅"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [maxValue]="9999.9" [(numberValue)]="sizeD" [numberPrecision]="1">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" value="" placeholder="高さ"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [maxValue]="9999.9"
+                               [(numberValue)]="sizeH" [numberPrecision]="1">
+                    </div>
+
+                </div>
+                <div class="form-group" *ngIf="shapeId!=98&&shapeId!=100">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('blankPaperSize') }">展開寸法<br>
+                        <small>（ブランクサイズ）</small>
+                    </label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" value="" placeholder="辺１"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [maxValue]="9999.9" [(numberValue)]="blankPaperSizeW" [numberPrecision]="1">
+                    </div>
+                    <div class="col-sm-1 text-center">
+                        <div class="form-control-static">×</div>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" value="" placeholder="辺２"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [maxValue]="9999.9"
+                               [(numberValue)]="blankPaperSizeH" [numberPrecision]="1">
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-primary btn-block"
+                                [disabled]="isCheckCreate||isCreateNewProduct || isView"
+                                (click)="navigateSF008()">
+                            面付数を試算する
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /製品仕様 -->

@@ -1,0 +1,111 @@
+<div class="form-horizontal text-center push-30-t">
+    <div class="form-group">
+        <div class="form-inline">
+            <!--//売上/Doanh thu-->
+            <div class="col-sm-3">
+                <div class="form-material">
+                    <div class="js-pie-chart pie-chart" [attr.data-percent]="receipts"
+                         data-line-width="5" data-size="150" id="js-pie-chart1"
+                         data-bar-color="#05a2e6" data-track-color="#eeeeee">
+                        <span style="font-size: 20px"><small class="text-muted">売上<br>{{receipts}}%</small></span>
+                    </div>
+                </div>
+                <div class="form-material">
+                    <span class="text-muted">目標 {{receipts_goal|numberFormat}} 千円</span>
+                </div>
+                <div class="form-material">
+                    <span class="text-muted">実績<strong style="font-size: 20px;color: black"> {{receipts_current|numberFormat}} </strong>千円</span>
+                </div>
+            </div>
+
+            <!--//新規売上/Doanh thu mới-->
+            <div class="col-sm-3">
+                <div class="form-material">
+                    <div class="js-pie-chart pie-chart" [attr.data-percent]="newReceipts"
+                         data-line-width="5" data-size="150" id="js-pie-chart2"
+                         data-bar-color="#abe37d" data-track-color="#eeeeee">
+                        <span style="font-size: 20px"><small
+                                class="text-muted">年間<br>新規売上<br>{{newReceipts}}%</small></span>
+                    </div>
+                </div>
+                <div class="form-material">
+                    <span class="text-muted">目標 {{newReceipts_goal|numberFormat}} 千円</span>
+                </div>
+                <div class="form-material">
+                    <span class="text-muted">合計<strong style="font-size: 20px;color: black"> {{newReceipts_current|numberFormat}} </strong>千円</span>
+                </div>
+            </div>
+
+            <!--//新規件数/Số record mới-->
+            <div class="col-sm-3">
+                <div class="form-material">
+                    <div class="js-pie-chart pie-chart" id="js-pie-chart3"
+                         [attr.data-percent]="recordNew" data-line-width="7" data-size="150"
+                         data-bar-color="#dd59b4" data-track-color="#eeeeee">
+                        <span style="font-size: 20px"><small
+                                class="text-muted">年間<br>新規件数<br>{{recordNew}}%</small></span>
+                    </div>
+                </div>
+                <div class="form-material">
+                    <div class="form-material--group">
+                        <span class="form-material--group__addon text-muted">目標 </span>
+                        <ng-container *ngIf="page.checkSalePic">
+                            <input class="form-control ng-untouched ng-pristine ng-valid text-right"
+                                   number-input [(numberValue)]="recordNew_goal" style="width: 100px;"
+                                   [numberPrecision]="0" name="txtOther2"
+                                   [maxValue]="999">
+                        </ng-container>
+                        <ng-container *ngIf="!page.checkSalePic">
+                            <strong>{{recordNew_goal|numberFormat}}</strong>
+                        </ng-container>
+                        <span class="form-material--group__addon text-muted"> 件</span>
+                    </div>
+                </div>
+                <div class="form-material">
+                    <span class="text-muted">実績<strong style="font-size: 20px;color: black"> {{recordNew_current|numberFormat}} </strong>件</span><br>
+                </div>
+                <div class="form-material">
+                    <span class="text-muted">HP経由は0.5換算</span>
+                </div>
+            </div>
+
+            <!--//デジタル売上/Doanh thu digtal-->
+            <div class="col-sm-3">
+                <div class="form-material">
+                    <div class="js-pie-chart pie-chart" id="js-pie-chart4"
+                         [attr.data-percent]="digitalSale" data-line-width="7" data-size="150"
+                         data-bar-color="#f4b91a" data-track-color="#eeeeee">
+                        <span style="font-size: 20px"><small class="text-muted">年間<br>デジタル売上<br>{{digitalSale}}%</small></span>
+                    </div>
+                </div>
+                <div class="form-material">
+                    <div class="form-material--group">
+                        <span class="form-material--group__addon text-muted">目標 </span>
+                        <ng-container *ngIf="page.checkSalePic">
+                            <input class="form-control ng-untouched ng-pristine ng-valid text-right"
+                                   number-input [(numberValue)]="digitalSale_goal" style="width: 105px;"
+                                   [numberPrecision]="0" name="txtOther2"
+                                   [maxValue]="99999999">
+                        </ng-container>
+                        <ng-container *ngIf="!page.checkSalePic">
+                            <strong>{{digitalSale_goal|numberFormat}}</strong>
+                        </ng-container>
+                        <span class="form-material--group__addon text-muted"> 千円</span>
+                    </div>
+                </div>
+                <div class="form-material">
+                    <span class="text-muted">実績<strong style="font-size: 20px;color: black"> {{digitalSale_current|numberFormat}} </strong>千円</span><br>
+                </div>
+                <div class="form-material">
+                    <span class="text-muted">付随売上（企画代・デザイン代等）は除く</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="block-options-simple push-20-r push-5-t">
+            <button class="btn btn-primary" *ngIf="page.checkSalePic" (click)="saveDataInput()">保存する</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,278 @@
+<div class="panel-heading">
+    <h3 class="panel-title">
+        <i class="fa text-gray push-5-r"></i>
+        <span>{{customerCode}} <a (click)="navigateSF00402()"
+                                  class="panel-title__link font-large" style="cursor: hand;">{{customerName}}</a></span>
+        <a role="button" data-toggle="collapse" class="accordion-toggle"
+           href="#panel_body{{index}}"
+           aria-expanded="true" aria-controls="panel_body07">
+            <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            <span class="pull-right push-20-r">{{dateUpdate == null?'':'更新日'}} <strong>{{dateUpdate | date: 'yyyy/MM/dd'}}</strong></span>
+        </a>
+    </h3>
+</div>
+<div class="panel-collapse collapse" id="panel_body{{index}}">
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1">
+                        </div>
+                        <div class="tab-pane fade in active" id="tab2">
+                        </div>
+                        <div class="tab-pane fade in active" id="tab3">
+                        </div>
+                        <div class="tab-pane fade in active" id="tab4">
+                            <div class="form-group push-20-l push-10-t">
+                                <div class="form-group">
+                                    <div class="col-sm-3"><label
+                                            class="control-label pull-left push-10-l"> {{saleOld}}</label>
+                                    </div>
+                                    <div class="col-sm-2 text-right"><label class="control-label">次年度担当:</label>
+                                    </div>
+                                    <div class="col-sm-6 input-group stylish-input-group">
+                                        <input type="text" class="form-control" readonly value="{{valuePicName()}}"
+                                               placeholder="{{picCustomerGoal}}">
+                                        <span *ngIf="!sf00503Data.readOnlyCusGoal" class="input-group-addon"
+                                              (click)="searchUserPic()" style="cursor: pointer">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </span>
+                                        <span *ngIf="sf00503Data.readOnlyCusGoal" class="input-group-addon"
+                                              style="cursor: not-allowed">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="row row-border-bottom">
+                                    <div class="col-sm-4 remove-padding-r">
+                                        <table class="table table-borderless table-border-right">
+                                            <tr class="tr-border-bottom-grey">
+                                                <th class="text-left remove-padding-b">
+                                                    <label class="control-label">
+                                                        <dt class="font-medium">製品分類
+                                                        </dt>
+                                                    </label></th>
+                                                <th class="text-right remove-padding-b">
+                                                    <label class="control-label">
+                                                        <dt class="font-medium push-50-r">
+                                                            通年
+                                                        </dt>
+                                                    </label></th>
+                                            </tr>
+                                            <tbody>
+                                            <tr>
+                                                <td><label class="control-label label-padding-20-t">段ボール</label>
+                                                </td>
+                                                <td>
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-5-t-20-r">{{type1OldAfter
+                                                        |
+                                                        numberFormat}}</label>
+                                                    </div>
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-10-t-20-r push-5-t">({{type1OldBefore
+                                                        |
+                                                        numberFormat}})</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="control-label label-padding-20-t">紙器</label></td>
+                                                <td>
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-5-t-20-r">{{type2OldAfter
+                                                        |
+                                                        numberFormat}}</label>
+                                                    </div>
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-10-t-20-r">({{type2OldBefore
+                                                        |
+                                                        numberFormat}})</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="control-label label-padding-20-t">商事</label></td>
+                                                <td>
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-5-t-20-r">{{type3OldAfter
+                                                        |
+                                                        numberFormat}}</label>
+                                                    </div>
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-10-t-20-r">({{type3OldBefore
+                                                        | numberFormat}})</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tr-background">
+                                                <td><label class="control-label label-padding-5-t">
+                                                    <dt>目標</dt>
+                                                </label></td>
+                                                <td>
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-10-t-20-r">
+                                                        <dt>{{totalOldAfter | numberFormat}}</dt>
+                                                    </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="control-label label-padding-5-t">前年</label></td>
+                                                <td>
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-20-r">({{totalOldBefore
+                                                        | numberFormat}})</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><label class="control-label label-padding-5-t">前年比</label></td>
+                                                <td>
+                                                    <div class="text-right">
+                                                        <label class="control-label label-padding-5-t-20-r">
+                                                            {{interestRateOld=='-'?interestRateOld:(interestRateOld|numberFormat)+'%'}}
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-sm-8 remove-padding-l div-scroll-x">
+                                        <table class="table table-borderless">
+                                            <tr class="tr-border-bottom-grey">
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>4</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>5</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>6</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>7</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>8</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>9</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>10</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>11</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>12</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>1</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>2</dt>
+                                                </label></th>
+                                                <th class="text-center remove-padding-b"><label
+                                                        class="control-label font-medium">
+                                                    <dt>3</dt>
+                                                </label></th>
+                                            </tr>
+                                            <tbody>
+                                            <tr *ngFor="let row of rows; let i=index">
+                                                <td *ngFor="let column of columns; let j=index">
+                                                    <div class="form-group text-right remove-margin-b">
+                                                        <ng-container *ngIf="!sf00503Data.readOnlyCusGoal">
+                                                            <input type="text"
+                                                                   class="form-control text-right input-80-w push-30-l"
+                                                                   number-input [(numberValue)]="goldCustomerOld[i][j]"
+                                                                   (change)="emitDataChangedEvent()"
+                                                                   [numberPrecision]="0" [maxValue]="999999"
+                                                                   [defaultValue]="0"
+                                                                   [minValue]="0"
+                                                                   (numberValueChange)="updateDataChange($event)">
+                                                            <label class="control-label push-10-r">({{convertYenToThousanYen(goldCustomerOldBefore[i][j])
+                                                                | numberFormat}})</label>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="sf00503Data.readOnlyCusGoal">
+                                                            <div class="text-right">
+                                                                <label class="control-label"
+                                                                       style="padding-top: 10px; padding-right: 10px;">{{goldCustomerOld[i][j]
+                                                                    | numberFormat}}</label>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <label class="control-label"
+                                                                       style="padding-top: 11px; padding-right: 10px;">({{convertYenToThousanYen(goldCustomerOldBefore[i][j])
+                                                                    | numberFormat}})</label>
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="tr-background">
+                                                <td *ngFor="let column of columns; let i=index">
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-10-t">
+                                                        <dt>{{goldOldCus[i] | numberFormat}}</dt>
+                                                    </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td *ngFor="let column of columns; let i=index">
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-10-t">
+                                                        ({{convertYenToThousanYen(goldOldBeforeCus[i]) | numberFormat}})
+                                                    </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td *ngFor="let column of columns; let i=index">
+                                                    <div class="text-right"><label
+                                                            class="control-label label-padding-10-t">
+                                                        {{interestRateCus[i]=='-'?interestRateCus[i]:(interestRateCus[i]|numberFormat)+'%'}}
+                                                    </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="row push-20-t">
+                                    <div class="pull-right push-30-r">
+                                        <button class="btn btn-success" [disabled]="sf00503Data.readOnlyCusGoal"
+                                                (click)="saveCustomerGoal()">保存する
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<sf0050308 [picId]="customerGoalOld.picId" [modalId]="index + 'Old'" [departmentId]="departmentId"
+           (changePicId)="setUserPicToCustomerGoal($event)"></sf0050308>

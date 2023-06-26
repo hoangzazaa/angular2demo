@@ -1,0 +1,224 @@
+<div class="panel-heading">
+    <div class="row">
+        <div class="col-sm-3">
+            <dt class="font-large pull-right">既存得意先（その他）</dt>
+        </div>
+        <div class="col-sm-9"><p class="font-large pull-right push-30-r remove-margin-b">単位: 千円</p></div>
+    </div>
+</div>
+<div class="panel-collapse collapse in" id="panel_body16">
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2"><label class="control-label pull-left push-10-l">担当:</label></div>
+                <div class="col-sm-9 input-group stylish-input-group">
+                    <input type="text" class="form-control" placeholder="{{picCustomerGoal}}" readonly
+                           value="{{valuePicName()}}">
+                    <span *ngIf="!sf00503Data.readOnlyCusGoal" class="input-group-addon"
+                          (click)="searchUserPic()" style="cursor: pointer">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </span>
+                    <span *ngIf="sf00503Data.readOnlyCusGoal" class="input-group-addon" style="cursor: not-allowed">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row row-border-bottom">
+                <div class="col-sm-4 remove-padding-r">
+                    <table class="table table-borderless table-border-right">
+                        <tr class="tr-border-bottom-grey">
+                            <th class="text-left remove-padding-b"><label
+                                    class="control-label">
+                                <dt class="font-medium">製品分類</dt>
+                            </label></th>
+                            <th class="text-right remove-padding-b"><label
+                                    class="control-label">
+                                <dt class="font-medium push-50-r">通年</dt>
+                            </label></th>
+                        </tr>
+                        <tbody>
+                        <tr>
+                            <td><label
+                                    class="control-label label-padding-10-t">段ボール</label>
+                            </td>
+                            <td class="text-right"><label
+                                    class="control-label label-padding-10-t-20-r">{{type1Other
+                                |
+                                numberFormat}}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label
+                                    class="control-label label-padding-10-t">紙器</label>
+                            </td>
+                            <td class="text-right">
+                                <label class="control-label label-padding-10-t-20-r">{{type2Other
+                                    |
+                                    numberFormat}}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <ng-container *ngIf="!sf00503Data.readOnlyDeptGoal">
+                                <td><label
+                                        class="control-label label-padding-10-t label-padding-5-b">商事</label>
+                                </td>
+                                <td class="text-right">
+                                    <label class="control-label label-padding-10-t-20-r label-padding-5-b">{{type3Other
+                                        |
+                                        numberFormat}}</label>
+                                </td>
+                            </ng-container>
+                            <ng-container *ngIf="sf00503Data.readOnlyDeptGoal">
+                                <td><label
+                                        class="control-label label-padding-10-t" style="padding-bottom: 3px;">商事</label>
+                                </td>
+                                <td class="text-right">
+                                    <label class="control-label label-padding-10-t-20-r" style="padding-bottom: 3px;">{{type3Other
+                                        |
+                                        numberFormat}}</label>
+                                </td>
+                            </ng-container>
+                        </tr>
+                        <tr class="tr-background">
+                            <td><label class="control-label label-padding-5-t">
+                                <dt>合計</dt>
+                            </label></td>
+                            <td>
+                                <div class="text-right"><label
+                                        class="control-label label-padding-5-t-20-r">
+                                    <dt>{{totalType | numberFormat}}</dt>
+                                </label>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-sm-8 remove-padding-l div-scroll-x">
+                    <table class="table table-borderless">
+                        <tr class="tr-border-bottom-grey">
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>4</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>5</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>6</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>7</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>8</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>9</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>10</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>11</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>12</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>1</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>2</dt>
+                            </label></th>
+                            <th class="text-center remove-padding-b"><label
+                                    class="control-label font-medium">
+                                <dt>3</dt>
+                            </label></th>
+                        </tr>
+                        <tbody>
+                        <tr *ngFor="let row of rows; let i=index">
+                            <td *ngFor="let column of columns; let j=index">
+                                <div class="text-right remove-margin-b">
+                                    <ng-container *ngIf="!sf00503Data.readOnlyCusGoal">
+                                        <input type="text"
+                                               class="form-control text-right input-80-w push-30-l"
+                                               number-input [(numberValue)]="goldCustomerOther[i][j]"
+                                               [numberPrecision]="0"
+                                               [defaultValue]="0"
+                                               [maxValue]="999999" [minValue]="0" (change)="emitDataChangedEvent()"
+                                               (numberValueChange)="updateDataChange($event)">
+                                    </ng-container>
+                                    <ng-container *ngIf="sf00503Data.readOnlyCusGoal">
+                                        <label class="control-label" style="padding-top: 13px;">{{goldCustomerOther[i][j]
+                                            | numberFormat}}</label>
+                                    </ng-container>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="tr-background">
+                            <td *ngFor="let column of columns; let i=index">
+                                <div class="text-right"><label
+                                        class="control-label label-md-padding-5-t">
+                                    <dt class="text-right" style="width: 100px;">{{goldOldCus[i] | numberFormat}}</dt>
+                                </label>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--<tr>-->
+                            <!--<td *ngFor="let column of columns; let i=index">-->
+                                <!--<div class="form-group text-center remove-margin-b">-->
+                                    <!--<ng-container *ngIf="!sf00503Data.readOnlyCusGoal">-->
+                                        <!--<input type="text"-->
+                                               <!--class="form-control text-right input-80-w push-30-l"-->
+                                               <!--number-input [(numberValue)]="goldItemsYear[i].goal"-->
+                                               <!--[numberPrecision]="0"-->
+                                               <!--[defaultValue]="0"-->
+                                               <!--[maxValue]="999999" [minValue]="0" (change)="emitDataChangedEvent()"-->
+                                               <!--(numberValueChange)="updateDataChange($event)">-->
+                                    <!--</ng-container>-->
+                                    <!--<ng-container *ngIf="sf00503Data.readOnlyCusGoal">-->
+                                        <!--<div class="text-right">-->
+                                            <!--<label class="control-label" style="padding-top: 7px; padding-right: 15px;">{{goldItemsYear[i].goal-->
+                                                <!--| numberFormat}}</label>-->
+                                        <!--</div>-->
+                                    <!--</ng-container>-->
+                                <!--</div>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row push-20-t">
+                <div class="pull-left">
+                    <a [ngClass]="{'btn btn-link': true, 'lpanel-title__link': true, 'disabled': sf00503Data.readOnlyCusGoal}"
+                       (click)="deleteCustomerGoal()">削除</a>
+                </div>
+                <div class="pull-right push-30-r">
+                    <button class="btn btn-success" [disabled]="sf00503Data.readOnlyCusGoal"
+                            (click)="createCustomerGoal()">保存する
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<sf0050308 [picId]="customerGoalOther.picId" [modalId]="index + 'Other'" [departmentId]="departmentId"
+           (changePicId)="setUserPicToCustomerGoal($event)"></sf0050308>

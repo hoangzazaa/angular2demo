@@ -1,0 +1,155 @@
+{
+  "departmentGoal":{
+    "year":2017,
+    "activityPolicy":"test data",
+    "departmentId":1,
+    "goalItems": [
+      {
+        "type": 0,
+        "goal": 100,
+        "month": 1,
+        "departmentGoalId": 1,
+        "customerType": 0
+      },
+      {
+        "type": 0,
+        "goal": 120,
+        "month": 2,
+        "departmentGoalId": 1,
+        "customerType": 0
+      },
+      {
+        "type": 0,
+        "goal": 150,
+        "month": 3,
+        "departmentGoalId": 1,
+        "customerType": 0
+      },
+      {
+        "type": 0,
+        "goal": 220,
+        "month": 5,
+        "departmentGoalId": 1,
+        "customerType": 0
+      },
+      {
+        "type": 0,
+        "goal": 230,
+        "month": 6,
+        "departmentGoalId": 1,
+        "customerType": 0
+      },
+      {
+        "type": 0,
+        "goal": 200,
+        "month": 7,
+        "departmentGoalId": 1,
+        "customerType": 0
+      },
+      {
+        "type": 0,
+        "goal": 100,
+        "month": 8,
+        "departmentGoalId": 1,
+        "customerType": 0
+      },
+      {
+        "type": 0,
+        "goal": 100,
+        "month": 9,
+        "departmentGoalId": 1,
+        "customerType": 0
+      },
+      {
+        "type": 0,
+        "goal": 100,
+        "month": 10,
+        "departmentGoalId": 1,
+        "customerType": 0
+      },
+      {
+        "type": 0,
+        "goal": 100,
+        "month": 11,
+        "departmentGoalId": 1,
+        "customerType": 0
+      },
+      {
+        "type": 0,
+        "goal": 100,
+        "month": 12,
+        "departmentGoalId": 1,
+        "customerType": 0
+      }
+    ]
+  },
+  "saleData":{
+    "year":2017,
+    "user": {
+      "id": 1,
+      "username":"Hoangtd"
+    },
+    "saleDataItems":[
+      {
+        "month":1,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":2,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":3,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":1,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":4,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":6,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":7,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":8,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":9,
+        "productType":1,
+        "totalMoney":99999
+      },
+      {
+        "month":10,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":11,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":12,
+        "productType":1,
+        "totalMoney":50000
+      }
+    ]
+  }
+}

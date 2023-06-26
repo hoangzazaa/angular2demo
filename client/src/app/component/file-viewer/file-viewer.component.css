@@ -1,0 +1,33 @@
+/*when file is identity (as image file)*/
+.has-a-file img {
+    display: block;
+    border: none;
+    max-height: 200px;
+    width: 100%;
+    /*height: 100%;*/
+    object-fit: contain;
+}
+
+/*when file not defined*/
+.has-not-a-file {
+    display: block;
+    border: none;
+    max-height: 200px;
+    width: 100%;
+    height: 100%;
+    background-color: lightgrey;
+    text-align: center;
+    opacity: 0.8
+}
+
+.has-not-a-file svg {
+    width: 100%;
+    height: 100%;
+}
+
+.has-not-a-file text {
+    font-family: Meiryo, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    fill-opacity: 0.6;
+}

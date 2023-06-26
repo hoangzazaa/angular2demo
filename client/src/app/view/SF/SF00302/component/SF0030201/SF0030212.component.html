@@ -1,0 +1,61 @@
+<!-- 打抜・貼り工程 -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body09" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body09" role="button">
+                <i class="fa push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateProductDieCutting,'fa-circle-o text-gray':!stateProductDieCutting}"></i>
+                <span>打抜・貼り工程</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body09">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                        <label class="control-label col-sm-3"
+                               [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('dieCuttingFlag') }">打抜き</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" [(ngModel)]="dieCuttingFlag"
+                                    [disabled]="isCreateNewProduct || isView">
+                                <option *ngFor="let t of dieCuttingFlagOption" [value]="t.id">{{t.name}}</option>
+                            </select>
+                        </div>
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('dieCuttingThroughNumber') }">打抜面付数
+                        （丁）</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" value="" placeholder=""
+                               maxlength="3"
+                               [disabled]="isCreateNewProduct || isView ||dieCuttingFlag==0  " [defaultValue]="0"
+                               number-input
+                               [(numberValue)]="dieCuttingThroughNumber" [maxValue]="999" [numberPrecision]="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('pasteId') }">貼り</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" [(ngModel)]="pasteId"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of pasteOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <label [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('pasteSpecialFormFlag') }"
+                               class="css-input css-checkbox css-checkbox-success">
+                            <input type="checkbox" [(ngModel)]="pasteSpecialFormFlag"
+                                   [disabled]="isCreateNewProduct || isView"/><span></span>
+                            特殊形態
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /打抜・貼り工程 -->

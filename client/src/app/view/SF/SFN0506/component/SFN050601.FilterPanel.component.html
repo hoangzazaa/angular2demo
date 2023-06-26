@@ -1,0 +1,46 @@
+<div class="form-inline">
+    <div class="form-group">
+        <label class="label-clm-1">支店</label>
+        <select class="form-control" [(ngModel)]="selectedDepartment">
+            <option *ngFor="let department of departmentList" [ngValue]="department">{{ department.name }}</option>
+        </select>
+    </div>
+    <div class="fix-spacing hidden-xs"></div>
+    <div class="form-group">
+        <label class="label-clm-2">担当</label>
+        <select class="form-control" [(ngModel)]="selectedUser">
+            <option *ngFor="let user of userList" [ngValue]="user">{{ user.name }}</option>
+        </select>
+    </div>
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <label class="label-clm-1">期間</label>
+        <input date-input2 class="form-control input-sm" type="text" placeholder="YYYY年M月D日"
+               [(dateModel)]="startDate" data-date-format="yyyy年m月d日">
+    </div>
+    <div class="fix-spacing hidden-xs"></div>
+    <div class="form-group">
+        <label class="label-clm-2">～</label>
+        <input date-input2 class="form-control input-sm" type="text" placeholder="YYYY年M月D日"
+               [(dateModel)]="endDate" data-date-format="yyyy年m月d日">
+    </div>
+    <div class="form-group push-20-l">
+        <label class="css-input css-radio css-radio-default">
+            <input name="date-filter" type="radio" [(ngModel)]="dateType" [value]="1"><span></span> 請求締日
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="css-input css-radio css-radio-default">
+            <input name="date-filter" type="radio" [(ngModel)]="dateType" [value]="2"><span></span> 入金期日
+        </label>
+    </div>
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <label class="label-clm-1">支払方法</label>
+        <select class="form-control" [(ngModel)]="paymentMethod">
+            <option *ngFor="let method of paymentMethods" [ngValue]="method.value">{{ method.name }}</option>
+        </select>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="content">
+    <div class="block">
+        <div class="block-content">
+            <div class="row">
+                <div class="col-sm-4 push" style="cursor: hand;">
+                    <img src="{{image}}" class="img-responsive" *ngIf="!loadingImage" (click)="exportQuotation()" style="cursor: hand;">
+                </div>
+                <div class="col-sm-offset-1 col-sm-7">
+                    <div class="form-group">
+                        <h6 class="push-20">見積書のフォーマットを選ぶ</h6>
+                        <div class="js-slider js-slider--template text-center push js-slider" id="sf00304slider"
+                             [arrows]="true" [dots]="false" [slidesToShow]="3" [autoplay]="false" [variableWidth]="true" [infinite]="false" style="width: 550px;">
+                            <div class="js-slider-item-template"
+                                 *ngFor="let quotationTemplate of quotationTemplateModel">
+                                <a (click)="generateFiles(quotationTemplate)">
+                                    <!--1. サガシキ/ Sagashiki: dọc (có con dấu)-->
+                                    <img style="height: 120px; width: 105px;" src="/assets/img/dummy/quotation_thumb05.png" class="img-responsive"
+                                         *ngIf="quotationTemplate.selectOption==1">
+                                    <!--2. サガシキ/ Sagashiki: dọc (không con dấu)-->
+                                    <img style="height: 120px; width: 105px;" src="/assets/img/dummy/quotation_thumb01.png" class="img-responsive"
+                                         *ngIf="quotationTemplate.selectOption==2">
+                                    <!--3. サガシキ/ Sagashiki: ngang (có con dấu)-->
+                                    <img style="height: 120px; width: 120px;" src="/assets/img/dummy/quotation_thumb06.png" class="img-responsive"
+                                         *ngIf="quotationTemplate.selectOption==3">
+                                    <!--4. サガシキ/ Sagashiki: ngang (không con dấu)-->
+                                    <img style="height: 120px; width: 120px;" src="/assets/img/dummy/quotation_thumb02.png" class="img-responsive"
+                                         *ngIf="quotationTemplate.selectOption==4">
+                                    <!--5. アクトン/ Akuton: dọc (có con dấu)-->
+                                    <img style="height: 120px; width: 105px;" src="/assets/img/dummy/quotation_thumb07.png" class="img-responsive"
+                                         *ngIf="quotationTemplate.selectOption==5">
+                                    <!--6. アクトン/ Akuton: dọc (không con dấu)-->
+                                    <img style="height: 120px; width: 105px;" src="/assets/img/dummy/quotation_thumb03.png" class="img-responsive"
+                                         *ngIf="quotationTemplate.selectOption==6">
+                                    <!--7. アクトン/ Akuton: ngang (có con dấu)-->
+                                    <img style="height: 120px; width: 120px;" src="/assets/img/dummy/quotation_thumb08.png" class="img-responsive"
+                                         *ngIf="quotationTemplate.selectOption==7">
+                                    <!--8. アクトン/ Akuton: ngang (không con dấu)-->
+                                    <img style="height: 120px; width: 120px;" src="/assets/img/dummy/quotation_thumb04.png" class="img-responsive"
+                                         *ngIf="quotationTemplate.selectOption==8">
+                                </a>
+                            </div>
+                            <!-- /.js-slider -->
+                        </div>
+                    </div>
+
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">見積書のフォーマット情報：</label>
+                            <div class="col-sm-7">
+                                <ul>
+                                    <!--li>{{templateName}}</li-->
+                                    <li>{{templateApplication}}</li>
+                                    <li>登録日：{{templateDate | date: 'yyyy/MM/dd'}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">見積書ID：</label>
+                            <div class="col-sm-9">
+                                <div class="form-control-static">{{quotationCode}}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form id="validateForm" class="js-validation-material">
+                                <label class="control-label col-sm-3" style="padding-top: 15px;">ファイル名：</label>
+                                <div class="col-sm-9 form-material">
+                                    <input class="form-control" type="text" [(ngModel)]="fileName" name="fileName"
+                                           id="fileName">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12 text-right">
+                                <button class="btn btn-link" (click)="backToPrevious()">キャンセル</button>
+                                <button class="btn btn-primary" (click)="exportQuotation()">PDFに保存する</button>
+                                <button class="btn btn-primary" (click)="sendQuotationMail()">メールで送る</button>
+                            </div>
+                        </div>
+                        <!-- /.form-horizontal -->
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.block-content -->
+        </div>
+        <!-- /.block -->
+    </div>
+    <!-- /.content -->
+</div>

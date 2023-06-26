@@ -1,0 +1,13 @@
+.checkSheet .div-scroll-y {
+     height: 380px;
+     overflow-y: auto;
+     overflow-x: hidden;
+ }
+
+.checkSheet .nav .active > a {
+    color: black;
+}
+
+.checkSheet .nav > li > a {
+    color: grey;
+}

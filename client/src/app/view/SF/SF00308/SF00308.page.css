@@ -1,0 +1,20 @@
+/**
+ * Created by hoangtd on 3/16/2017.
+ */
+.sf00308 .row .row-border-bottom {
+    border-bottom: 1px solid;
+    height: 50px;
+}
+.sf00308 .row .padding-row {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.sf00308 .padding-10-t {
+    padding-top: 10px;
+}
+.sf00308 .nav .active > a{
+    color: black;
+}
+.sf00308 .nav > li > a{
+    color: grey;
+}

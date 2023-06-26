@@ -1,0 +1,125 @@
+<!-- 関連ファイル -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body127" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body127" role="button">
+                <i class="fa fa-lg fa-check-circle-o text-success push-5-r"></i>
+                <span>関連ファイル </span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body127">
+        <div class="panel-body">
+            <div style="overflow-x: scroll;">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th nowrap>ファイル名</th>
+                        <th nowrap>形式</th>
+                        <th nowrap>メモ</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let productFile of productFiles; let i = index">
+                        <td nowrap>
+                            <file-viewer [srcFile]="productFile.srcImg"></file-viewer>
+                        </td>
+                        <td nowrap>{{productFile.createdDate | date: 'yyyy/MM/dd'}}</td>
+                        <td nowrap>{{productFile.productFileName | ellipsis:20}}</td>
+                        <td nowrap>{{productFile.originalName | fileTypeUtil}}</td>
+                        <td nowrap>{{productFile.memo | ellipsis:20}}</td>
+                        <td nowrap><a class="btn btn-link normalFontWeight remove-padding-t" [attr.disabled]="isView || null"
+                                      (click)="viewDetailProductFile(productFile, i)">詳細</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- TODO: modal upload file-->
+            <button class="btn btn-success btn-sm pull-right" (click)="uploadProductFile()"
+                    [disabled]="isView"
+            id="uploadFileBtn"><i class="fa fa-plus"></i> ファイルを追加する
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- The following is a sample of modal markup. -->
+<div class="sf0030205 modal fade" tabindex="-1" role="dialog" id="upload-form" data-backdrop="static"
+     data-keyboard="false">
+    <div class="modal-dialog" id="dialog-center">
+        <div class="modal-content">
+            <div class="modal-body remove-margin-t remove-margin-b remove-padding-b remove-padding-t">
+                <form class="form-horizontal">
+                    <div class="form-group" style="margin-bottom: 0px !important;">
+                        <form id="sf0030205-dropzone" class="dropzone push-30-t push-30"
+                              action="index.html"></form>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3 text-right">
+                            <label class="control-label control-label--material">ファイルID</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-material remove-margin">
+                                <input type="text" class="form-control" id="fileCode" name="fileCode"
+                                       [(ngModel)]="fileCode" maxlength="250">
+                            </div>
+                        </div>
+                        <div class="col-sm-3 text-right">
+                            <label class="control-label control-label--material">ファイル名称</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-material remove-margin">
+                                <input type="text" class="form-control" id="fileName" name="fileName"
+                                       [(ngModel)]="fileName" maxlength="250">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3 text-right">
+                            <label class="control-label control-label--material">メモ</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="form-material remove-margin">
+                                <input type="text" class="form-control" id="fileMemo" name="fileMemo"
+                                       [(ngModel)]="fileMemo" maxlength="250">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0px !important;">
+                        <div class="col-sm-3 text-right">
+                            <label class="control-label control-label--material">
+                                <input type="checkbox" id="checkboxAvt" name="checkboxAvt"
+                                       [checked]="primaryFlag== 1" [(ngModel)]="primaryFlag">
+                            </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="form-material">
+                                製品情報のメイン画像として使用
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="border-top: none; padding-bottom: 0px; padding-top: 0px">
+                <div class="form-group">
+                    <a class="btn btn-link text-danger pull-left" (click)="deleteProductFile()"
+                       *ngIf="checkShowDelete">削除</a>
+                    <a class="btn btn-link" (click)="resetStagingFileAndCloseFileModal()">キャンセル</a>
+                    <button class="btn btn-link" (click)="downloadFile()" *ngIf="!!helper.sf00302Data.productFile.id">
+                        ダウンロード</button>
+                    <button type="button" class="btn btn-success pull-right"
+                            *ngIf="!isView"
+                            [disabled]="fileUploadInProgress"
+                            (click)="saveOrUpdateProductFile()">保存する
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

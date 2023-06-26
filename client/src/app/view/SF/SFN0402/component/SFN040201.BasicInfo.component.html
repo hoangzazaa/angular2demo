@@ -1,0 +1,85 @@
+<div class="block-header bg-gray-lighter">
+    <h3 class="block-title">基本情報</h3>
+</div>
+<div class="block-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-condensed basic-info-table">
+                <tbody class="no-border">
+                <tr class="partner-row">
+                    <td class="title-1">{{ partner.code }}</td>
+                    <td colspan="2" class="data-1">{{ partner.name }}</td>
+                    <td class="data-2">
+                        <span class="partner-type" *ngIf="isCustomer">得 意 先</span>
+                        <span class="partner-type" *ngIf="isSupplier">仕 入 先</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-1">略称</td>
+                    <td class="data-1">{{ partner.abbr }}</td>
+                    <td class="title-2">登録日</td>
+                    <td class="data-2">
+                        {{ partner.createdDate | date: 'yyyy/MM/dd'}}
+                        <span *ngIf="hasStartYear">({{ partner.startYear }}年度)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-1">郵便番号</td>
+                    <td class="data-1">{{ partner.postalCode }}</td>
+                    <td class="title-2">担当部署</td>
+                    <td class="data-2">{{ partner.picDept }}</td>
+                </tr>
+                <tr>
+                    <td class="title-1">住所１</td>
+                    <td class="data-1">{{ partner.address1 }}</td>
+                    <td class="title-2">得意先担当者名</td>
+                    <td class="data-2">{{ partner.contactName }}</td>
+                </tr>
+                <tr>
+                    <td class="title-1">住所２</td>
+                    <td class="data-1">{{ partner.address2 }}</td>
+                    <td class="title-2">担当営業</td>
+                    <td class="data-2">{{ partner.sales }}</td>
+                </tr>
+                <tr>
+                    <td class="title-1">TEL</td>
+                    <td class="data-1">{{ partner.tel }}</td>
+                    <td class="title-2">HP経由</td>
+                    <td class="data-2">{{ partner.hpInfo }}</td>
+                </tr>
+                <tr>
+                    <td class="title-1">FAX</td>
+                    <td class="data-1">{{ partner.fax }}</td>
+                    <td class="title-2">請求方法区分</td>
+                    <td class="data-2">{{ partner.billingMethod }}</td>
+                </tr>
+                <tr>
+                    <td class="title-1">備考１</td>
+                    <td colspan="3">{{ partner.note1 }}</td>
+                </tr>
+                <tr>
+                    <td class="title-1">備考２</td>
+                    <td colspan="3">{{ partner.note2 }}</td>
+                </tr>
+                <tr>
+                    <td class="title-1" *ngIf="isSupplier">備考（カルテ）</td>
+                    <td class="title-1" *ngIf="isCustomer">備考（営業カルテ）</td>
+                    <td colspan="3">
+                        <textarea class="form-control noresize" rows="2" maxlength="120" [(ngModel)]="partner.memo"></textarea>
+                    </td>
+                </tr>
+                <tr *ngIf="isCustomer">
+                    <td class="title-1">備考（出荷部門用カルテ）</td>
+                    <td colspan="3">
+                        <textarea class="form-control noresize" rows="2" maxlength="120" [(ngModel)]="partner.remarksForShipping"></textarea>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="text-right pad-10-r">
+                <button class="btn btn-link text-success" type="button" (click)="resetMemo()" preventDC [valid]="saveEnable"><strong>キャンセル</strong></button>
+                <button class="btn btn-success" type="button" (click)="saveMemo()" preventDC [valid]="saveEnable"><strong>保存する</strong></button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<li *ngIf = "designFee!=0">
+    <a (click)="addProductCommonRow('デザイン代',designFee,4)"
+       class="btn btn-link row-item-selector__item">
+        <div class="row">
+            <div class="col-xs-8 row-item-selector__item__name text-left">デザイン代({{productCode}})</div>
+            <div class="col-xs-4 row-item-selector__item__value text-right">{{designFee | numberFormat}} 円
+            </div>
+        </div>
+    </a>
+</li>
+<li *ngIf = "plateMakingFee!=0">
+    <a (click)="addProductCommonRow('製版代',plateMakingFee,5)"
+       class="btn btn-link row-item-selector__item">
+        <div class="row">
+            <div class="col-xs-8 row-item-selector__item__name text-left">製版代({{productCode}})</div>
+            <div class="col-xs-4 row-item-selector__item__value text-right">{{plateMakingFee | numberFormat}} 円
+            </div>
+        </div>
+    </a>
+</li>
+<li *ngIf = "woodenFee!=0">
+    <a (click)="addProductCommonRow('木型代',woodenFee,6)"
+       class="btn btn-link row-item-selector__item">
+        <div class="row">
+            <div class="col-xs-8 row-item-selector__item__name text-left">木型代({{productCode}})</div>
+            <div class="col-xs-4 row-item-selector__item__value text-right">{{woodenFee | numberFormat}} 円
+            </div>
+        </div>
+    </a>
+</li>
+<li *ngIf = "moldFee!=0">
+    <a (click)="addProductCommonRow('金型代',moldFee,7)"
+       class="btn btn-link row-item-selector__item">
+        <div class="row">
+            <div class="col-xs-8 row-item-selector__item__name text-left">金型代({{productCode}})</div>
+            <div class="col-xs-4 row-item-selector__item__value text-right">{{moldFee | numberFormat}} 円
+            </div>
+        </div>
+    </a>
+</li>
+<li *ngIf = "resinFee!=0">
+    <a (click)="addProductCommonRow('樹脂版代',resinFee,8)"
+       class="btn btn-link row-item-selector__item">
+        <div class="row">
+            <div class="col-xs-8 row-item-selector__item__name text-left">樹脂版代({{productCode}})</div>
+            <div class="col-xs-4 row-item-selector__item__value text-right">{{resinFee | numberFormat}} 円
+            </div>
+        </div>
+    </a>
+</li>

@@ -1,0 +1,12 @@
+<div class="col-sm-6">
+    <div class="result-number">該当件数 <span>{{ hits | number }}</span> 件</div>
+</div>
+<div class="col-sm-6 text-right">
+    <button class="btn btn-link" (click)="exportCsv()"><strong>CSV出力</strong></button>
+</div>
+<div class="col-sm-12">
+    <div #hot class="payment-table"></div>
+</div>
+<div class="col-sm-12">
+    <pagination-component [total]="hits" [pageSize]="10" [(currentPage)]="currentPage"></pagination-component>
+</div>

@@ -1,0 +1,73 @@
+.sfn0506 .panel-heading .panel-title {
+    font-size: 24px;
+    opacity: 0.6;
+}
+
+.sfn0506 .filter-form .form-inline .form-group {
+    margin-bottom: 10px;
+}
+
+.sfn0506 .filter-form .form-inline .form-group label {
+    padding-right: 15px;
+}
+
+.sfn0506 .filter-form .form-inline .form-group label.label-clm-1 {
+    text-align: right;
+    min-width: 85px;
+}
+
+.sfn0506 .filter-form .form-inline .form-group label.label-clm-2 {
+    min-width: 40px;
+    padding-right: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .sfn0506 .filter-form .form-inline .form-group select,
+    .sfn0506 .filter-form .form-inline .form-group input {
+        width: 200px;
+    }
+}
+
+.sfn0506 .filter-form .fix-spacing {
+    display: inline-block;
+    width: 10px;
+}
+
+.sfn0506 .payment-table {
+    width: 100%;
+    overflow: auto;
+}
+
+.sfn0506 .payment-table table.htCore thead tr th {
+    color: white;
+    background-color: #9A9A9A;
+    /*font-weight: bold;*/
+}
+
+.sfn0506 .payment-table table.htCore th,
+.sfn0506 .payment-table table.htCore td {
+    border-color: #9A9A9A;
+}
+
+.sfn0506 .payment-table th span.colHeader.columnSorting::after {
+    color: #FFF !important;
+}
+
+.sfn0506 .payment-table table.htCore tbody tr td.htDimmed {
+    color: inherit;
+}
+
+.sfn0506 .payment-table tr td:nth-child(2),
+.sfn0506 .payment-table tr td:nth-child(3),
+.sfn0506 .payment-table tr td:nth-child(4) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sfn0506 .payment-table table.htCore tbody tr td a {
+    white-space: nowrap;
+}
+
+.sfn0506 .payment-table table.htCore tbody tr td.status-highlight {
+    color: #ff0000;
+}

@@ -1,0 +1,60 @@
+<table class="table table-condensed basic-info-table">
+    <tbody class="no-border">
+    <tr>
+        <td class="title-1">略称</td>
+        <td class="data-1">{{ partner.abbr }}</td>
+        <td class="title-2">登録日</td>
+        <td class="data-2">
+            {{ partner.createdDate | date: 'yyyy/MM/dd'}}
+            <span *ngIf="hasStartYear">({{ partner.startYear }}年度)</span>
+        </td>
+    </tr>
+    <tr>
+        <td class="title-1">郵便番号</td>
+        <td class="data-1">{{ partner.postalCode }}</td>
+        <td class="title-2">担当部署</td>
+        <td class="data-2">{{ partner.picDept }}</td>
+    </tr>
+    <tr>
+        <td class="title-1">住所１</td>
+        <td class="data-1">{{ partner.address1 }}</td>
+        <td class="title-2">得意先担当者名</td>
+        <td class="data-2">{{ partner.contactName }}</td>
+    </tr>
+    <tr>
+        <td class="title-1">住所２</td>
+        <td class="data-1">{{ partner.address2 }}</td>
+        <td class="title-2">担当営業</td>
+        <td class="data-2">{{ partner.sales }}</td>
+    </tr>
+    <tr>
+        <td class="title-1">TEL</td>
+        <td class="data-1">{{ partner.tel }}</td>
+        <td class="title-2">HP経由</td>
+        <td class="data-2">{{ partner.hpInfo }}</td>
+    </tr>
+    <tr>
+        <td class="title-1">FAX</td>
+        <td class="data-1">{{ partner.fax }}</td>
+        <td class="title-2">請求方法区分</td>
+        <td class="data-2">{{ partner.billingMethod }}</td>
+    </tr>
+    <tr>
+        <td class="title-1">備考１</td>
+        <td colspan="3">{{ partner.note1 }}</td>
+    </tr>
+    <tr>
+        <td class="title-1">備考２</td>
+        <td colspan="3">{{ partner.note2 }}</td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr class="note-row">
+        <td class="title-1">営業(カルテ)</td>
+        <td colspan="3">
+            <div class="block-with-text">{{ partner.memo }}</div>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+{
+  "productFile": {
+    "id": 8,
+    "createdUser": 272,
+    "updatedUser": 272,
+    "createdDate": "2017-03-02T11:16:23.617Z",
+    "updatedDate": "2017-03-02T11:16:23.617Z",
+    "fileId": 24,
+    "originalName": "2game_28_4_NgocRongDaiChien_1.png",
+    "productId": 1010,
+    "primaryFlag": 0,
+    "product": {
+      "id": 1010
+    },
+    "file": {
+      "id": 24
+    },
+    "productFileId": "sogoku",
+    "productFileName": "update2",
+    "memo": "QWEQWE"
+  }
+}

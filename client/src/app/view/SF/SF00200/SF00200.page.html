@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="block">
+        <ul class="nav nav-tabs" style="font-size: 16px;">
+            <!--<li [routerLink]="['/home','deal','select-from-deal']" [routerLinkActive]="['active']">-->
+            <li class="active">
+                <a style="cursor: pointer;">
+                    類似案件
+                    <small style="font-weight: normal;">から選ぶ</small>
+                </a>
+            </li>
+            <li class="pull-right">
+                <div class="block-options-simple push-5-t push-5-r">
+                    <!--Add new deal-->
+                    <a (click)="createDeal()" class="btn btn-primary">新規案件追加</a>
+                </div>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="push-10-t push-30-l">
+        <a [routerLink]="['/home']" class="btn btn-link">戻る</a>
+    </div>
+</div>

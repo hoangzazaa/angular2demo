@@ -1,0 +1,234 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Client
+GET         /                                                  controllers.Assets.at(path="/public/dist", file="index.html")
+GET         /js/*file                                          controllers.Assets.at(path="/public/dist", file)
+
+# Angular2
+GET         /home/*path                                        @vn.vnext.sefuri.sf.play.Angular2Ctrl.matchAll(path)
+GET         /home                                              controllers.Assets.at(path="/public/dist", file="index.html")
+GET         /login                                             controllers.Assets.at(path="/public/dist", file="index.html")
+GET         /recover-password                                  controllers.Assets.at(path="/public/dist", file="index.html")
+GET         /blank                                             controllers.Assets.at(path="/public/dist", file="index.html")
+GET         /reset-password/*path                              @vn.vnext.sefuri.sf.play.Angular2Ctrl.matchAll(path)
+GET         /error/*path                                       @vn.vnext.sefuri.sf.play.Angular2Ctrl.matchAll(path)
+
+# Map static resources from the /public/assets folder to the /assets URL path
+GET         /assets/*file                                      controllers.Assets.versioned(path="/public/assets", file)
+
+# WebApi for application
+POST        /CC00101                                           @vn.vnext.sefuri.sf.controller.CC00100Ctrl.cc0010001Login
+
+# LoggingApi for front application
+POST        /CC0010101                                         @vn.vnext.sefuri.sf.controller.CC00101Ctrl.cc0010101LoggingButtonOperation
+POST        /CC0010102                                         @vn.vnext.sefuri.sf.controller.CC00101Ctrl.cc0010102LoggingTransition
+
+# CC002
+GET         /CC00102                                           @vn.vnext.sefuri.sf.controller.CC00100Ctrl.cc0010002Authorize
+GET         /CC00103                                           @vn.vnext.sefuri.sf.controller.CC00100Ctrl.cc0010003Logout
+POST        /CC00201                                           @vn.vnext.sefuri.sf.controller.CC00201Ctrl.cc0020101RecoverPassword
+POST        /CC00202                                           @vn.vnext.sefuri.sf.controller.CC00202Ctrl.cc0020102ResetPassword
+
+# CC003
+POST        /CC00301                                           @vn.vnext.sefuri.sf.controller.CC00300Ctrl.cc0030001changePassword
+
+#CM00101
+
+POST        /CM0010101                                         @vn.vnext.sefuri.sf.controller.CM00101FileCtrl.cm0010101UploadFileAsTempFile
+GET         /CM0010102/:fileName                               @vn.vnext.sefuri.sf.controller.CM00101FileCtrl.cm0010102GetTempFileByFileName(fileName: String)
+GET         /CM0010103/:fileCode                               @vn.vnext.sefuri.sf.controller.CM00101FileCtrl.cm0010103GetFileByFileId(fileCode: String)
+GET         /CM0010104/:fileCode/:fileName                     @vn.vnext.sefuri.sf.controller.CM00101FileCtrl.cm0010104Download(fileCode: String, fileName:String)
+GET         /CM0010105/:timestamp/:fileName/:exportType        @vn.vnext.sefuri.sf.controller.CM00101FileCtrl.cm0010105GetJasperReport(timestamp: String, fileName:String, exportType: String)
+GET         /CM0010106/:uuid                                   @vn.vnext.sefuri.sf.controller.CM00101FileCtrl.cm0010106GetThumbnail(uuid: String)
+GET         /CM0010107/:timestamp/:exportType/:fileName        @vn.vnext.sefuri.sf.controller.CM00101FileCtrl.cm0010105GetJasperReport(timestamp: String, fileName:String, exportType: String)
+
+
+#SF001-01
+GET         /SF00101                                           @vn.vnext.sefuri.sf.controller.SF00101Ctrl.sf0010101getUrl
+
+#SF002-01: Add new deal - Select from templates
+GET         /SF0020101/:offset/:limit                          @vn.vnext.sefuri.sf.controller.SF00201Ctrl.sf0020101GetTemplates(offset: Integer,limit:Integer)
+GET         /SF0020102/:dealId                                 @vn.vnext.sefuri.sf.controller.SF00201Ctrl.sf0020102AddTemplateToMyBox(dealId: Integer)
+
+#SF002-02: Add new deal - Select from deals
+POST        /SF0020201                                         @vn.vnext.sefuri.sf.controller.SF00202Ctrl.sf0020201Deal
+POST        /SF0020202                                         @vn.vnext.sefuri.sf.controller.SF00202Ctrl.sf0020202BookmarkDeal
+
+#SF002-03: Add new deal - Select from mybox
+POST        /SF0020301                                         @vn.vnext.sefuri.sf.controller.SF00203Ctrl.sf0020301Init
+POST        /SF0020204                                         @vn.vnext.sefuri.sf.controller.SF00202Ctrl.sf0020204Search
+
+#SF002-04 :Search Product
+POST        /SF0020401                                         @vn.vnext.sefuri.sf.controller.SF00204Ctrl.sf0020401InitData
+POST        /SF0020402                                         @vn.vnext.sefuri.sf.controller.SF00204Ctrl.sf0020402SearchProducts
+POST        /SF0020403                                         @vn.vnext.sefuri.sf.controller.SF00204Ctrl.sf0020403AddProductToDeal
+
+#SF00300
+GET         /SF0030001/:dealCode                               @vn.vnext.sefuri.sf.controller.SF00300Ctrl.sf0030001GetDealByDealCode(dealCode: String)
+POST        /SF0030002                                         @vn.vnext.sefuri.sf.controller.SF00300Ctrl.sf0030002BookmarkDeal
+POST        /SF0030003                                         @vn.vnext.sefuri.sf.controller.SF00300Ctrl.sf0030003UnBookmarkDeal
+
+#SF00301
+GET         /SF0030101                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030101Init(dealCode = "")
+GET         /SF0030101/:dealCode                               @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030101Init(dealCode: String)
+POST        /SF0030102                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030102SaveDeal
+POST        /SF0030103                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030103SaveDealFile
+POST        /SF0030104                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030104UpdateDealFile
+POST        /SF0030105                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030105RemoveDealFile
+POST        /SF0030106                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030106RemoveQuotation
+POST        /SF0030107                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030107RemoveDealProduct
+POST        /SF0030108                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030108RemoveProductFile
+POST        /SF0030109                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030109AddComment
+POST        /SF0030110                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030110ShowMoreComment
+POST        /SF0030112                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030112DeleteDeal
+POST        /SF0030113                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030113BookmarkDealInfo
+POST        /SF0030114                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030114UnBookmarkDealInfo
+POST        /SF0030115                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030115GetDealMybox
+POST        /SF0030116                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030116CreateDeal
+POST        /SF0030117                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030117UpdateHighlightFlag
+POST        /SF0030118                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030118GetCustomers
+POST        /SF0030119                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030119UpdateDealStatus
+POST        /SF0030120                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030120CloseDeal
+POST        /SF0030121                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030121Download
+POST        /SF0030122                                         @vn.vnext.sefuri.sf.controller.SF00301Ctrl.sf0030122LockDeal
+
+#SF003-02: Deal Info - Product Info
+GET         /SF0030201/:dealCode/:productCode                  @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030201GetDealProduct(dealCode: String, productCode: String)
+POST        /SF0030202                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030202CreateDealProduct
+POST        /SF0030203                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030203UpdateProduct
+POST        /SF0030204/:copyType                               @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030204DuplicateProductForDeal(copyType: Integer)
+POST        /SF0030205                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030205DeleteDealProduct
+POST        /SF0030206                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030206CreateProductFile
+POST        /SF0030207                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030207UpdateProductFile
+POST        /SF0030208                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030208DeleteProductFile
+POST        /SF0030209                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030209UpdateProductOutput
+POST        /SF0030210                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030210UpdateProductCommonFee
+POST        /SF0030211                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030211UpdateOffer
+POST        /SF0030212                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030212UpdateProductInput
+POST        /SF0030213                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030213UpdateProductImposition
+POST        /SF0030214                                         @vn.vnext.sefuri.sf.controller.SF00302Ctrl.sf0030214Download
+
+#SF00303
+GET         /SF0030300/:dealCode/:quotationCode                @vn.vnext.sefuri.sf.controller.SF00303Ctrl.sf0030300GetQuotationInfo(dealCode: String,quotationCode: String)
+POST        /SF0030301                                         @vn.vnext.sefuri.sf.controller.SF00303Ctrl.sf0030301SaveQuotation
+POST        /SF0030302                                         @vn.vnext.sefuri.sf.controller.SF00303Ctrl.sf0030302DuplicateQuotation
+GET         /SF0030303/:quotationCode                          @vn.vnext.sefuri.sf.controller.SF00303Ctrl.sf0030303DeleteQuotation(quotationCode: String)
+
+#SF003-04
+GET         /SF0030401                                         @vn.vnext.sefuri.sf.controller.SF00304Ctrl.sf0030401GetQuotationTemplates()
+GET         /SF0030402/:quotationCode/:option/:fileName        @vn.vnext.sefuri.sf.controller.SF00304Ctrl.sf0030402ExportFiles(quotationCode: String, option:Integer, fileName: String)
+#SF00305
+GET         /SF0030501/:quotationCode                          @vn.vnext.sefuri.sf.controller.SF00305Ctrl.sf0030501Init(quotationCode: String)
+POST        /SF0030502                                         @vn.vnext.sefuri.sf.controller.SF00305Ctrl.sf0030502SendMail
+
+#SF00306
+GET         /SF0030601/:dealCode                               @vn.vnext.sefuri.sf.controller.SF00306Ctrl.sf0030601Init(dealCode :String)
+POST        /SF0030602                                         @vn.vnext.sefuri.sf.controller.SF00306Ctrl.sf0030602SendMail
+POST        /SF0030603                                         @vn.vnext.sefuri.sf.controller.SF00306Ctrl.sf0030603UpdateRequestLot
+POST        /SF0030604                                         @vn.vnext.sefuri.sf.controller.SF00306Ctrl.sf0030604ExportSpecificationPdf
+
+#SF00307
+GET         /SF0030701/:dealCode                               @vn.vnext.sefuri.sf.controller.SF00307Ctrl.sf0030701Init(dealCode :String)
+POST        /SF0030702                                         @vn.vnext.sefuri.sf.controller.SF00307Ctrl.sf0030702ExportProduct
+POST        /SF0030703                                         @vn.vnext.sefuri.sf.controller.SF00307Ctrl.sf0030703FindProducts
+POST        /SF0030704                                         @vn.vnext.sefuri.sf.controller.SF00307Ctrl.sf0030704RequestOrder
+
+#SF00308
+GET         /SF0030801/:dealCode                               @vn.vnext.sefuri.sf.controller.SF00308Ctrl.sf0030801Init(dealCode :String)
+POST        /SF0030802                                         @vn.vnext.sefuri.sf.controller.SF00308Ctrl.sf0030802Save
+
+#SF00309
+GET         /SF0030901/:dealCode/:requestType                  @vn.vnext.sefuri.sf.controller.SF00309Ctrl.sf0030901Init(dealCode :String, requestType: Integer)
+POST        /SF0030902                                         @vn.vnext.sefuri.sf.controller.SF00309Ctrl.sf0030902RequestSample
+
+#SF00310
+GET         /SF0031001/:dealCode                               @vn.vnext.sefuri.sf.controller.SF00310Ctrl.sf00310Init(dealCode :String)
+POST        /SF0031002                                         @vn.vnext.sefuri.sf.controller.SF00310Ctrl.sf00310RequestDesign
+
+#SF00311
+#GET         /SF0031101/:dealCode                               @vn.vnext.sefuri.sf.controller.SF00311Ctrl.sf00311Init(dealCode :String)
+
+#SF00501 営業管理 > 営業実績照会
+GET         /SF0050101                                         @vn.vnext.sefuri.sf.controller.SF00501Ctrl.sf0050101GetDepartmentList
+POST        /SF0050102                                         @vn.vnext.sefuri.sf.controller.SF00501Ctrl.sf0050102GetPerformanceData
+POST        /SF0050103                                         @vn.vnext.sefuri.sf.controller.SF00501Ctrl.sf0050103GetMonthDeals
+
+#SF00502 営業管理 > 得意先増減リスト管理(個人)
+GET         /SF0050201                                         @vn.vnext.sefuri.sf.controller.SF00502Ctrl.sf0050201GetDepartmentList
+POST        /SF0050202                                         @vn.vnext.sefuri.sf.controller.SF00502Ctrl.sf0050202GetDepartmentData
+POST        /SF0050203                                         @vn.vnext.sefuri.sf.controller.SF00502Ctrl.sf0050203SaveNote
+POST        /SF0050204                                         @vn.vnext.sefuri.sf.controller.SF00502Ctrl.sf0050204SavePrediction
+POST        /SF0050205                                         @vn.vnext.sefuri.sf.controller.SF00502Ctrl.sf0050205GetCompanyData
+
+#SF00503 営業管理 > 営業目標管理
+GET         /SF0050300                                         @vn.vnext.sefuri.sf.controller.SF00503Ctrl.sf0050300GetDepartment
+POST        /SF0050301                                         @vn.vnext.sefuri.sf.controller.SF00503Ctrl.sf0050301Init01
+POST        /SF0050302                                         @vn.vnext.sefuri.sf.controller.SF00503Ctrl.sf0050302Save01
+POST        /SF0050303                                         @vn.vnext.sefuri.sf.controller.SF00503Ctrl.sf0050303Save02
+POST        /SF0050304                                         @vn.vnext.sefuri.sf.controller.SF00503Ctrl.sf0050304Delete02
+POST        /SF0050305                                         @vn.vnext.sefuri.sf.controller.SF00503Ctrl.sf0050305Init02
+POST        /SF0050306                                         @vn.vnext.sefuri.sf.controller.SF00503Ctrl.sf0050306GetFinanceYear
+POST        /SF0050307                                         @vn.vnext.sefuri.sf.controller.SF00503Ctrl.sf0050307CreateCustomerGoalAutomatically
+
+#SF00800
+GET         /SF0080101/:productId                              @vn.vnext.sefuri.sf.controller.SF00800Ctrl.sf0080101Init(productId: Integer)
+POST        /SF0080102                                         @vn.vnext.sefuri.sf.controller.SF00800Ctrl.sf0080102Save
+POST        /SF0080103                                         @vn.vnext.sefuri.sf.controller.SF00800Ctrl.sf0080103SaveDrawings
+POST        /SF0080104                                         @vn.vnext.sefuri.sf.controller.SF00800Ctrl.sf0080104GetTrimmingSizeList
+
+#SF001
+GET         /SF0010101                                         @vn.vnext.sefuri.sf.controller.SF00100Ctrl.sf0010001GetDepartment
+POST        /SF0010102                                         @vn.vnext.sefuri.sf.controller.SF00100Ctrl.sf0010002GetTab1Data
+POST        /SF0010103                                         @vn.vnext.sefuri.sf.controller.SF00100Ctrl.sf0010003GetTab2Data
+POST        /SF0010104                                         @vn.vnext.sefuri.sf.controller.SF00100Ctrl.sf0010004Save
+POST        /SF0010105                                         @vn.vnext.sefuri.sf.controller.SF00100Ctrl.sf0010005GetDeals
+
+#SF002-05: Search deal
+GET         /SF0020501                                         @vn.vnext.sefuri.sf.controller.SF00205Ctrl.sf0020501Init
+POST        /SF0020502                                         @vn.vnext.sefuri.sf.controller.SF00205Ctrl.sf0020502GetDeals
+POST        /SF0020503                                         @vn.vnext.sefuri.sf.controller.SF00205Ctrl.sf0020503BookmarkDeal
+
+#SFN03-07
+POST        /SFN030701                                         @vn.vnext.sefuri.sf.controller.SFN0307Ctrl.sfn030701GetOrderInfo
+POST        /SFN030702                                         @vn.vnext.sefuri.sf.controller.SFN0307Ctrl.sfn030702AddShippingAddress
+POST        /SFN030703                                         @vn.vnext.sefuri.sf.controller.SFN0307Ctrl.sfn030703RequestOrder
+POST        /SFN030704                                         @vn.vnext.sefuri.sf.controller.SFN0307Ctrl.sfn030704ExportProduct
+
+#SFN04-01 取引先検索
+POST        /SFN040101                                         @vn.vnext.sefuri.sf.controller.SFN0401Ctrl.sfn040101SearchCustomer
+POST        /SFN040102                                         @vn.vnext.sefuri.sf.controller.SFN0401Ctrl.sfn040102SearchSupplier
+
+#SFN04-02 取引先照会
+POST        /SFN040201                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040201GetBasicInfo
+POST        /SFN040202                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040202GetSalesPerformance
+POST        /SFN040203                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040203GetCustomerRevenueList
+POST        /SFN040204                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040204GetStockList
+POST        /SFN040205                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040205GetProductList
+POST        /SFN040206                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040206SaveNote
+POST        /SFN040207                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040207ProductDisposal
+POST        /SFN040208                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040208ExportStockList
+POST        /SFN040209                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040209WoodenReturning
+POST        /SFN040210                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040210WoodenPending
+POST        /SFN040211                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040211ExportProductList
+POST        /SFN040212                                         @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040212GetSupplierRevenueList
+GET         /SFN040213/:customerCode                           @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040213GetShippingDestinationList(customerCode:String)
+GET         /SFN040214/:customerCode/:shippingDestinationId    @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040214GetShippingDestinationDetail(customerCode:String, shippingDestinationId:Int)
+POST        /SFN040215/:customerCode/:shippingDestinationId    @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040215SaveShippingDestinationDetail(customerCode:String, shippingDestinationId:Int)
+POST        /SFN040217/:customerCode/:shippingDestinationId    @vn.vnext.sefuri.sf.controller.SFN0402Ctrl.sfn040217ExportShippingDestinationKartePdf(customerCode:String, shippingDestinationId:Int)
+
+#SFN05-04
+GET         /SFN050401                                         @vn.vnext.sefuri.sf.controller.SFN0504Ctrl.sfn050401BaseScreenData
+POST        /SFN050402                                         @vn.vnext.sefuri.sf.controller.SFN0504Ctrl.sfn050402GetStockData
+
+#SFN05-05
+GET         /SFN050501                                         @vn.vnext.sefuri.sf.controller.SFN0505Ctrl.sfn050501BaseScreenData
+POST        /SFN050502                                         @vn.vnext.sefuri.sf.controller.SFN0505Ctrl.sfn050502GetShippingData
+
+#SFN05-06
+GET         /SFN050601                                         @vn.vnext.sefuri.sf.controller.SFN0506Ctrl.sfn050601BaseScreenData
+POST        /SFN050602                                         @vn.vnext.sefuri.sf.controller.SFN0506Ctrl.sfn050602GetPaymentData
+
+#SFN07-02
+GET         /SFN070201/:dealCode/:productCode                  @vn.vnext.sefuri.sf.controller.SFN0702Ctrl.sfn070201GetDealProduct(dealCode: String, productCode: String)

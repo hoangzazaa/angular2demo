@@ -1,0 +1,61 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: sefuri_admin
+      MYSQL_PASSWORD: 123
+      MYSQL_DATABASE: sfr_sf
+    ports:
+      - 3306:3306
+    volumes:
+      - db_sfr_sf:/var/lib/mysql
+      - "./mysql/conf.d/:/etc/mysql/conf.d/:ro"
+  activemq:
+    image: webcenter/activemq:5.14.3
+    environment:
+      ACTIVEMQ_ADMIN_LOGIN: admin
+      ACTIVEMQ_ADMIN_PASSWORD: admin
+    ports:
+      - 8161:8161
+      - 61616:61616
+      - 5672:5672
+      - 61613:6163
+      - 1883:1882
+      - 61614:61614
+    volumes:
+      - activemq_data:/data
+      - activemq_data_activemq:/data/activemq
+      - activemq_conf:/opt/activemq/conf
+      - activemq_log:/var/log/activemq
+      - activemq_log_activemq:/var/log/activemq/var/log/activemq
+  elasticsearch:
+    image: elasticsearch:2.3
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+volumes:
+  db_sfr_sf:
+  activemq_data:
+  activemq_data_activemq:
+  activemq_conf:
+  activemq_log:
+  activemq_log_activemq:
+  elasticsearch_data:
+
+
+# 参考
+# https://hub.docker.com/_/mysql/
+# https://hub.docker.com/r/webcenter/activemq/
+
+# 接続
+#   mysql -u sefuri_admin -p123 -h 127.0.0.1 sfr_sf
+#   mysql -u sefuri_admin -p123 -h 127.0.0.1 sfr_batch
+# ActiveMQ コンソール
+#   http://localhost:8161/admin/  (admin/admin)

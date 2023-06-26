@@ -1,0 +1,26 @@
+<div class="content">
+    <div class="block">
+        <div class="block-content deal-search-panel">
+            <sf0020501-filter (search)="searchDeal($event)"></sf0020501-filter>
+        </div>
+    </div>
+
+    <div id="dealInfo">
+        <p>該当件数 {{totalRecords}} 件</p>
+
+        <!--list deal info-->
+        <template ngFor let-deal [ngForOf]="deals" let-idx="index">
+            <sf0020502-dealInfo [deal]="deal" [idx]="idx"
+                                (viewDeal)="viewDealDetail($event)"
+                                (bookmarkDeal)="bookmarkDeal($event)"
+                                (copyDeal)="copyDeal($event)">
+            </sf0020502-dealInfo>
+        </template>
+
+        <!--paginator-->
+        <div *ngIf="deals.length > 0">
+            <pagination-component [total]="totalRecords" [pageSize]="pageSize"
+                                  (currentPageChange)="onPageChange($event)"></pagination-component>
+        </div>
+    </div>
+</div>

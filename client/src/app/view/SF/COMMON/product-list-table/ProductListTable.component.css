@@ -1,0 +1,51 @@
+.product-list-table table.htCore thead tr th {
+    color: white;
+    background-color: #9A9A9A;
+    /*font-weight: bold;*/
+}
+
+.product-list-table table.htCore th,
+.product-list-table table.htCore td {
+    border-color: #9A9A9A;
+}
+
+.product-list-table th:nth-child(2) span.colHeader,
+.product-list-table th:nth-child(3) span.colHeader,
+.product-list-table th:nth-child(4) span.colHeader {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+.product-list-table th span.colHeader.columnSorting::after {
+    color: #FFF !important;
+}
+
+.product-list-table th:nth-child(2) span.colHeader.columnSorting::after,
+.product-list-table th:nth-child(3) span.colHeader.columnSorting::after,
+.product-list-table th:nth-child(4) span.colHeader.columnSorting::after {
+    right: 5px !important;
+}
+
+.product-list-table table.htCore tbody tr td.htDimmed {
+    color: inherit;
+}
+
+.product-list-table table.htCore tbody tr td:nth-child(1) {
+    background-color: #F5F5F5;
+}
+
+.product-list-table table.htCore tbody tr td:nth-child(1) {
+    text-align: center;
+}
+
+.product-list-table table.htCore tbody tr td:nth-child(2),
+.product-list-table table.htCore tbody tr td:nth-child(3),
+.product-list-table table.htCore tbody tr td:nth-child(4) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-list-table table.htCore tbody tr td a {
+    white-space: nowrap;
+}

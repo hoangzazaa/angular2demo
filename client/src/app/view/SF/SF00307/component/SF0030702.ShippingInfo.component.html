@@ -1,0 +1,297 @@
+<!-- 納入先情報 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            納入先情報
+            <a role="button" data-toggle="collapse" class="pull-right accordion-toggle" href="#panel_body02"
+               aria-expanded="true" aria-controls="panel_body02">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body02">
+        <div class="panel-body">
+
+            <div class="form-horizontal form-horizontal--material_condensed">
+                <div class="form-group">
+                    <label class="control-label col-sm-2 control-label--material">納入先情報</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <select class="form-control" [(ngModel)]="selectName" [disabled]="dealInfo.confirmedOrder">
+                                <option *ngFor="let shipping of mstShippings" [ngValue]="shipping">
+                                    {{shipping.selectName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryName" class="control-label col-sm-2 control-label--material">納入先名</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="deliveryName" name="deliveryName" type="text" maxlength="30"
+                                       class="form-control" [(ngModel)]="shippingData.deliveryName"
+                                       value="新製品開発部">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.deliveryName}}
+                            </ng-container>
+                        </div>
+                    </div>
+                    <label for="abbreviation" class="control-label col-sm-2 control-label--material">納入先名（略称）</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="abbreviation" name="abbreviation" type="text" maxlength="8"
+                                       class="form-control" [(ngModel)]="shippingData.abbreviation">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.abbreviation}}
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="furigana" class="control-label col-sm-2 control-label--material">フリガナ</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="furigana" name="furigana" type="text" class="form-control" maxlength="30"
+                                       [(ngModel)]="shippingData.furigana">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.furigana}}
+                            </ng-container>
+                        </div>
+                    </div>
+                    <label for="abbr_furigana" class="control-label col-sm-2 control-label--material">略称カナ</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="abbr_furigana" name="abbr_furigana" type="text" class="form-control"
+                                       [(ngModel)]="shippingData.abbrFurigana" maxlength="8">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.abbrFurigana}}
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="postalCode" class="control-label col-sm-2 control-label--material">郵便番号</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="postalCode" name="postalCode" type="text" maxlength="8"
+                                       class="form-control" [(ngModel)]="shippingData.postalCode">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.postalCode}}
+                            </ng-container>
+                        </div>
+                    </div>
+                    <label for="districtCode" class="control-label col-sm-2 control-label--material">地区コード</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <select class="form-control" name="districtCode" id="districtCode"
+                                        [(ngModel)]="district">
+                                    <option value="0"></option>
+                                    <option *ngFor="let dis of districOptions" [value]="dis.id">{{dis.name}}</option>
+                                </select>
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{districName}}
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryAddress1" class="control-label col-sm-2 control-label--material">住所1</label>
+                    <div class="col-sm-10">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="deliveryAddress1" name="deliveryAddress1" type="text" class="form-control"
+                                       placeholder="" maxlength="40" [(ngModel)]="shippingData.deliveryAddress1">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.deliveryAddress1}}
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryAddress2" class="control-label col-sm-2 control-label--material">住所2</label>
+                    <div class="col-sm-10">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="deliveryAddress2" name="deliveryAddress2" type="text" class="form-control"
+                                       placeholder="" maxlength="40" [(ngModel)]="shippingData.deliveryAddress2">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.deliveryAddress2}}
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tel" class="control-label col-sm-2 control-label--material">TEL</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="tel" name="tel"
+                                       type="text" class="form-control"
+                                       placeholder="000-0000-0000"
+                                       [textMask]="{mask: telMask, guide: true, placeholderChar: ' ', keepCharPositions: false, showMask: false}"
+                                       [(ngModel)]="shippingData.tel">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.tel}}
+                            </ng-container>
+                        </div>
+                    </div>
+                    <label for="availableVehicleSize"
+                           class="control-label col-sm-2 control-label--material">納入可能車両サイズ</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <select id="availableVehicleSize" name="availableVehicleSize"
+                                        [(ngModel)]="shippingData.availableVehicleSize" class="form-control">
+                                    <option value="0"></option>
+                                    <option *ngFor="let veh of vehicleOptions" [value]="veh.id">{{veh.name}}</option>
+                                </select>
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{vehicle}}
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fax" class="control-label col-sm-2 control-label--material">FAX</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="fax" name="fax"
+                                       type="text" class="form-control"
+                                       placeholder="000-0000-0000"
+                                       [textMask]="{mask: telMask, guide: true, placeholderChar: ' ', keepCharPositions: false, showMask: false}"
+                                       [(ngModel)]="shippingData.fax">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.fax}}
+                            </ng-container>
+                        </div>
+                    </div>
+                    <label for="timePermission" class="control-label col-sm-2 control-label--material">時間指定</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <select id="timePermission" name="timePermission" class="form-control" [(ngModel)]="timePermission">
+                                    <option *ngFor="let spc of specifyTimeOptions" [value]="spc.id">{{spc.name}}</option>
+                                </select>
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{timePermissionText}}
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dep_name" class="control-label col-sm-2 control-label--material">担当部署</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="dep_name" name="dep_name" type="text" class="form-control" placeholder=""
+                                       [(ngModel)]="shippingData.deptName" maxlength="30">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.deptName}}
+                            </ng-container>
+                        </div>
+                    </div>
+                    <label for="extraWork" class="control-label col-sm-2 control-label--material">付帯作業</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="extraWork" name="extraWork" type="text" class="form-control" placeholder=""
+                                       [(ngModel)]="shippingData.extraWork" maxlength="30">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.extraWork}}
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sale_name" class="control-label col-sm-2 control-label--material">得意先担当者</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <input id="sale_name" name="sale_name" type="text" class="form-control" placeholder=""
+                                       [(ngModel)]="shippingData.salerName" maxlength="30">
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.salerName}}
+                            </ng-container>
+                        </div>
+                    </div>
+                    <label for="formId" class="control-label col-sm-2 control-label--material">伝票指定</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <select id="formId" name="formId" class="form-control"
+                                        [(ngModel)]="shippingData.formNameId">
+                                    <option></option>
+                                    <option *ngFor="let frm of formnameOptions" [value]="frm.id">{{frm.name}}</option>
+                                </select>
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{formName}}
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="memo" class="control-label col-sm-2 control-label--material">業務用メモ</label>
+                    <div class="col-sm-10">
+                        <div class="form-material">
+                            <ng-container *ngIf="!dealInfo.confirmedOrder">
+                                <textarea id="memo" name="memo" class="form-control" rows="2"
+                                          [(ngModel)]="shippingData.memo1" maxlength="60">
+                                </textarea>
+                            </ng-container>
+                            <ng-container *ngIf="dealInfo.confirmedOrder">
+                                {{shippingData.memo1}}
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <div class="checkbox">
+                            <label for="saveDeliveryFlg">
+                                <input [disabled]="dealInfo.confirmedOrder" type="checkbox" id="saveDeliveryFlg"
+                                       name="saveDeliveryFlg" [(ngModel)]="saveToDennoFlag">
+                                新しい納入先場所として追加
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <div class="checkbox">
+                            <label for="customerNameAsSourceFlg">
+                                <input [disabled]="dealInfo.confirmedOrder" type="checkbox" id="customerNameAsSourceFlg"
+                                       name="customerNameAsSourceFlg"
+                                       [(ngModel)]="defaultFlag"> 得意先名を出荷元名として表示する
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /納入先情報 -->

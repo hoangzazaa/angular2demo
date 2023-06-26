@@ -1,0 +1,368 @@
+<div class="sf00308"><!--tab4-->
+    <div class="row push-20-t">
+        製品の梱包・配送に関係するポイントをヒアリングしてください。
+    </div>
+    <div class="row row-border-bottom push-30-t">
+        <label class="control-label col-sm-6 padding-10-t"><strong> チェックポイント</strong></label>
+        <label
+                class="control-label col-sm-6 text-center padding-10-t"><strong>回答</strong></label>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">1. 輸送テストは必要ですか？</div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group43" type="radio"
+                           [checked]="question4003_Radio==1" [disabled]="pageData.isView"
+                           (change)="_question4003_Radio(1)"><span></span>
+                    はい
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group43" type="radio"
+                           [checked]="question4003_Radio==2" [disabled]="pageData.isView"
+                           (change)="_question4003_Radio(2)"><span></span>
+                    いいえ
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">2. 落下テスト・圧縮テストは必要ですか？</div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group44" type="radio"
+                           [checked]="question4004_Radio==1" [disabled]="pageData.isView"
+                           (change)="_question4004_Radio(1)"><span></span>
+                    はい
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group44" type="radio"
+                           [checked]="question4004_Radio==2" [disabled]="pageData.isView"
+                           (change)="_question4004_Radio(2)"><span></span>
+                    いいえ
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-horizontal">
+            <div class="col-sm-6 padding-10-t">3. 配送時間指定はありますか？</div>
+            <div class="col-sm-6 remove-padding">
+                <div class="col-sm-3">
+                    <label class="css-input css-radio css-radio-primary">
+                        <input checked="" name="radio-group45" type="radio"
+                               [checked]="question4005_Radio==1" [disabled]="pageData.isView"
+                               (change)="_question4005_Radio(1)"><span></span>
+                        あり
+                    </label>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-material--group">
+                        <span class="form-material--group__unit" style="vertical-align: middle !important;">（</span>
+                        <input class="form-control ng-untouched ng-pristine" type="text" [disabled]="question4005_Radio!=1 || pageData.isView"
+                               name="txtOther2" [(ngModel)]="question4005_Text" maxlength="15">
+                        <span class="form-material--group__unit" style="vertical-align: middle !important;">）</span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label class="css-input css-radio css-radio-primary">
+                        <input checked="" name="radio-group45" type="radio"
+                               [checked]="question4005_Radio==2" [disabled]="pageData.isView"
+                               (change)="_question4005_Radio(2)"><span></span>
+                        なし
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">4. 受け入れ担当者のお名前は？</div>
+            <div class="col-sm-4">
+                <div class="form-material--group">
+                    <input class="form-control ng-untouched ng-pristine" [disabled]="pageData.isView"
+                           name="txtOther2" [(ngModel)]="question4006_Text" maxlength="20">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">5. 指定の専用ダンボールはありますか？</div>
+            <div class="col-sm-4">
+                <select class="form-control ng-untouched ng-pristine" [disabled]="pageData.isView"
+                        name="question4007_Select" [(ngModel)]="question4007_Select">
+                    <option value="1" selected>なし（社用）</option>
+                    <option value="2">あり（専用）</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">6. 梱包作業時の申し送り事項はありますか？</div>
+            <div class="col-sm-6">
+                <div class="form-material--group">
+                    <input class="form-control ng-untouched ng-pristine" [disabled]="pageData.isView"
+                           name="question4008_Text" [(ngModel)]="question4008_Text" maxlength="30">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="form-control  col-sm-12 padding-10-t" style="border: white; background-color:white"><strong>－　以下、原則として新規取引開始時のみ　－</strong>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">7. 指定の伝票はありますか？</div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group4999" type="radio" [disabled]="pageData.isView"
+                           [checked]="question4009_Radio==1" (change)="_question4009_Radio(1)"><span></span>
+                    はい
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group4999" type="radio" [disabled]="pageData.isView"
+                           [checked]="question4009_Radio==2" (change)="_question4009_Radio(2)"><span></span>
+                    いいえ
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">8. 配送可能な車両の大きさは？</div>
+            <div class="col-sm-2">
+                <label class="css-input css-checkbox css-checkbox-success">
+                    <input type="checkbox"
+                           class="ng-untouched ng-pristine ng-valid" [disabled]="pageData.isView"
+                           [(ngModel)]="question4010_CheckBox1"><span></span>
+                    10ｔ
+                </label>
+            </div>
+            <div class="col-sm-2">
+                <label class="css-input css-checkbox css-checkbox-success">
+                    <input type="checkbox"
+                           class="ng-untouched ng-pristine ng-valid" [disabled]="pageData.isView"
+                           [(ngModel)]="question4010_CheckBox2"><span></span>
+                    4ｔ
+                </label>
+            </div>
+            <div class="col-sm-2">
+                <label class="css-input css-checkbox css-checkbox-success">
+                    <input type="checkbox"
+                           class="ng-untouched ng-pristine ng-valid" [disabled]="pageData.isView"
+                           [(ngModel)]="question4010_CheckBox3"><span></span>
+                    2ｔ
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="form-control col-sm-12 padding-10-t" style="border: white; background-color: white">
+                9.　納入先の情報について教えてください
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">　　1. 納入先の呼称</div>
+            <div class="col-sm-4">
+                <div class="form-material--group">
+                    <input class="form-control ng-untouched ng-pristine" [disabled]="pageData.isView"
+                           name="txtOther2" [(ngModel)]="question4011_Text" maxlength="20">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">　　2. 自社倉庫の有無</div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group49" type="radio"
+                           [checked]="question4012_Radio==1" [disabled]="pageData.isView"
+                           (change)="_question4012_Radio(1)"><span></span>
+                    はい
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group49" type="radio"
+                           [checked]="question4012_Radio==2" [disabled]="pageData.isView"
+                           (change)="_question4012_Radio(2)"><span></span>
+                    いいえ
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">　　3. 倉庫の広さ</div>
+            <div class="col-sm-4">
+                <div class="form-material--group">
+                    <input class="form-control ng-untouched ng-pristine" [disabled]="pageData.isView"
+                           name="txtOther2" number-input [(numberValue)]="question4013_Text" [numberPrecision]="0"
+                           [maxValue]="999999">
+                    <span class="form-material--group__unit">㎡</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">　　4. ラック棚番号</div>
+            <div class="col-sm-4">
+                <div class="form-material--group">
+                    <input type="text" class="form-control ng-untouched ng-pristine" [disabled]="pageData.isView"
+                           name="txtOther2" [(ngModel)]="question4014_Number" maxlength="20">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">　　5. パレットサイズ</div>
+            <div class="col-sm-2">
+                <div class="form-material--group">
+                    <input class="form-control ng-untouched ng-pristine" [disabled]="pageData.isView"
+                           name="txtOther2" number-input [(numberValue)]="question4015_Text01" [numberPrecision]="0"
+                           [maxValue]="9999">
+                </div>
+            </div>
+            <div class="col-sm-1 text-center padding-10-t remove-padding-l remove-padding-r" style="width: 20px;">
+                X
+            </div>
+            <div class="col-sm-2">
+                <div class="form-material--group">
+                    <input class="form-control ng-untouched ng-pristine" [disabled]="pageData.isView"
+                           name="txtOther2" number-input [(numberValue)]="question4015_Text02" [numberPrecision]="0"
+                           [maxValue]="9999">
+                    <span class="form-material--group__unit">㎜</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">　　6. パレット受け入れ</div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group4106" type="radio"
+                           [checked]="question4016_Radio==1" [disabled]="pageData.isView"
+                           (change)="_question4016_Radio(1)"><span></span>
+                    はい
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group4106" type="radio"
+                           [checked]="question4016_Radio==2" [disabled]="pageData.isView"
+                           (change)="_question4016_Radio(2)"><span></span>
+                    いいえ
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">　　7. 2階以上あげ</div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group4117" type="radio"
+                           [checked]="question4017_Radio==1" [disabled]="pageData.isView"
+                           (change)="_question4017_Radio(1)"><span></span>
+                    あり
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group4117" type="radio"
+                           [checked]="question4017_Radio==2" [disabled]="pageData.isView"
+                           (change)="_question4017_Radio(2)"><span></span>
+                    なし
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">　　8. リフト利用</div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group4118" type="radio"
+                           [checked]="question4018_Radio==1" [disabled]="pageData.isView"
+                           (change)="_question4018_Radio(1)"><span></span>
+                    可能
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group4118" type="radio"
+                           [checked]="question4018_Radio==2" [disabled]="pageData.isView"
+                           (change)="_question4018_Radio(2)"><span></span>
+                    不可
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row row-border-bottom push-5-t">
+        <div class="form-group">
+            <div class="col-sm-6 padding-10-t">　　9. 手作業納品</div>
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group4119" type="radio"
+                           [checked]="question4019_Radio==1" [disabled]="pageData.isView"
+                           (change)="_question4019_Radio(1)"><span></span>
+                    はい
+                </label>
+            </div>
+
+
+            <div class="col-sm-3">
+                <label class="css-input css-radio css-radio-primary">
+                    <input checked="" name="radio-group4119" type="radio"
+                           [checked]="question4019_Radio==2" [disabled]="pageData.isView"
+                           (change)="_question4019_Radio(2)"><span></span>
+                    いいえ
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row push-20-t">
+        <div class="form-group">
+            <div>
+                メモ
+            </div>
+            <div>
+                <textarea class="form-control ng-pristine ng-valid ng-touched" rows="8" [(ngModel)]="question4020_Text"
+                          maxlength="120" [disabled]="pageData.isView"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <button class="btn btn-link pull-right" [disabled]="pageData.isView" (click)="cancelTab4()">キャンセル</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-block btn-info" [disabled]="pageData.isView" (click)="saveTab4()">保存する</button>
+        </div>
+    </div>
+</div>
+<!--end tab4-->

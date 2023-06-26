@@ -1,0 +1,40 @@
+<div class="content sfn0307">
+    <div class="block block-transparent">
+        <div class="block-content">
+            <!-- deal info -->
+            <deal-info [dealInfo]="pageData.dealInfo"></deal-info>
+            <!-- /deal info -->
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-xs-2 css-radio">受注内容</label>
+                    <div class="col-xs-8">
+                        <label class="radio-inline css-input css-radio css-radio-default push-30-r" [class.css-input-disabled]="!isModeChangable">
+                            <input type="radio" [(ngModel)]="screenMode" [value]="1" [disabled]="!isModeChangable"><span></span> 製造＆出荷指示
+                        </label>
+                        <label class="radio-inline css-input css-radio css-radio-default push-10-r" [class.css-input-disabled]="!isModeChangable">
+                            <input type="radio" [(ngModel)]="screenMode" [value]="2" [disabled]="!isModeChangable"><span></span> 在庫分の出荷指示
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 製品情報 -->
+            <!--for template list product-->
+            <div sfn030701 *ngFor="let order of orders; let i = index" [index]="i"></div>
+            <!--/for template list product-->
+
+            <div class="push-30-t push-20 row">
+                <div class="col-sm-6">
+                    <button class="btn btn-link" (click)="goBack()"><strong>戻る</strong></button>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <button class="btn btn-primary" (click)="addOrder()" preventDC [valid]="orderBtnEnable">
+                        受注登録（製造依頼）する
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+</div>

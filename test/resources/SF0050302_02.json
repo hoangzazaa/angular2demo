@@ -1,0 +1,175 @@
+{
+  "departmentGoal":{
+    "id":5000,
+    "year":2017,
+    "activityPolicy":"test data",
+    "departmentId":1,
+    "goalItems": [
+      {
+        "id":5000,
+        "type": 0,
+        "goal": 2000,
+        "month": 1,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5001,
+        "type": 0,
+        "goal": 2000,
+        "month": 2,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5002,
+        "type": 0,
+        "goal": 2000,
+        "month": 3,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5003,
+        "type": 0,
+        "goal": 2000,
+        "month": 4,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5004,
+        "type": 0,
+        "goal": 2000,
+        "month": 5,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5005,
+        "type": 0,
+        "goal": 2000,
+        "month": 6,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5006,
+        "type": 0,
+        "goal": 2000,
+        "month": 7,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5007,
+        "type": 0,
+        "goal": 2000,
+        "month": 8,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5008,
+        "type": 0,
+        "goal": 2000,
+        "month": 9,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5009,
+        "type": 0,
+        "goal": 2000,
+        "month": 10,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5010,
+        "type": 0,
+        "goal": 2000,
+        "month": 11,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      },
+      {
+        "id":5011,
+        "type": 0,
+        "goal": 2000,
+        "month": 12,
+        "departmentGoalId": 5000,
+        "customerType": 0
+      }
+    ]
+  },
+  "saleData":{
+    "year":2017,
+    "user": {
+      "id": 1,
+      "username":"Hoangtd"
+    },
+    "saleDataItems":[
+      {
+        "month":1,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":2,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":3,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":1,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":4,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":6,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":7,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":8,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":9,
+        "productType":1,
+        "totalMoney":99999
+      },
+      {
+        "month":10,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":11,
+        "productType":1,
+        "totalMoney":50000
+      },
+      {
+        "month":12,
+        "productType":1,
+        "totalMoney":50000
+      }
+    ]
+  }
+}

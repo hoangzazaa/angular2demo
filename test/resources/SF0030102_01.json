@@ -1,0 +1,40 @@
+{
+  "deal": {
+    "inMybox": true,
+    "id": 9999,
+    "createdDate": "2017-02-27T11:13:14.000Z",
+    "updatedDate": "2017-02-27T11:13:14.000Z",
+    "dealName": "新クリスプチョコ 16カートン５種セット",
+    "dealCode": "TMP000999",
+    "dealType": 1,
+    "dealStatus": 0,
+    "deliveryDate": "2017-11-03T17:00:00.000Z",
+    "estTotalDeal": 886688,
+    "templateFlag": 0,
+    "salesId": 188,
+    "isInMybox": true
+  },
+  "customer": {
+    "id": 9999,
+    "createdDate": "2017-03-08T05:18:55.000Z",
+    "updatedDate": "2013-07-25T17:00:00.000Z",
+    "customerName": "江崎グリコ株式会社",
+    "customerCode": "0009999"
+  },
+  "saler": {
+    "id": 188,
+    "createdUser": 0,
+    "updatedUser": 0,
+    "createdDate": "2017-02-24T04:28:01.000Z",
+    "updatedDate": "2017-02-24T04:28:01.000Z",
+    "username": "山田 裕二",
+    "userCode": "G54",
+    "department": {
+      "id": 36,
+      "createdDate": "2017-01-05T08:00:51.000Z",
+      "updatedDate": "2017-01-05T08:00:51.000Z",
+      "departmentName": "東京支店",
+      "departmentCode": "EE01"
+    }
+  }
+}

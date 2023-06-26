@@ -1,0 +1,7 @@
+<template ngFor let-customerGoal [ngForOf]="paginatedCustomerGoalsTab3" let-idx="index">
+    <div class="panel panel-default panel--index" sf0050310
+         (onDataChanged)="emitDataChangedEvent(idx)"
+         (changeSaveCustomerGoal)="saveCustomerGoal($event)"
+         [index]="idx"
+    ></div>
+</template>

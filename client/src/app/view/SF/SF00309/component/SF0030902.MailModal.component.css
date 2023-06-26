@@ -1,0 +1,16 @@
+.modal-content .mail-files {
+    list-style-type: none;
+}
+
+.modal-content .mail-files li{
+    margin-top: 0.1em;
+}
+.modal-content .mail-files .mail-files__filename {
+    white-space: nowrap;
+    display: inline-block;
+    width: auto;
+    max-width: 380px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}

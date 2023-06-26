@@ -1,0 +1,101 @@
+<div id="sendRequestModal" class="modal fade" tabindex="-1" role="dialog"
+     data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document" id="dialog-center">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="block-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label for="mailto" class="control-label col-sm-1 control-label--material"
+                                       style="text-align: right">宛先：</label>
+                                <div class="col-sm-11">
+                                    <div class="input-group input-group-sm"
+                                         style="margin-top: 3px;border: 1px solid black">
+                                        <input js-tags-input type="text"
+                                               id="mailto" name="mailto"
+                                               class="js-tags-input form-control"
+                                               [(tags)]="to"
+                                        >
+                                        <span class="input-group-addon" style="cursor: hand;"
+                                              (click)="searchUserPicTO()">
+                                            <i class="si si-user-follow fa-1x" aria-hidden="true"></i>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label for="mailcc" class="control-label col-sm-1 control-label--material"
+                                       style="text-align: right">CC：</label>
+                                <div class="col-sm-11">
+                                    <div class="input-group input-group-sm"
+                                         style="margin-top: 3px;border: 1px solid black">
+                                        <input js-tags-input type="text"
+                                               id="mailcc" name="mailcc"
+                                               class="js-tags-input form-control"
+                                               [(tags)]="cc"
+                                        >
+                                        <span class="input-group-addon" style="cursor: hand;"
+                                              (click)="searchUserPicCC()">
+                                            <i class="si si-user-follow fa-1x" aria-hidden="true"></i>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label for="mail_subject" class="control-label col-sm-1 control-label--material"
+                                       style="text-align: right">件名：</label>
+                                <div class="col-sm-11">
+                                    <div class="input-group" style="border: 1px solid black;width: 100%;">
+                                        <input type="text" id="mail_subject" name="mail_subject" class="form-control"
+                                               placeholder="" maxlength="50" style="background-color: white !important;"
+                                               [(ngModel)]="subject">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label for="mail_content" class="control-label col-sm-1" style="text-align: right">本文：</label>
+                                <div class="col-sm-11">
+                                    <div class="input-group" style="border: 1px solid black;width: 100%;background-color: white !important;">
+                                    <textarea id="mail_content" name="mail_content" class="form-control" rows="10"
+                                              maxlength="20000" style="background-color: white !important;resize:none;"
+                                              [(ngModel)]="content">
+                                    </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                                <div class="col-sm-7 col-sm-offset-1">
+                                    <ul class="mail-files" *ngIf="this.sf00309Data.mailRequest.attachmentFiles.length > 0">
+                                        <template ngFor let-file [ngForOf]="this.sf00309Data.mailRequest.attachmentFiles" let-idx="index">
+                                            <li>
+                                                <span class="mail-files__filename">{{file.name}}</span> ({{bytesToMegabyte(file.size)}})
+                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title data-original-title="remove file" (click)="removeFile($event, file.tmpName)">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                    <div *ngIf="uploadProcessing">
+                                        ファイルアップロード中
+                                    </div>
+                                    <div *ngIf="!uploadProcessing">
+                                        <input type="file" (change)="fileChange($event)" placeholder="Upload file">
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="button" class="btn btn-primary pull-right" style="margin-right: 14px" (click)="send()"  [disabled]="uploadProcessing">メールで送る</button>
+                                    <button type="button" class="btn btn-link pull-right" (click)="closeRequest()">キャンセル</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    </div>
+</div>

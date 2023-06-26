@@ -1,0 +1,44 @@
+<!-- 窓貼り加工 -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body08" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body08" role="button">
+                <i class="fa push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateProductWindow,'fa-circle-o text-gray':!stateProductWindow}"></i>
+
+                <span>窓貼り加工</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body08">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('windowSize') }">サイズ (mm)</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" value="" placeholder="縦"
+                               maxlength="4"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="windowSizeW"
+                               [maxValue]="9999" [numberPrecision]="0">
+                    </div>
+                    <div class="col-sm-1 text-center">
+                        <div class="form-control-static">×</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" value="" placeholder="横"
+                               maxlength="4"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="windowSizeH"
+                               [maxValue]="9999" [numberPrecision]="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /窓貼り加工 -->

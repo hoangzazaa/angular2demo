@@ -1,0 +1,41 @@
+import {SF00302Helper} from "../../../SF00302.helper";
+
+export interface SF0030224Helper extends SF00302Helper {
+    calcSubmittedTotal();
+    calcEstimateDiff(id:number);
+    getProductOutputOtherFee1();
+    getProductOutputOtherFee2();
+    getProductOutputOtherFee3();
+    getInspectionPackingFareLineTotalCost();
+    getOtherFeeTotalCost();
+    getDieCuttingPasteTotalCost();
+    calcThroughNumber();
+    calcPaperTotalCost();
+    calcLaminationSize();
+    calcLaminationUnitPrice();
+    calcLaminationTotalCost();
+    calcStampingPointsNumber();
+    calcStampingBasicCost();
+    calcStampingThroughWage();
+    calcStampingTotalCost();
+    calcWindowTotalCost();
+    calcDieCuttingWeight();
+    calcDieCuttingLoss();
+    calcDieCuttingBasicCost();
+    calcDieCuttingThroughWage();
+    calcDieCuttingTotalCost();
+    calccartonMaterialLoss();
+    calcPasteStepWage();
+    calcPasteThroughWage();
+    calclaminationSheetCost();
+    calcOtherFee();
+    calcInspection();
+    calcPacking();
+    calcShippingCost();
+    calcSubTotal();
+    calcManagementCost();
+    calcEstimateTotal();
+    calcEstimateUnitPrice();
+    calcPasteLoss();
+    calcPasteBasicCost();
+}

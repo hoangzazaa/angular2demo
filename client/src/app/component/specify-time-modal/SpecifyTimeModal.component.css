@@ -1,0 +1,34 @@
+.stm_specify-time-modal .block-title {
+    font-size: 24px;
+}
+
+.stm_specify-time-modal .pib_specify-time-header {
+    font-weight: bold;
+    border-bottom: 1px solid #9a9a9a;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+}
+
+.stm_specify-time-modal .pib_specify-time-option {
+    padding: 3px;
+    cursor: pointer;
+}
+
+.stm_specify-time-modal .pib_specify-time-option.active {
+    background-color: #81d0f2;
+}
+
+.stm_specify-time-modal .time-input {
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+}
+
+.stm_specify-time-modal label.css-radio {
+    padding-left: 0;
+}
+
+.stm_specify-time-modal input,
+.stm_specify-time-modal input:focus {
+    background: #ffffff;
+}

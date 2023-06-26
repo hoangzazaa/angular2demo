@@ -1,0 +1,161 @@
+<!-- 印刷 -->
+<div class="panel panel-default panel--index sf0030220">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body05" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body05" role="button">
+                <i class="fa push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateProductPrint,'fa-circle-o text-gray':!stateProductPrint}"></i>
+                <span>別加工</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body05">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group" *ngIf="printMethod!=0">
+                    <div class="col-sm-3">
+                        <label class="control-label" *ngIf="printMethod!=2&&printMethod!=0"
+                               [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('colorIdF') }">印刷</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <span style="padding-left: 15px"><small>色数</small></span>
+                                <select class="form-control" [(ngModel)]="colorIdF" style="padding: 6px;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of colorOptions" [value]="t.id">{{t.name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-l">
+                                <span style="padding-left: 15px"><small>使用色1</small></span>
+                                <select id="colorFText1" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option></option>
+                                    <option *ngFor="let t of colorFText1Options" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-l">
+                                <span style="padding-left: 15px"><small>使用色2</small></span>
+                                <select id="colorFText2" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of colorFText2Options" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-l">
+                                <span style="padding-left: 15px"><small>使用色3</small></span>
+                                <select id="colorFText3" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of colorFText3Options" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('tapeCutting') }">
+                        テープカット
+                    </label>
+                    <div class="col-sm-9">
+                        <label class="css-input css-checkbox css-checkbox-success" [class.css-input-disabled]="isView">
+                            <input type="checkbox" [(ngModel)]="cartonTapeCutting"
+                                   [disabled]="isCreateNewProduct || isView"/><span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3 remove-padding-l"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('linerCutting') }">
+                        ライナーカット(㎡)
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0"
+                               number-input
+                               [maxValue]="999999"
+                               [(numberValue)]="cartonLinerCutting" [numberPrecision]="0">
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="cartonShippingType!=1">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('handProcessing')}">手穴加工</label>
+                    <div class="col-sm-9">
+                            <label class="css-input css-radio css-radio-primary push-30-r" style="width: 57px;">
+                                <input name="radio-group11" checked="" type="radio" [checked]="handProcessingFlag==0"
+                                       (change)="setHandProcessingFlag(0)"
+                                       [disabled]="isCreateNewProduct || isView"><span></span> なし
+                            </label>
+                            <label class="css-input css-radio css-radio-primary push-30-r" style="width: 57px">
+                                <input name="radio-group11" checked="" type="radio" [checked]="handProcessingFlag==1"
+                                       (change)="setHandProcessingFlag(1)"
+                                       [disabled]="isCreateNewProduct || isView"><span></span> あり
+                            </label>
+
+                    </div>
+                </div>
+                <div class="form-group" id="handProcessing" *ngIf="cartonShippingType!=1">
+                    <label class="control-label col-sm-3"></label>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px"><small>手穴位置（mm）</small></span>
+                        <input type="text" class="form-control" [maxValue]="999" number-input
+                               [defaultValue]="0" [numberPrecision]="0" [(numberValue)]="handPosition"
+                               [disabled] ="isCreateNewProduct|| handProcessingFlag==0">
+                    </div>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px"><small>形状</small></span>
+                        <select class="form-control" [(ngModel)]="handType"
+                                [disabled]="isCreateNewProduct || isView || handProcessingFlag==0">
+                            <option *ngFor="let t of handTypeOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px"><small>寸法</small></span>
+                        <select class="form-control" [(ngModel)]="handSize"
+                                [disabled]="isCreateNewProduct || isView|| handProcessingFlag==0 ">
+                            <option *ngFor="let t of handSizeOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <div>
+                            <label class="control-label"
+                                   [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('waterRepellent') }">撥水加工</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <select class="form-control" [(ngModel)]="waterRepellent"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of waterRepellentOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <div>
+                            <label class="control-label"
+                                   [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('otherMethod') }">その地<br>
+                            <small>（備考１に表記）</small></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <select class="form-control" [(ngModel)]="otherMethod1"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of otherMethodOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" [(ngModel)]="otherMethod2"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of otherMethodOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /印刷 -->

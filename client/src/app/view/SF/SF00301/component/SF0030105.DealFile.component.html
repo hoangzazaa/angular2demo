@@ -1,0 +1,76 @@
+<div class="panel-heading">
+    <div class="panel-title">
+        <h3 class="panel-title">
+            <label class="label label-success panel-title__label" style="width: 110px">ファイル</label>
+            <button class="btn btn-link remove-padding panel-title__link"
+                    [disabled]="!canViewDetailed || !canRemove"
+                    *ngIf="!!item.dealFileName" (click)="viewDetailDealFile()">
+                {{item.dealFileName | ellipsis}}
+            </button>
+            　
+            <div class="pull-right panel-title__flex-space">
+                <span class="panel-title__date panel-title__date_label">更新日</span>
+                <span class="panel-title__date panel-title__date_strong">{{item.getUpdatedDate()}}</span>
+            </div>
+            <a role="button" data-toggle="collapse" class="pull-right accordion-toggle"
+               href="#panelFile{{item.id}}" aria-expanded="true"
+               aria-controls="panel_body05">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+</div>
+<div class="panel-collapse collapse in" id="panelFile{{item.id}}">
+    <div class="panel-body block panel-body--has-nav">
+        <ul class="nav nav-alt">
+            <li class="pull-right">
+                <div class="block-options-simple">
+                    <button class="btn btn-link text-danger"
+                            (click)="removeDealFile()"
+                            [disabled]="!canRemove">切り離す
+                    </button>
+                    <a (click)="viewDetailDealFile()" [attr.disabled]="!canViewDetailed || !canRemove || null"
+                       class="btn btn-link">詳細</a>
+                </div>
+            </li>
+        </ul>
+
+        <div class="row">
+            <div class="col-sm-3 panel-body__thumb">
+                <file-viewer [srcFile]="item.srcImg"></file-viewer>
+            </div>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+                                <tbody>
+                                <tr>
+                                    <th>ファイルID</th>
+                                    <td>{{item.dealFileId | ellipsis:30}}</td>
+                                </tr>
+                                <tr>
+                                    <th>ファイル名</th>
+                                    <td>{{item.dealFileName | ellipsis:30}}</td>
+                                </tr>
+                                <tr>
+                                    <th>形式</th>
+                                    <td>{{item.originalName | fileTypeUtil}}</td>
+                                </tr>
+                                <tr>
+                                    <th>製品</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>メモ</th>
+                                    <td>{{item.memo | ellipsis:40}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

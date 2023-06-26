@@ -1,0 +1,60 @@
+<div class="modal stm_specify-time-modal" #modal tabindex="-1" role="dialog" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="block remove-margin-b">
+                <div class="block-header">
+                    <h3 class="block-title">時間指定</h3>
+                </div>
+                <div class="block-content">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="pib_specify-time-header">種類</div>
+                            <div #timePeriod>
+                                <div class="pib_specify-time-option" *ngFor="let option of timeOptions" (click)="setPattern(option.value)"
+                                     [class.active]="option.value == specifyTime.stm_pattern">
+                                    <span>{{option.name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="pib_specify-time-header">種類</div>
+                            <div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-sm time-input"
+                                           number-input [(numberValue)]="specifyTime.stm_hour"
+                                           [numberPrecision]="0" [minValue]="0" [maxValue]="23">
+                                    時
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-sm time-input"
+                                           number-input [(numberValue)]="specifyTime.stm_minute"
+                                           [numberPrecision]="0" [minValue]="0" [maxValue]="59">
+                                    分
+                                </div>
+                                <div class="form-group" style="display: none"> <!--http://fridaynight.vnext.vn/issues/3250-->
+                                    <div class="radio" *ngFor="let option of periodOptions">
+                                        <label class="css-input css-radio css-radio-default push-10-r">
+                                            <input type="radio" [value]="option.value" [(ngModel)]="specifyTime.stm_period"
+                                                   [checked]="specifyTime.stm_period == option.value"><span></span>
+                                            {{ option.name }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <button class="btn btn-link" type="button" (click)="cancel()"><strong>キャンセル</strong></button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary w150-sm" type="button" (click)="select()"><strong>選択</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

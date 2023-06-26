@@ -1,0 +1,149 @@
+<!-- 型出し・箔押し加工 -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body07" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body07" role="button">
+                <i class="fa push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateProductStamping,'fa-circle-o text-gray':!stateProductStamping}"></i>
+
+                <span>型出し・箔押し加工</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body07">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('stampingId') }">タイプ</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" [(ngModel)]="stampingId"
+                                [disabled]="isCreateNewProduct || isCreateNewProduct || isView">
+                            <option *ngFor="let t of stampingOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                    <label class="control-label col-sm-1 remove-padding-r"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('stampingNumber') }">回数</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control"
+                               [disabled]="isCreateNewProduct || isCreateNewProduct || isView"
+                               [defaultValue]="0" number-input [(numberValue)]="stampingNumber"
+                               [maxValue]="9" [numberPrecision]="0">
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="stampingId!=0">
+                    <label class="control-label col-sm-3"></label>
+                    <div class="col-sm-7">
+                        <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <th class="col-sm-1">#</th>
+                                <th class="col-sm-3">辺1（<span style="text-transform:none;">mm</span>）</th>
+                                <th class="col-sm-3">辺2（<span style="text-transform:none;">mm</span>）</th>
+                                <th class="col-sm-3">箔色</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="col-sm-1" style="vertical-align: middle"><span
+                                        [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('stampingSize1') }">1</span>
+                                </td>
+                                <td class="col-sm-3">
+                                    <div>
+                                        <input type="text" class="form-control"
+                                               [disabled]="isCreateNewProduct || isCreateNewProduct || isView"
+                                               [defaultValue]="0" number-input [(numberValue)]="stampingSizeW1"
+                                               [maxValue]="9999" [numberPrecision]="0">
+                                    </div>
+                                </td>
+                                <td class="col-sm-3">
+                                    <div>
+                                        <input type="text" class="form-control"
+                                               [disabled]="isCreateNewProduct || isCreateNewProduct || isView"
+                                               [defaultValue]="0" number-input [(numberValue)]="stampingSizeH1"
+                                               [maxValue]="9999" [numberPrecision]="0">
+                                    </div>
+                                </td>
+                                <td class="col-sm-3">
+                                    <div>
+                                        <input type="text" class="form-control"
+                                               [disabled]="isCreateNewProduct || isCreateNewProduct || isView"
+                                               [defaultValue]="0" [(ngModel)]="foilColor1"
+                                               maxlength="8">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-1" style="vertical-align: middle"><span
+                                        [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('stampingSize2') }">2</span>
+                                </td>
+                                <td class="col-sm-3">
+                                    <div>
+                                        <input type="text" class="form-control"
+                                               [disabled]="isCreateNewProduct || isCreateNewProduct || isView"
+                                               [defaultValue]="0" number-input [(numberValue)]="stampingSizeW2"
+                                               [maxValue]="9999" [numberPrecision]="0">
+                                    </div>
+                                </td>
+                                <td class="col-sm-3">
+                                    <div>
+                                        <input type="text" class="form-control"
+                                               [disabled]="isCreateNewProduct || isCreateNewProduct || isView"
+                                               [defaultValue]="0" number-input [(numberValue)]="stampingSizeH2"
+                                               [maxValue]="9999" [numberPrecision]="0">
+                                    </div>
+                                </td>
+                                <td class="col-sm-3">
+                                    <div>
+                                        <input type="text" class="form-control"
+                                               [disabled]="isCreateNewProduct || isCreateNewProduct || isView"
+                                               [defaultValue]="0" [(ngModel)]="foilColor2"
+                                               maxlength="8">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-1" style="vertical-align: middle"><span
+                                        [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('stampingSize3') }">3</span>
+                                </td>
+                                <td class="col-sm-3">
+                                    <div>
+                                        <input type="text" class="form-control"
+                                               [disabled]="isCreateNewProduct || isCreateNewProduct || isView"
+                                               [defaultValue]="0" number-input [(numberValue)]="stampingSizeW3"
+                                               [maxValue]="9999" [numberPrecision]="0">
+                                    </div>
+                                </td>
+                                <td class="col-sm-3">
+                                    <div>
+                                        <input type="text" class="form-control"
+                                               [disabled]="isCreateNewProduct || isCreateNewProduct || isView"
+                                               [defaultValue]="0" number-input [(numberValue)]="stampingSizeH3"
+                                               [maxValue]="9999" [numberPrecision]="0">
+                                    </div>
+                                </td>
+                                <td class="col-sm-3">
+                                    <div>
+                                        <input type="text" class="form-control"
+                                               [disabled]="isCreateNewProduct || isCreateNewProduct || isView"
+                                               [defaultValue]="0" [(ngModel)]="foilColor3"
+                                               maxlength="8">
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="background:#FCDFDF" class="text-center" style="padding:10px" *ngIf="stampingId!=0">
+                <p style="color: #b95e5e;font-size:16px">
+                    <strong>加工面積（実寸）を入力</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /型出し・箔押し加工 -->

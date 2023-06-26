@@ -1,0 +1,87 @@
+#draw-modal .modal-header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#draw-modal .modal-body {
+    padding-top: 5px;
+    overflow-y: auto;
+    height: 541px;
+}
+
+#draw-modal .form-group {
+    margin-bottom: 0px;
+}
+
+.draw-img {
+    font-size: 11px;
+}
+
+.draw-simulation {
+    display: block;
+    width: 600px;
+    height: 350px;
+    position: relative;
+    background-image: url("/assets/img/00302Panel.png");
+    background-repeat: no-repeat;
+    background-size: 600px 350px;
+    margin: 0 auto;
+}
+
+.draw-simulation .size-val {
+    position: absolute;
+    font-size: 11px;
+    color: #388338;
+}
+
+.draw-simulation .size01 {
+    top: 13px;
+    left: 258px;
+}
+
+.draw-simulation .size02 {
+    top: 45px;
+    left: 140px;
+}
+.draw-simulation .size03 {
+    top: 45px;
+    left: 370px;
+}
+
+.draw-simulation .size04 {
+    top: 76px;
+    right: 583px;
+}
+.draw-simulation .size05 {
+    top: 76px;
+    left: 100px;
+}
+
+.draw-simulation .size06 {
+    top: 76px;
+    left: 205px;
+}
+.draw-simulation .size07 {
+    top: 76px;
+    left: 320px;
+}
+.draw-simulation .size08 {
+    top: 76px;
+    left: 436px;
+}
+.draw-simulation .size09 {
+    top: 124px;
+    right: 71px;
+}
+.draw-simulation .size10 {
+    top: 220px;
+    right: 71px;
+}
+.draw-simulation .size11 {
+    top: 197px;
+    right: 42px;
+}
+.draw-simulation .size12 {
+    top: 300px;
+    right: 71px;
+}

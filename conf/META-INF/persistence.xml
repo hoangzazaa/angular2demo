@@ -1,0 +1,78 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="defaultPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <non-jta-data-source>DefaultDS</non-jta-data-source>
+
+        <!-- Entity class here -->
+        <class>vn.vnext.sefuri.sf.dto.MstCartonDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstCartonShippingDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstColorDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstDieCuttingDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstDecorativeDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstLaminationDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstPackingDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstPaperDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstPasteDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstShapeDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstSheetSizeDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstShippingCompanyDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstShippingCostDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstStampingDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstSurfaceTreatmentDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstWindowDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MstWoodenDto</class>
+        <class>vn.vnext.sefuri.sf.dto.BalanceOfStockDto</class>
+        <class>vn.vnext.sefuri.sf.dto.CurrentStockDto</class>
+        <class>vn.vnext.sefuri.sf.dto.ChecksheetDto</class>
+        <class>vn.vnext.sefuri.sf.dto.CommentDto</class>
+        <class>vn.vnext.sefuri.sf.dto.CommentFileDto</class>
+        <class>vn.vnext.sefuri.sf.dto.CustomerDto</class>
+        <class>vn.vnext.sefuri.sf.dto.CustomerGoalDto</class>
+        <class>vn.vnext.sefuri.sf.dto.CustomerGoalItemDto</class>
+        <class>vn.vnext.sefuri.sf.dto.DealDto</class>
+        <class>vn.vnext.sefuri.sf.dto.DealFileDto</class>
+        <class>vn.vnext.sefuri.sf.dto.DealProductDto</class>
+        <class>vn.vnext.sefuri.sf.dto.DepartmentDto</class>
+        <class>vn.vnext.sefuri.sf.dto.DepartmentSupportDto</class>
+        <class>vn.vnext.sefuri.sf.dto.DrawingImageDto</class>
+        <class>vn.vnext.sefuri.sf.dto.FileDto</class>
+        <class>vn.vnext.sefuri.sf.dto.DepartmentGoalDto</class>
+        <class>vn.vnext.sefuri.sf.dto.DepartmentGoalItemDto</class>
+        <class>vn.vnext.sefuri.sf.dto.InventoryDto</class>
+        <class>vn.vnext.sefuri.sf.dto.LoadingAddressDto</class>
+        <class>vn.vnext.sefuri.sf.dto.MyboxItemDto</class>
+        <class>vn.vnext.sefuri.sf.dto.OfferDto</class>
+        <class>vn.vnext.sefuri.sf.dto.OrderDto</class>
+        <class>vn.vnext.sefuri.sf.dto.OrderItemDto</class>
+        <class>vn.vnext.sefuri.sf.dto.PredictionDto</class>
+        <class>vn.vnext.sefuri.sf.dto.ProductCommonFeeDto</class>
+        <class>vn.vnext.sefuri.sf.dto.ProductDto</class>
+        <class>vn.vnext.sefuri.sf.dto.ProductFileDto</class>
+        <class>vn.vnext.sefuri.sf.dto.ProductOutputDto</class>
+        <class>vn.vnext.sefuri.sf.dto.QuotationDto</class>
+        <class>vn.vnext.sefuri.sf.dto.QuotationItemDto</class>
+        <class>vn.vnext.sefuri.sf.dto.QuotationPrintTemplateDto</class>
+        <class>vn.vnext.sefuri.sf.dto.RevenueDto</class>
+        <class>vn.vnext.sefuri.sf.dto.ShippingDestinationDto</class>
+        <class>vn.vnext.sefuri.sf.dto.ShippingDestinationImageDto</class>
+        <class>vn.vnext.sefuri.sf.dto.ShippingPlanDto</class>
+        <class>vn.vnext.sefuri.sf.dto.UserDto</class>
+        <class>vn.vnext.sefuri.sf.dto.UserGoalDto</class>
+        <class>vn.vnext.sefuri.sf.dto.UserPasswordRecoverDto</class>
+        <class>vn.vnext.sefuri.sf.dto.SupplierDto</class>
+        <class>vn.vnext.sefuri.sf.dto.SupplyOrderDto</class>
+        <class>vn.vnext.sefuri.sf.dto.EventLogDto</class>
+        <!-- Hibernate properties -->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="jadira.usertype.autoRegisterUserTypes" value="true"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

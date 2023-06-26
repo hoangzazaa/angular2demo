@@ -1,0 +1,17 @@
+{
+  "productCommonFee": {
+    "id": 1,
+    "createdUser": 8,
+    "updatedUser": 8,
+    "createdDate": "2017-01-09T10:22:22.000Z",
+    "updatedDate": "2017-01-09T10:22:19.000Z",
+    "designFee": 73737,
+    "plateMakingFee": 646,
+    "woodenFee": 575,
+    "resinFee": 938,
+    "productId": 1,
+    "product": {
+      "id": 1
+    }
+  }
+}

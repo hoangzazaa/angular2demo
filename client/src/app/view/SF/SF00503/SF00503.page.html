@@ -1,0 +1,111 @@
+<div class="content sf005-03">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-1 push-30-l">支店</label>
+            <div class="col-sm-3">
+                <select class="form-control" [(ngModel)]="department">
+                    <option *ngFor="let item of departments; let idx = index" [ngValue]="item">
+                        {{item.department}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="block">
+            <div class="block-content">
+                <ul class="nav nav-tabs">
+                    <li id="tab-head-01" class="active">
+                        <a class="text-center tab-200-w text-black" href="javascript:void(0);"
+                           (click)="changeTab(tab01Index)">
+                            <dt>部門目標</dt>
+                        </a>
+                    </li>
+                    <li id="tab-head-02">
+                        <a class="text-center tab-200-w text-black" href="javascript:void(0);"
+                           (click)="changeTab(tab02Index)">
+                            <dt>得意先別目標</dt>
+                        </a>
+                    </li>
+                    <li id="tab-head-03">
+                        <a class="text-center tab-200-w text-black" href="javascript:void(0);"
+                           (click)="changeTab(tab03Index)">
+                            <dt>個人別目標</dt>
+                        </a>
+                    </li>
+                </ul>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <!--tab1-->
+                        <div class="tab-pane fade in active" id="tab-body-01">
+                            <!--sf0050301 summary-->
+                            <sf0050301 (changeYear)="changeDataByYear($event)"></sf0050301>
+
+                            <!--sf0050302 Existing customer-->
+                            <sf0050302
+                                    (onDataChanged)="departmentGoalsStates.setUnsavedDepartmentGoalsFlg()"></sf0050302>
+
+                            <!--sf0050303 new customer-->
+                            <sf0050303
+                                    (onDataChanged)="departmentGoalsStates.setUnsavedDepartmentGoalsFlg()"></sf0050303>
+
+                            <div class="row pull-right push-20-t push-5-r">
+                                <a class="btn btn-link" (click)="cancel()"><a style="color: #37a967">キャンセル</a>
+                                </a>
+                                <button class="btn btn-success" [disabled]="sf00503Data.readOnlyDeptGoal"
+                                        (click)="saveSaleGoal()">保存する
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <!--tab2-->
+                        <div class="tab-pane fade" id="tab-body-02">
+                            <!--sf0050301 summary-->
+                            <sf0050301 (changeYear)="changeDataByYear($event)"></sf0050301>
+
+                            <!--sf0050304 - 1.既存得意先-->
+                            <sf0050304 (filtersChanged)="applyFilters()"
+                                       (pageIndexChanged)="applyOldCustomerGoalsPaging($event)"
+                                       (onDataChanged)="individualGoalsStates.setUnsavedOldCustomerGoals($event)"
+                                       (onDataSaved)="individualGoalsStates.setSavedOldCustomerGoals($event)"
+                            ></sf0050304>
+
+                            <!--sf0050311 - 2.既存得意先（その他）-->
+                            <sf0050311 (pageIndexChanged)="applyOtherCustomerGoalsPaging($event)"
+                                       (onCustomerGoalsDataChanged)="individualGoalsStates.setUnsavedOtherCustomerGoals()"
+                                       (onCustomerGoalsAdded)="individualGoalsStates.setUnsavedOtherCustomerGoals()"
+                                       (onCustomerGoalsDeleted)="individualGoalsStates.setSavedOtherCustomerGoals()"
+                                       (onCustomerGoalsSaved)="individualGoalsStates.setSavedOtherCustomerGoals()"
+                            ></sf0050311>
+
+                            <!--sf0050305 - 3.新規得意先-->
+                            <sf0050305 (pageIndexChanged)="applyNewCustomerGoalsPaging($event)"
+                                       (onCustomerGoalsDataChanged)="individualGoalsStates.setUnsavedNewCustomerGoals()"
+                                       (onCustomerGoalsAdded)="individualGoalsStates.setUnsavedNewCustomerGoals()"
+                                       (onCustomerGoalsDeleted)="individualGoalsStates.setSavedNewCustomerGoals()"
+                                       (onCustomerGoalsSaved)="individualGoalsStates.setSavedNewCustomerGoals()"
+                            ></sf0050305>
+                        </div>
+
+                        <!--tab3-->
+                        <div class="tab-pane fade" id="tab-body-03">
+                            <!--sf0050301 summary-->
+                            <sf0050301 (changeYear)="changeDataByYear($event)"></sf0050301>
+
+                            <sf0050309></sf0050309>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row push-30-t push-20-l">
+    <div class="col-sm-6">
+        <button class="btn btn-link" (click)="cancel()">戻る</button>
+    </div>
+</div>
+

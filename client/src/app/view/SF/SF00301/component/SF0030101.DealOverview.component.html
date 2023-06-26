@@ -1,0 +1,217 @@
+<div class="form-horizontal deal-info-header">
+    <div class="form-group col-sm-12" style="text-align: right; margin: 0; padding: 0px">
+        <a class="btn btn-link" (click)="cancel()" style="padding-top: 6px">キャンセル</a>
+        <button class="btn btn-primary" (click)="submitDeal()" *ngIf="!deal.isImmutableDeal">保存する</button>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2 control-label--material">案件ID</label>
+        <div class="col-sm-4">
+            <div class="form-control-static form-control-static--material">
+                <ng-container *ngIf="deal.isSaved">
+                    {{deal.dealCode}}
+                </ng-container>
+            </div>
+        </div>
+
+        <label class="control-label col-sm-2 control-label--material">案件区分</label>
+        <div class="col-sm-4">
+            <div class="form-material">
+                <select class="form-control" [(ngModel)]="dealType"
+                        [style.border]="checkBorderDealType.style"
+                        [style.border-radius]="checkBorderDealType.radius"
+                        [disabled]="deal.isImmutableDeal">
+                    <option *ngFor="let t of dealTypeOption" [value]="t.id">{{t.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dealName" class="control-label col-sm-2 control-label--material">案件名</label>
+        <div class="col-sm-10">
+            <div class="form-material">
+                <input type="text" class="form-control input-lg-f small-placeholder" id="dealName" name="dealName"
+                       [style.border]="checkBorderDealName.style"
+                       [style.border-radius]="checkBorderDealName.radius"
+                       (keypress)="clearDealNameErrMsg()"
+                       [disabled]="deal.isImmutableDeal" [(ngModel)]="dealName" maxlength="30"
+                       (change)="changeData()"
+                       placeholder="案件名">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2 control-label--material">得意先ID</label>
+        <div class="col-sm-4">
+            <div class="form-control-static form-control-static--material">
+                <ng-container *ngIf="!!deal.customer && deal.customer.id >= 0">
+                    ({{deal.customer.customerCode}})
+                </ng-container>
+                <ng-container *ngIf="!!deal.customer && deal.customer.id < 0">
+                    <span style="color: #aaaaaa">(New Customer)</span>
+                </ng-container>
+                <ng-container *ngIf="!deal.customer">
+                    <span style="color: #aaaaaa">(得意先ID)</span>
+                </ng-container>
+                <a class="btn btn-link" *ngIf="!deal.isImmutableDeal && !!deal.customer"
+                   (click)="removeCustomer()">
+                    <i class="glyphicon glyphicon-remove-sign fa-1x"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="customerSelector" class="control-label col-sm-2 control-label--material">得意先名</label>
+        <div class="col-sm-10" [hidden]="canSelectCustomer && customersDatasourceLoaded">
+            <div class="form-control-static form-control-static--material">
+                {{!!deal.customer ? deal.customer.customerName : ""}}
+            </div>
+        </div>
+        <div class="col-sm-10" [hidden]="!canSelectCustomer || !customersDatasourceLoaded">
+            <div id="customerSelectorWraper" class="form-material">
+                <select #customerSelector
+                        *ngIf="canSelectCustomer"
+                        class="col-sm-12" id="customerSelector"
+                        name="customerSelector">
+                    <option></option>
+                    <option *ngFor="let cus of customers" [value]="cus.id">{{ cus.customerName }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2 control-label--material">納期</label>
+        <div class="col-sm-4">
+            <div class="form-material">
+                <input date-input class="form-control" type="text"
+                       id="deliveryDate" name="deliveryDate"
+                       [disabled]="deal.isImmutableDeal"
+                       placeholder="YYYY年M月D日" [dateModel]="deliveryDate" [defaultDate]="defaultDeliveryDate"
+                       [style.border]="checkBorderDeliveryDate.style"
+                       [style.border-radius]="checkBorderDeliveryDate.radius"
+                       (dateModelChange)="setDeliveryDate($event)"
+
+                >
+            </div>
+        </div>
+        <label class="control-label col-sm-2 control-label--material">受注予定額</label>
+        <div class="col-sm-4">
+            <div class="form-material form-material--group">
+                <input type="text" class="form-control input-lg-f small-placeholder form-material--group__input text-right"
+                       placeholder="受注予定額"
+                       number-input [(numberValue)]="estTotalDeal" [numberPrecision]="0"
+                       [style.border]="checkBorderEstimate.style"
+                       [style.border-radius]="checkBorderEstimate.radius"
+                       (change)="changeData()"
+                       [disabled]="deal.isImmutableDeal" [maxValue]="99999999"
+                >
+                <span class="form-material--group__unit">円</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group items-push">
+        <label class="control-label col-sm-2 control-label--material">担当営業名</label>
+        <div class="col-sm-4">
+            <div *ngIf="!deal.isImmutableDeal" class="form-material">
+                <div style="padding-top: 7px;">
+                <span style="float: left; width: calc(100% - 48px); text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                    {{saleNameFolowByDepartment}}
+                </span>
+                    <div class="pull-right">
+                        <a class="btn btn-link btn-glyphilicon" *ngIf="!!deal.saler" (click)="resetPIC()">
+                            <i class="glyphicon glyphicon-remove-sign fa-1x"></i>
+                        </a>
+                        <a class="btn btn-link btn-glyphilicon" (click)="showModalToAssignPIC()">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="deal.isImmutableDeal"
+                 class="form-control-static form-control-static--material">
+                <span style="float: left; width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                    {{saleNameFolowByDepartment}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2 deal-info-header__button-block">
+            <label class="label label__deal-status">{{deal.dealStatusDisplayName}}</label>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-3 deal-info-header__button-block">
+            <a [attr.disabled]="!deal.canRequestDesign || deal.isClosed || deal.isJobInprocess || null" class="btn btn-primary btn-block"
+               (click)="onRequestDesign()">設計依頼する</a>
+        </div>
+        <div class="col-sm-3 deal-info-header__button-block">
+            <!--{{deal.isConfirmedOrder ? "リピート注文する" : "受注登録する"}}-->
+            <a [attr.disabled]="!canRequestOrder || !deal.customer || null" class="btn btn-primary btn-block"
+               (click)="onRequestOrder()" *ngIf="!canRepeatOrder">
+                受注登録する
+            </a>
+            <a [attr.disabled]="!canRepeatOrder || !deal.customer || null" class="btn btn-primary btn-block"
+               (click)="onRepeatOrder()" *ngIf="canRepeatOrder">
+                リピート注文
+            </a>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="!deal.isSaved">
+        <div class="alert alert-info col-sm-12 text-center form-material">
+            案件を新たに追加します。まず案件の基本情報を入力して保存ボタンを押してください。
+        </div>
+    </div>
+</div>
+
+<div id="modalSelectPIC" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg" role="document" id="dialog-center">
+        <div class="modal-content" style="width: 600px; height: 450px;">
+            <div class="modal-header">
+                <h3 class="modal-title">担当者検索</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="col-xs-6 remove-margin-t" style="margin-top: 30px;">
+                        <table class="table table-borderless table-hover">
+                            <tr style="border-bottom: 1px grey solid">
+                                <th>支店/グループ</th>
+                            </tr>
+                            <tbody style="height: 300px; overflow-y: auto; display: block;">
+
+                            <div class="list-group">
+                                <a class="list-group-item cursor-hand"
+                                   *ngFor="let dep of departments, let idx = index"
+                                   (click)="onDeparmentChanged(idx)" [ngClass]="{'active': idx === stagingDepIndex }">{{dep.departmentName}}</a>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-xs-6 remove-margin-t" style="margin-top: 30px;">
+                        <table class="table table-borderless table-hover">
+                            <tr style="border-bottom: 1px grey solid">
+                                <th>担当者名</th>
+                            </tr>
+                            <tbody style="height: 300px; overflow-y: auto; display: block;">
+
+                            <div class="list-group">
+                                <a class="list-group-item cursor-hand"
+                                   *ngFor="let usr of allUsersOfChoosingDep, let idx = index"
+                                   (click)="onPicChanged(idx)" [ngClass]="{'active': idx === stagingPicIndex }">{{usr.username}}</a>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="background-color: white; border: none;">
+                <div class="col-sm-8">
+                    <button class="btn btn-link pull-left" (click)="hideModalToAssignPIC()">キャンセル</button>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-block btn-info" [disabled]="!choosingPIC" (click)="applyStagingPIC()">選択
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

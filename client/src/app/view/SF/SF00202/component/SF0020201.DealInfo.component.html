@@ -1,0 +1,178 @@
+<div class="panel panel-default sfr-panel-concern-item panel-serch_item">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="panel-title__note">{{deal.dealCode}}</span>
+            <button (click)="requestViewDetailDeal(deal)" class="btn btn-link remove-padding panel-title__link"
+                    *ngIf="deal.isEdit">
+                {{deal.dealName | ellipsis:30}}
+            </button>
+            <span class="font-large push-10-l" *ngIf="!deal.isEdit">{{deal.dealName}}</span>
+            <div class="pull-right panel-title__flex-space">
+                <i (click)="requestViewDetailDeal(deal, true)" class="btn btn-link fa fa-external-link" style="align-self: center"></i>
+                <span class="panel-title__date panel-title__date_label">更新日</span>
+                <span class="panel-title__date panel-title__date_strong">{{getDateDeal(deal) | date: 'yyyy/MM/dd'}}</span>
+            </div>
+            <a role="button" data-toggle="collapse" class="pull-right accordion-toggle" href="#sample{{idx}}"
+               aria-expanded="true" aria-controls="sample01">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="sample{{idx}}">
+        <div class="panel-body panel-body--has-tab_block block">
+            <ul class="nav nav-tabs nav-tabs-alt">
+                <li class="active">
+                    <a href="#sample01{{idx}}" data-toggle="tab">基本情報</a>
+                </li>
+                <li class="">
+                    <a href="#sample02{{idx}}" data-toggle="tab">取引実績</a>
+                    <!--http://fridaynight.vnext.vn/issues/1903 : href="#sample02{{idx}}"-->
+                </li>
+                <li>
+                    <a href="#sample03{{idx}}" data-toggle="tab">製品一覧</a>
+                </li>
+                <li class="pull-right">
+                    <div class="block-options-simple">
+                        <button class="btn btn-link" (click)="requestViewDetailDeal(deal)" *ngIf="deal.isEdit">詳細</button>
+                        <button class="btn btn-success" (click)="copyAndAddDeal(deal)" *ngIf="deal.isEdit">複製して案件追加</button>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane tab-pane--default active" id="sample01{{idx}}">
+                    <div class="row">
+                        <div class="col-sm-3 panel-body__thumb">
+                            <file-viewer [srcFile]="productInfo.srcImg"></file-viewer>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed">
+                                            <tbody class="no-border">
+                                            <tr>
+                                                <th>得意先名</th>
+                                                <td><span class="text-ellipsis w200-md w150-xs">{{deal.customerName | ellipsis}}</span>
+                                                </td>
+                                                <th>受注額</th>
+                                                <td><strong>{{deal.estTotalDeal | number}} {{deal.estTotalDeal ==
+                                                    undefined
+                                                    || deal.estTotalDeal == "" ? "" : '円'}}</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <th>担当営業</th>
+                                                <td><span class="text-ellipsis w200-md w150-xs">{{deal.saleName}}</span>
+                                                </td>
+                                                <th>納期</th>
+                                                <td>{{deal.deliveryDate | date:'yyyy/MM/dd'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>案件区分</th>
+                                                <td>{{getDealType(deal)}}</td>
+                                                <th>ステータス</th>
+                                                <td>{{getDealStatus(deal)}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed push-5">
+                                            <tbody class="has-strong-top-border">
+                                            <tr>
+                                                <th style="width: 35%"><span class="text-ellipsis w200-sm w150-xs">
+                                                    {{productInfo.productName | ellipsis}}</span>
+                                                </th>
+                                                <td style="width: 65%">
+                                                    {{getDescription()}}
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <span class="push-10-l text-muted">他　{{(deal.products==null || deal.products.length == 0) ? '0':(deal.products.length)}}点（商事含む）</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane tab-pane--stock" id="sample02{{idx}}">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>日付</th>
+                                        <th>案件名</th>
+                                        <th>注文数</th>
+                                        <th>単価</th>
+                                        <th>金額</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let item of deal.orderItems">
+                                        <td>{{item.updatedDate | date:'yyyy/MM/dd'}}</td>
+                                        <td><span class="text-ellipsis w150-md w100-xs">{{deal.dealName}}</span>
+                                        </td>
+                                        <td>{{getLot(item)}}ロット</td>
+                                        <td>@{{item.submittedPrice|number : '1.2-2'}}</td>
+                                        <td>{{item.total}}円</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane tab-pane--products" id="sample03{{idx}}">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>製品番号</th>
+                                        <th>製品名</th>
+                                        <th>サイズ</th>
+                                        <th>材料</th>
+                                        <th>標準ロット</th>
+                                        <th>単価</th>
+                                        <th>木型</th>
+                                        <th>通算生産数</th>
+                                        <th>木型保管期限</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let product of deal.products">
+                                        <td>{{product.customerProductCode ? product.customerProductCode :
+                                            product.productCode}}
+                                        </td>
+                                        <td><span class="text-ellipsis w90-xs">{{product.productName | ellipsis}}</span>
+                                        </td>
+                                        <td>D{{getDimension(product)}}</td>
+                                        <td><span class="text-ellipsis w100-xs">{{getPaperName(product)}}</span></td>
+                                        <td>{{product.lot}}ロット</td>
+                                        <td>@{{product.estimatedUnitPrice|number : '1.2-2'}}</td>
+                                        <td>{{product.woodenCode}}</td>
+                                        <td>{{product.woodenTotalNumber}}</td>
+                                        <td>{{product.woodenExpiredDate | date:'yyyy/MM/dd'}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

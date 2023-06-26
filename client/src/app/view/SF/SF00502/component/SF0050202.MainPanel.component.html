@@ -1,0 +1,70 @@
+<div class="panel-heading">
+    <h3 class="panel-title">
+        得意先増減リスト
+        <span class="pull-right">(単位: 千円)</span>
+    </h3>
+    <div class="clearfix"></div>
+</div><!-- /.panel-heading -->
+<div class="panel-body">
+    <div class="row push-15">
+        <div class="col-sm-4">
+            <div class="form-inline" (change)="doChangeMonth()">
+                <select class="form-control" [(ngModel)]="startMonth">
+                    <option *ngFor="let month of startMonthOptions" [ngValue]="month">{{ month | date:"yyyy年M月" }}</option>
+                </select>
+                〜
+                <select class="form-control" [(ngModel)]="endMonth">
+                    <option *ngFor="let month of endMonthOptions" [ngValue]="month">{{ month | date:"yyyy年M月" }}</option>
+                </select>
+            </div>
+            <div class="screen-mode">{{screenMode}}</div>
+        </div>
+        <div class="col-xs-12 col-sm-8 pull-right" *ngIf="isHasSummary">
+            <div class="table-responsive summary-table">
+                <table class="table table-borderless table-condensed">
+                    <thead>
+                    <tr>
+                        <th>段ボール</th>
+                        <th>紙器</th>
+                        <th>商事</th>
+                        <th>合計</th>
+                        <th>前年同月比</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ convertYenToThousanYen(summaryNewAmount1) | number:'1.0-0' }}</td>
+                        <td>{{ convertYenToThousanYen(summaryNewAmount2) | number:'1.0-0' }}</td>
+                        <td>{{ convertYenToThousanYen(summaryNewAmount3) | number:'1.0-0' }}</td>
+                        <td><strong>{{ convertYenToThousanYen(summaryNewTotal) | number:'1.0-0' }}</strong></td>
+                        <td *ngIf="isNanDiffRate">-</td>
+                        <td *ngIf="!isNanDiffRate">{{ summaryDiffRate | number:'1.0-1' }}%</td>
+                    </tr>
+                    <tr>
+                        <td>({{ convertYenToThousanYen(summaryOldAmount1) | number:'1.0-0' }})</td>
+                        <td>({{ convertYenToThousanYen(summaryOldAmount2) | number:'1.0-0' }})</td>
+                        <td>({{ convertYenToThousanYen(summaryOldAmount3) | number:'1.0-0' }})</td>
+                        <td><strong>({{ convertYenToThousanYen(summaryOldTotal) | number:'1.0-0' }})</strong></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="customer-list up-table">
+        <h3>プラス↗</h3>
+        <div sf0050203 class="table-responsive" [tableType]="1"></div>
+    </div>
+
+    <div class="customer-list down-table">
+        <h3>マイナス↘</h3>
+        <div sf0050203 class="table-responsive" [tableType]="2"></div>
+    </div>
+
+    <div class="action-buttons" *ngIf="canSave">
+        <button class="btn btn-link" (click)="doCancel()">キャンセル</button>
+        <button class="btn btn-success" (click)="doSave()" preventDC [valid]="enableSave">保存する</button>
+    </div><!-- /.product-info-header__buttons -->
+</div><!-- /.panel-body -->

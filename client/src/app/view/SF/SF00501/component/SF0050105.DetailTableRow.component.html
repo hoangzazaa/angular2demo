@@ -1,0 +1,65 @@
+<ng-container *ngIf="isNormalRow && hasOldDetail">
+    <td class="title-column" *ngIf="!isStaffView">{{ titleRow }}</td>
+    <td class="title-column" *ngIf="isStaffView"><a class="sf0050105-staff" [attr.data-staff]="titleId" role="button">{{ titleRow }}</a></td>
+    <td class="text-right">{{ totalAmount | number:'1.0-0' }}<br>({{ totalOldAmount | number:'1.0-0' }})<br>{{ totalGrowthRate | number:'1.1-1' }}%</td>
+    <td *ngFor="let date of dateList">
+        <ng-container *ngIf="!hasAmount(date)">-</ng-container>
+        <ng-container *ngIf="hasAmount(date)">{{ getAmount(date) | number:'1.0-0' }}</ng-container>
+        <br>
+        <ng-container *ngIf="!hasOldAmount(date)">(0)</ng-container>
+        <ng-container *ngIf="hasOldAmount(date)">({{ getOldAmount(date) | number:'1.0-0' }})</ng-container>
+        <br>
+        <ng-container *ngIf="!hasOldAmount(date) || !hasAmount(date)">-</ng-container>
+        <ng-container *ngIf="hasOldAmount(date) && hasAmount(date)">{{ getGrowthRate(date) | number:'1.1-1' }}%</ng-container>
+    </td>
+</ng-container>
+<ng-container *ngIf="isNormalRow && !hasOldDetail">
+    <td class="title-column" *ngIf="!isStaffView">{{ titleRow }}</td>
+    <td class="title-column" *ngIf="isStaffView"><a class="sf0050105-staff" [attr.data-staff]="titleId" role="button">{{ titleRow }}</a></td>
+    <td class="text-right">{{ totalAmount | number:'1.0-0' }}</td>
+    <td *ngFor="let date of dateList">
+        <ng-container *ngIf="!hasAmount(date)">-</ng-container>
+        <ng-container *ngIf="hasAmount(date)">{{ getAmount(date) | number:'1.0-0' }}</ng-container>
+    </td>
+</ng-container>
+<ng-container *ngIf="isTotalRow">
+    <td class="title-column revenue-total">{{ titleRow }}</td>
+    <td class="text-right revenue-total">{{ totalAmount | number:'1.0-0' }}</td>
+    <ng-container *ngFor="let date of dateList">
+        <td class="revenue-total" *ngIf="!isPlan(date)">
+            <ng-container *ngIf="!hasAmount(date)">-</ng-container>
+            <ng-container *ngIf="hasAmount(date)">{{ getAmount(date) | number:'1.0-0' }}</ng-container>
+        </td>
+        <td class="revenue-total on-going" *ngIf="isPlan(date)">
+            <ng-container *ngIf="!hasAmount(date)">-</ng-container>
+            <ng-container *ngIf="hasAmount(date)">{{ getAmount(date) | number:'1.0-0' }}</ng-container>
+        </td>
+    </ng-container>
+</ng-container>
+<ng-container *ngIf="isGoalRow">
+    <td class="title-column goal-total">{{ titleRow }}</td>
+    <td class="text-right goal-total">{{ totalAmount | number:'1.0-0' }}</td>
+    <td class="goal-total" *ngFor="let date of dateList">
+        <ng-container *ngIf="!hasAmount(date)">-</ng-container>
+        <ng-container *ngIf="hasAmount(date)">{{ getAmount(date) | number:'1.0-0' }}</ng-container>
+    </td>
+</ng-container>
+<ng-container *ngIf="isOldTotalRow">
+    <td class="title-column">{{ titleRow }}</td>
+    <td class="text-right">({{ totalAmount | number:'1.0-0' }})</td>
+    <td *ngFor="let date of dateList">
+        <ng-container *ngIf="!hasAmount(date)">(0)</ng-container>
+        <ng-container *ngIf="hasAmount(date)">({{ getAmount(date) | number:'1.0-0' }})</ng-container>
+    </td>
+</ng-container>
+<ng-container *ngIf="isRateRow">
+    <td class="title-column">{{ titleRow }}</td>
+    <td class="text-right">
+        <ng-container *ngIf="!hasTotalAmount">-</ng-container>
+        <ng-container *ngIf="hasTotalAmount">{{ totalAmount | number:'1.1-1' }}%</ng-container>
+    </td>
+    <td *ngFor="let date of dateList">
+        <ng-container *ngIf="!hasAmount(date)">-</ng-container>
+        <ng-container *ngIf="hasAmount(date)">{{ getAmount(date) | number:'1.1-1' }}%</ng-container>
+    </td>
+</ng-container>

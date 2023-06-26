@@ -1,0 +1,52 @@
+.revenue-list-table table.htCore thead tr th {
+    color: white;
+    background-color: #9A9A9A;
+    /*font-weight: bold;*/
+}
+
+.revenue-list-table table.htCore th,
+.revenue-list-table table.htCore td {
+    border-color: #9A9A9A;
+}
+
+.revenue-list-table th:nth-child(3) span.colHeader,
+.revenue-list-table th:nth-child(4) span.colHeader,
+.revenue-list-table th:nth-child(5) span.colHeader {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+.revenue-list-table th span.colHeader.columnSorting::after {
+    color: #FFF !important;
+}
+
+.revenue-list-table th:nth-child(3) span.colHeader.columnSorting::after,
+.revenue-list-table th:nth-child(4) span.colHeader.columnSorting::after,
+.revenue-list-table th:nth-child(5) span.colHeader.columnSorting::after {
+    right: 5px !important;
+}
+
+.revenue-list-table table.htCore tbody tr td.htDimmed {
+    color: inherit;
+}
+
+.revenue-list-table table.htCore tbody tr td:nth-child(1) {
+    background-color: #F5F5F5;
+}
+
+.revenue-list-table table.htCore tbody tr td:nth-child(1),
+.revenue-list-table table.htCore tbody tr td:nth-child(2) {
+    text-align: center;
+}
+
+.revenue-list-table table.htCore tbody tr td:nth-child(3),
+.revenue-list-table table.htCore tbody tr td:nth-child(4),
+.revenue-list-table table.htCore tbody tr td:nth-child(5) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.revenue-list-table table.htCore tbody tr td a {
+    white-space: nowrap;
+}

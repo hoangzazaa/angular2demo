@@ -1,0 +1,10 @@
+.label__deal-status {
+    color: black;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 7px;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 3px 40px;
+    line-height: 34px;
+}

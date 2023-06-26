@@ -1,0 +1,83 @@
+<!-- Page Container -->
+<div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+    <!-- Side Overlay-->
+    <aside id="side-overlay">
+        <!-- Side Overlay Scroll Container -->
+        <div id="side-overlay-scroll">
+            <!-- Side Header -->
+            <div class="side-header side-content">
+                <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
+                <button class="btn btn-default pull-right" type="button" data-toggle="layout"
+                        data-action="side_overlay_close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <span class="font-w600 push-10-l">Admin</span>
+            </div>
+            <!-- END Side Header -->
+
+            <!-- Side Content -->
+            <div class="side-content remove-padding-t">
+                <!-- Block -->
+                <div class="block pull-r-l">
+                    <div class="block-header bg-gray-lighter">
+                        <ul class="block-options">
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="refresh_toggle"
+                                        data-action-mode="demo"><i class="si si-refresh"></i></button>
+                            </li>
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">Block</h3>
+                    </div>
+                </div>
+                <!-- END Block -->
+            </div>
+            <!-- END Side Content -->
+        </div>
+        <!-- END Side Overlay Scroll Container -->
+    </aside>
+    <!-- END Side Overlay -->
+
+    <!-- Sidebar -->
+    <sidebar-menu></sidebar-menu>
+    <!-- END Sidebar -->
+
+    <!-- Header -->
+    <header-component></header-component>
+    <!-- END Header -->
+
+    <!-- Main Container -->
+    <main id="main-container" style="min-height: 925px;">
+        <div id="custom-overlay"></div>
+        <!-- Page Header -->
+        <div class="content bg-gray-lighter" *ngIf="headerProvider.checkHeader">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="page-heading">{{headerProvider.pageName}}</h1>
+                </div>
+            </div>
+            <div class="row push-5-t push-30">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li *ngFor="let breadcrumb of headerProvider.breadcrumbs">
+                            <a *ngIf="breadcrumb.router.length > 0" class="link-effect"
+                               [routerLink]="breadcrumb.router">{{breadcrumb.name}}</a>
+                            <template [ngIf]="breadcrumb.router.length == 0">{{breadcrumb.name}}</template>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- END Page Header -->
+
+        <!-- Page Content -->
+        <router-outlet></router-outlet>
+        <!-- END Page Content -->
+    </main>
+    <!-- END Main Container -->
+
+</div>
+<!-- END Page Container -->

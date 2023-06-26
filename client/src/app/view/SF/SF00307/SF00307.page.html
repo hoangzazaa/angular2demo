@@ -1,0 +1,85 @@
+<div class="sf00307 content">
+
+    <!-- deal info -->
+    <deal-info [dealInfo]="pageData.dealInfo"></deal-info>
+    <!-- /deal info -->
+
+    <!-- 見積情報 -->
+    <quotation-information [quotations]="pageData.quotations"
+                           [dealInfo]="pageData.dealInfo"
+                           (emitFindDataProductInfo)="findDataProductInfo($event)"
+                           (emitViewQuotationInfo)="viewQuotationInfo($event)"
+    ></quotation-information>
+    <!-- /見積情報 -->
+
+    <!-- 製品情報 -->
+    <template ngFor let-productBox [ngForOf]="pageData.productBoxs" let-idx="index">
+        <!-- /製品情報 -->
+        <div class="panel panel-default sfr-panel-concern-item panel--product panel--has_checkbox">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <label class="css-input css-checkbox css-checkbox-rounded css-checkbox-lg css-checkbox-success">
+                        <input type="checkbox" [disabled]="modeView"
+                               (change)="productBoxCheckChanged($event, productBox)" [(ngModel)]="productBox.checked">
+                        <span></span>
+                    </label>
+                    <span class="panel-title__note">{{productBox.product.productCode}}</span>
+                    <button (click)="viewProductInfo(productBox.product)"
+                            class="btn btn-link remove-padding panel-title__link">
+                        {{productBox.product.productName | ellipsis}}
+                    </button>
+                    <div class="pull-right panel-title__flex-space">
+                         <span class="panel-title__date panel-title__date_label">更新日</span>
+                         <span class="panel-title__date panel-title__date_strong">{{productBox.product.updatedDate | date: 'yyyy/MM/dd'}}</span>
+                    </div>
+                    <a role="button" data-toggle="collapse" class="pull-right accordion-toggle"
+                       href="#panel_body{{idx}}"
+                       aria-expanded="true" aria-controls="panel_body01">
+                        <i class="glyphicon glyphicon-chevron-down"></i>
+                    </a>
+                </h3>
+            </div>
+            <div class="panel-collapse collapse in" product-info id="panel_body{{idx}}"
+                 [productBox]="productBox"
+                 [index]="idx"
+                 [statusExport]="true"
+                 (emitRedirectSF00302)="viewProductInfo(productBox.product)"
+                 (emitExportPDF)="exportPdf(productBox.product.id,pageData.dealInfo.dealCode)"
+            >
+            </div>
+        </div>
+    </template>
+    <!-- /製品情報 -->
+
+    <!-- 納入先情報 -->
+    <shipping-component
+            [_selectShipment]="pageData._selectShipment"
+            [mstShippings]="pageData.shippingHistory"
+            [dealInfo]="pageData.dealInfo"
+            [shippingData]="pageData.shippingModel"
+            (timePermistionChanged)="setShiptimeForAllShippingInstructions($event)"
+            (requestSelectShippingDestination)="selectShippingDestination($event)"
+    ></shipping-component>
+    <!-- /納入先情報 -->
+
+    <!-- 出荷指示 -->
+    <pay-instructions
+            [dealInfo]="pageData.dealInfo"
+            [shippingInstructions]="pageData.shippingInstructions"
+    ></pay-instructions>
+    <!-- /出荷指示 -->
+
+    <div class="push-30-t push-20 row">
+        <div class="col-sm-6">
+            <button class="btn btn-link" (click)="backToSF00301()">戻る</button>
+        </div>
+        <div class="col-sm-6 text-right">
+            <!-- [!] Refer to the sample script at the bottom of the page for notifications. -->
+            <button class="btn btn-primary js-notify-sample"
+                    [disabled]="!pageData.hasAtLeastOneProductChecked || pageData.dealInfo.confirmedOrder"
+                    (click)="requestOrder()">受注登録（製造依頼）する
+            </button>
+        </div>
+    </div>
+
+</div>

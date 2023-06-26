@@ -1,0 +1,52 @@
+<div class="modal mail-modal" #modal tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="block remove-margin-b block-opt-refresh-icon8" #block>
+                <div class="block-content">
+                    <div class="row">
+                        <div class="col-sm-12 form-horizontal form-material">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">宛先：</label>
+                                <div class="col-sm-10">
+                                    <div class="form-material">
+                                        <input class="form-control" type="text" js-tags-input [(tags)]="addressTo">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">CC：</label>
+                                <div class="col-sm-10">
+                                    <div class="form-material">
+                                        <input class="form-control" type="text" js-tags-input [(tags)]="addressCc">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">件名：</label>
+                                <div class="col-sm-10">
+                                    <div class="form-material">
+                                        <input type="text" class="form-control" [(ngModel)]="subject">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">本文：</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control noresize" rows="11" [(ngModel)]="content"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 text-left">
+                            <button class="btn btn-link" type="button" (click)="cancel()"><strong>キャンセル</strong></button>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <button class="btn btn-primary w150-sm" type="button" (click)="submit()"><strong>メールで送る</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

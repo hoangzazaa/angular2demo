@@ -1,0 +1,74 @@
+<div class="content sf00306">
+    <div class="row">
+        <div class="block-content">
+            <!-- deal info -->
+            <deal-info [dealInfo]="pageData.dealInfo"></deal-info>
+            <!-- /deal info -->
+
+            <!-- deal-check -->
+            <deal-checkSheet (emitRedirectSF00308)="viewCheckSheet()" [canEdit]="true"
+                             [checkSheets]="pageData.checkSheets"></deal-checkSheet>
+            <!-- /deal-check -->
+            <hr>
+            <!-- 製品情報 -->
+            <!--for template list product-->
+            <template ngFor let-productBox [ngForOf]="pageData.productBoxs" let-idx="index">
+                <!-- /製品情報 -->
+                <div class="panel panel-default sfr-panel-concern-item panel--product panel--has_checkbox">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <label class="css-input css-checkbox css-checkbox-rounded css-checkbox-lg css-checkbox-success">
+                                <input type="checkbox" [checked]="productBox.checked" id="checkbox{{productBox.product.id}}"
+                                       (change)="productBoxChecked(productBox,$event)">
+                                <span></span>
+                            </label>
+                            <span class="panel-title__note">{{productBox.product.productCode}}</span>
+                            <button (click)="viewProductInfo(productBox.product)"
+                               class="btn btn-link remove-padding panel-title__link">
+                                {{productBox.product.productName | ellipsis: 20}}
+                            </button>
+                            <div class="pull-right panel-title__flex-space">
+                                <button class="btn btn-primary" (click)="exportPdf(productBox.product.productCode)">
+                                    製造仕様書出力
+                                </button>
+                                <span class="panel-title__date panel-title__date_label">更新日</span>
+                                <span class="panel-title__date panel-title__date_strong">{{productBox.product.updatedDate | date: 'yyyy/MM/dd'}}</span>
+                            </div>
+                            <a role="button" data-toggle="collapse" class="pull-right accordion-toggle"
+                               href="#panel_body{{idx}}"
+                               aria-expanded="true" aria-controls="panel_body01">
+                                <i class="glyphicon glyphicon-chevron-down"></i>
+                            </a>
+
+                        </h3>
+                    </div>
+                    <div class="panel-collapse collapse in" product-info id="panel_body{{idx}}"
+                         [isRequestDesign]="true"
+                         [productBox]="productBox"
+                         [index]="idx"
+                         [isOrder]="true"
+                         [mstLaminations]="pageData.mstLaminations"
+                         (emitRedirectSF00302)="viewProductInfo(productBox.product)"
+                         (requestUpdateProduct)="changeProductLot(productBox.product)">
+                    </div>
+                </div>
+            </template>
+            <!--/for template list product-->
+
+            <div class="push-30-t push-20 row">
+                <div class="col-sm-6">
+                    <button class="btn btn-link" (click)="backToSF00301()">戻る</button>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <button class="btn btn-primary" (click)="showMailModal()" [disabled]="!pageData.checkEnabled || isJobInprocess">
+                        選択した製品の設計を依頼する
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content -->
+</div>
+
+<sf00306Mail (applyMail)="sendMail()"></sf00306Mail>
+<sf0030602 (emitSelectedPic) = "addMailPic()"></sf0030602>

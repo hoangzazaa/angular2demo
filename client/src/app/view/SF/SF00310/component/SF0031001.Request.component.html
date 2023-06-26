@@ -1,0 +1,149 @@
+<!-- 関連ファイル -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a role="button" data-toggle="collapse" class="accordion-toggle" href="#panel_body03"
+               aria-expanded="true" aria-controls="panel_body03">
+                <strong>依頼内容</strong>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in pad" id="panel_body03">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <!--start row 1-->
+                <div class="form-group">
+                    <div class="col-sm-7">
+                        <div class="row">
+                            <label for="rank" class="control-label col-sm-5" style="text-align: right">ランク</label>
+                            <div class="col-sm-7">
+                                <select id="rank" name="rank" class="form-control" [(ngModel)]="rank">
+                                    <option *ngFor="let rnk of mstRank" [value]="rnk.id">{{ rnk.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end row 1-->
+
+                <!--start row 2-->
+                <div class="form-group">
+                    <div class="col-sm-7">
+                        <div class="row">
+                            <label for="target" class="control-label col-sm-5" style="text-align: right">ターゲット</label>
+                            <div class="form-material remove-margin-t remove-margin-b col-sm-7">
+                                <input id="target" name="target" type="text" class="form-control" [(ngModel)]="target"
+                                       maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <label for="rse" class="control-label col-sm-5" style="text-align: right">用途</label>
+                            <div class="form-material remove-margin-t remove-margin-b col-sm-7">
+                                <input id="rse" name="rse" type="text" class="form-control" [(ngModel)]="rse"
+                                       maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end row 2-->
+
+                <!--start row 3-->
+                <div class="form-group">
+                    <div class="col-sm-7">
+                        <div class="row">
+                            <label for="department" class="control-label col-sm-5" style="text-align: right">売り場</label>
+                            <div class="form-material remove-margin-t remove-margin-b col-sm-7">
+                                <input id="department" name="department" type="text" class="form-control"
+                                       [(ngModel)]="department" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <label for="designConcept" class="control-label col-sm-5"
+                                   style="text-align: right">デザインコンセプト</label>
+                            <div class="form-material remove-margin-t remove-margin-b col-sm-7">
+                                <input id="designConcept" name="designConcept" type="text" class="form-control"
+                                       [(ngModel)]="designConcept" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end row 3-->
+
+                <!--start row 4-->
+                <div class="form-group">
+                    <div class="col-sm-7">
+                        <div class="row">
+                            <label for="methodStereoscopicDummy" class="control-label col-sm-5"
+                                   style="text-align: right">
+                                プレゼン方法 立体ダミー
+                            </label>
+                            <div class="form-material remove-margin-t remove-margin-b col-sm-5">
+                                <input id="methodStereoscopicDummy" name="methodStereoscopicDummy"
+                                       type="text" class="form-control" maxlength="3"
+                                       [(ngModel)]="methodStereoscopicDummy">
+                            </div>
+                            <label class="control-label col-sm-2">部</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <label for="flatOutput" class="control-label col-sm-5"
+                                   style="text-align: right">平面出力</label>
+                            <div class="form-material remove-margin-t remove-margin-b col-sm-5">
+                                <input id="flatOutput" name="flatOutput" type="text" class="form-control" maxlength="3"
+                                       [(ngModel)]="flatOutput">
+                            </div>
+                            <label class="control-label col-sm-2">部</label>
+                        </div>
+                    </div>
+                </div>
+                <!--end row 4-->
+
+                <hr/>
+
+                <!--start row 5-->
+                <div class="form-group">
+                    <div class="col-sm-7">
+                        <div class="row">
+                            <label for="desiredDeliveryDate" class="control-label col-sm-5" style="text-align: right">希望納期</label>
+                            <div class="form-material remove-margin-t remove-margin-b col-sm-7">
+                                <input class="form-control" date-input name="desiredDeliveryDate"
+                                       id="desiredDeliveryDate" placeholder="YYYY年M月D日"
+                                       [dateModel]="desiredDeliveryDate"
+                                       [defaultDate]="defaultDesiredDeliveryDate"
+                                       (dateModelChange)="setDesiredDelivery($event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <label for="submissionDeadline" class="control-label col-sm-5"
+                                   style="text-align: right">入稿期限</label>
+                            <div class="form-material remove-margin-t remove-margin-b col-sm-7">
+                                <input class="form-control" date-input name="submissionDeadline"
+                                       id="submissionDeadline" placeholder="YYYY年M月D日" [dateModel]="submissionDeadline"
+                                       [defaultDate]="defaultSubmissionDeadline"
+                                       (dateModelChange)="setSubmissionDeadline($event)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end row 5-->
+
+                <!--start row 6-->
+                <div class="form-group">
+                    <label for="memo" class="control-label col-sm-3" style="text-align: right">メモ</label>
+                    <div class="form-material remove-margin-t remove-margin-b col-sm-9 pad-10-l">
+                        <input id="memo" name="memo" type="text" class="form-control" maxlength="60" [(ngModel)]="memo">
+                    </div>
+                </div>
+                <!--end row 6-->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="modal-dialog modal-lg" role="document" id="dialog-center">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">材料選択（板紙・ライナー）</h3>
+        </div>
+        <div class="modal-body sf0030222">
+            <div class="form-group push-30-l">
+                <input class="js-tags-input form-control" type="text" id="inputPaperName" name="inputPaperName"
+                       [(tags)]="tags"
+                       js-tags-input (tagsChange)="onKeywordsChange($event)"
+                >
+                <br>
+                <p style="margin-bottom: 5px">該当件数 {{record}} 件</p>
+                <div class="row">
+                    <div class="block">
+                        <div class="block-content block-content-full">
+                            <div class="panel-body block panel-body--has-tab_block">
+                                <ul class="nav nav-tabs nav-tabs-alt">
+                                    <li [ngClass] = "{'active': tabNumber==1}">
+                                        <a href="#tab1" data-toggle="tab" (click)="changeTab(1)">一般</a>
+                                    </li>
+                                    <li [ngClass] = "{'active': tabNumber==2}" *ngIf = "checkShowTab2">
+                                        <a href="#tab2" data-toggle="tab" (click)="changeTab(2)">特殊（金・銀など）</a>
+                                    </li>
+                                </ul>
+                                <!--tab content-->
+                                <div class="tab-content">
+                                    <!--tab 1-->
+                                    <div class="tab-pane tab-pane--default" [ngClass] = "{'active': tabNumber==1}" id="tab1">
+                                        <table class="js-table-checkable table table-hover table table-fixed">
+                                            <thead>
+                                            <tr>
+                                                <th class="col-xs-6">材料名</th>
+                                                <th class="col-xs-3">坪量 <span style="text-transform:none;">(g)</span></th>
+                                                <th class="col-xs-3">建値 <span style="text-transform:none;">(Kg)</span></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="table-body-paperOther">
+                                            <tr *ngFor="let paper of dataPaging;let idx=index"
+                                                [class.active]="pageData.indexPaperTab1==idx"
+                                                (click)="changeDataRow(idx)">
+                                                <td class="col-xs-6">{{paper.paperName==null?"-":paper.paperName}}</td>
+                                                <td class="col-xs-3">{{paper.basicWeight==null?"-":paper.basicWeight}}</td>
+                                                <td class="col-xs-3">{{paper.normValue==0?"準備調整中":paper.normValue}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <pagination-component [total]="papersSearch.length" [pageSize]="pageSize"
+                                                              [currentPage]="pageIndex"
+                                                              (currentPageChange)="onPageChanged($event)"></pagination-component>
+                                    </div>
+                                    <!--tab 2-->
+                                    <div class="tab-pane tab-pane--default" [ngClass] = "{'active': tabNumber==2}" id="tab2" *ngIf = "checkShowTab2">
+                                        <table class="js-table-checkable table table-hover table table-fixed">
+                                            <thead>
+                                            <tr>
+                                                <th class="col-xs-4">原紙名</th>
+                                                <th class="col-xs-2">坪量 <span style="text-transform:none;">(g)</span></th>
+                                                <th class="col-xs-2">縦 <span style="text-transform:none;">(mm)</span></th>
+                                                <th class="col-xs-2">横 <span style="text-transform:none;">(mm)</span></th>
+                                                <th class="col-xs-2">建値 <span style="text-transform:none;">(Kg)</span></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="table-body-paperOther">
+                                            <tr *ngFor="let paper of dataPagingTab2;let idx=index"
+                                                [class.active]="pageData.indexPaperTab2==idx"
+                                                (click)="changeDataRow(idx)">
+                                                <td class="col-xs-4">{{paper.paperName==null?"-":paper.paperName}}</td>
+                                                <td class="col-xs-2">{{paper.basicWeight==null?"-":paper.basicWeight}}</td>
+                                                <td class="col-xs-2">{{paper.paperSizeW==null?"-":paper.paperSizeW}}</td>
+                                                <td class="col-xs-2">{{paper.paperSizeH==null?"-":paper.paperSizeH}}</td>
+                                                <td class="col-xs-2">{{paper.normValue==0?"準備調整中":paper.normValue}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <pagination-component [total]="papersSearchTab2.length" [pageSize]="pageSize"
+                                                              [currentPage]="pageIndexTab2"
+                                                              (currentPageChange)="onPageChanged($event)"></pagination-component>
+                                    </div>
+                                </div>
+                                <!--tab content-->
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <h4 class="col-sm-12 ">材料情報</h4>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label class="col-xs-12">材料名</label>
+                            <div class="col-sm-12"><input class="form-control" placeholder="材料名"
+                                                          [(ngModel)]="paperNameDisplay" maxlength="40"></div>
+                        </div>
+                            <div class="form-group col-sm-4">
+                            <label class="col-xs-12">坪量</label>
+                            <div class="col-sm-12"><input class="form-control" placeholder="坪量" number-input
+                                                          [(numberValue)]="paperWeightDisplay" [numberPrecision]="0" [defaultValue]="0" [maxValue]="999999"></div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label class="col-xs-12">建値</label>
+                            <div class="col-sm-12"><input class="form-control" placeholder="建値"number-input
+                                                          [(numberValue)]="paperNormValueDisplay" [defaultValue]="0" [numberPrecision]="0" [maxValue]="999999"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button class="btn btn-link" (click)="closeModal()">キャンセル</button>
+                <button class="btn btn-info" [disabled] = "!isSubmit" (click)="submitData()">選択する</button>
+            </div>
+        </div>
+        <!--<hr>-->
+
+    </div>
+
+</div>

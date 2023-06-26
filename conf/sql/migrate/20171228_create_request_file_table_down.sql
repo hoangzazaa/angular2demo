@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS `sfr_sf_comment_file`;

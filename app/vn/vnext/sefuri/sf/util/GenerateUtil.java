@@ -1,0 +1,165 @@
+package vn.vnext.sefuri.sf.util;
+
+import com.google.common.base.Strings;
+import play.api.libs.Codecs;
+import vn.vnext.sefuri.sf.common.Constants;
+
+import java.text.MessageFormat;
+import java.util.UUID;
+
+/**
+ * This class use to generate code for Deal Code, Template Code... and parse id from code provides.
+ *
+ * @author manhnv
+ */
+public final class GenerateUtil implements Constants {
+    private static final int LENGTH = 5;
+
+    /**
+     * Method use to generate the template code.
+     * <pre>Rule: Not define. E.g. TMP00001</pre>
+     *
+     * @param rootId template id
+     * @return template code
+     */
+    //TODO - now there is no rule for template code, may be update when the rule updated.
+    public static String generateTemplateCode(final Integer rootId) {
+        if (rootId == null)
+            throw new IllegalArgumentException(MessageFormat.format("The rootId = {0} is not valid. Must save item " +
+                    "first!", rootId));
+
+        int currLength = String.valueOf(rootId).length();
+        StringBuilder sb = new StringBuilder(LENGTH).append(FIXED_TMP);
+
+        if (currLength >= LENGTH)
+            sb.append(rootId);
+        else
+            // Pad with zeros and a width of 5 chars.
+            sb.append(String.format(DEFAULT_FORMAT_PAD_5_ZERO, rootId));
+
+        return sb.toString();
+    }
+
+    /**
+     * Method use to generate the deal code.
+     * <pre>Rule:</pre>
+     * <code>
+     * 10 characters length
+     * 1~2 character: last two number of the year
+     * 3 character: fixed value is 'S'
+     * 4~8 character: auto number generate by system
+     * 9~10 character: the branch code
+     * </code>
+     *
+     * @param rootId deal id
+     * @return deal code
+     */
+    public static String generateDealCode(final Integer rootId) {
+        if (rootId == null)
+            throw new IllegalArgumentException(MessageFormat.format("The rootId = {0} is not valid. Must save item " +
+                    "first!", rootId));
+
+        int currLength = String.valueOf(rootId).length();
+        int currentYear = DateUtil.getSysDate().yearOfCentury().get();
+        StringBuilder sb = new StringBuilder(LENGTH).append(currentYear).append(FIXED_DEAL);
+
+        if (currLength >= LENGTH)
+            sb.append(rootId);
+        else
+            // Pad with zeros and a width of 5 chars.
+            sb.append(String.format(DEFAULT_FORMAT_PAD_5_ZERO, rootId));
+
+        //TODO - at the moment deal code without branch code.
+        return sb.toString();
+    }
+
+    public static String generateQuotationCode(final String dealCode, final Integer rootId) {
+        if (rootId == null || dealCode == null)
+            throw new IllegalArgumentException(MessageFormat.format("The rootId = {0} is not valid. Must save item " +
+                    "first!", rootId));
+        StringBuilder sb = new StringBuilder();
+
+        // append deal code
+        sb.append(dealCode);
+        // append '-'
+        sb.append(Constants.MINUS);
+        // append quotation code
+        sb.append(QUOTATION_CODE);
+        // Pad with zeros and a width of 5 chars.
+        sb.append(String.format(DEFAULT_FORMAT_PAD_3_ZERO, rootId));
+
+        return sb.toString();
+    }
+
+    /**
+     * Method use to get template id from template code.
+     *
+     * @param rootCode template code
+     * @return template id
+     */
+    public static Integer getTemplateIdByCode(final String rootCode) {
+        if (Strings.isNullOrEmpty(rootCode))
+            throw new IllegalArgumentException(MessageFormat.format("The rootCode = {0} is not exist.!", rootCode));
+
+        return Integer.parseInt(rootCode.substring(FIXED_TMP.length()));
+    }
+
+    /**
+     * Method use to get deal id from deal code.
+     *
+     * @param rootCode deal code
+     * @return deal id
+     */
+    public static Integer getDealIdByCode(final String rootCode) {
+        if (Strings.isNullOrEmpty(rootCode))
+            throw new IllegalArgumentException(MessageFormat.format("The rootCode = {0} is not exist.!", rootCode));
+
+        //TODO - at the moment deal code without branch code.
+        return Integer.parseInt(rootCode.substring(3, rootCode.length()));
+    }
+
+    public static String generateProductCode(final Integer productId) {
+        String productCode = BLANK;
+        if (productId != null) {
+            productCode = FIXED_PRODUCT + String.format("%06d", productId);
+            return productCode;
+        }
+        return null;
+    }
+
+    /**
+     * Append secret key and encript given password.
+     *
+     * @param password the password to encode
+     * @return encoded string
+     */
+    public static String encode(final String password) {
+        if (Strings.isNullOrEmpty(password))
+            throw new IllegalArgumentException("Wrong password to encode.");
+
+        return Codecs.md5((password + SECRET_KEY).getBytes());
+    }
+
+    /**
+     * Method use to generate unique ids. The identifiers generated by UUID are actually universally unique identifiers.
+     *
+     * @return unique id.
+     */
+    public static String generateUniqueId() {
+        //generate random UUIDs
+        return UUID.randomUUID().toString();
+    }
+
+    public static String parseMailAddress(final String email){
+        if(email==null)
+            return null;
+        try{
+            String mailAddress = email.substring(email.indexOf("<") + 1, email.indexOf(">"));
+
+            return mailAddress;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+}

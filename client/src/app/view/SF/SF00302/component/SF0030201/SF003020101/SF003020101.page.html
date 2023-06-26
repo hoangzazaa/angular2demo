@@ -1,0 +1,116 @@
+<!-- Page Content -->
+<div class="content sf003020201">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="block">
+                <div class="block-content">
+                    <div class="form-group text-right">
+                        <button class="btn btn-link" (click)="cancelProduct()">キャンセル</button>
+                        <div class="btn-group">
+                            <button class="btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown"
+                                    [disabled]="isView" *ngIf="hasProduct">
+                                複製して保存
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a (click)="duplicateProduct(1)">改版として保存</a>
+                                </li>
+                                <li>
+                                    <a (click)="duplicateProduct(2)">新版として保存</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-primary" (click)="saveProduct()"
+                                [disabled]="isView">
+                            保存する
+                        </button>
+                    </div>
+                    <sf0030201 [helper]="helper"></sf0030201>
+
+
+                    <hr class="hidden-print">
+
+                    <sf0030204 [helper]="helper"></sf0030204>
+
+                    <!-- 材料 -->
+                    <sf0030206 [helper]="helper"></sf0030206>
+
+                    <!-- 貼合 -->
+                    <sf0030207 [helper]="helper"></sf0030207>
+
+                    <!-- 印刷 -->
+                    <sf0030208 [helper]="helper"></sf0030208>
+
+                    <!-- 表面加工 -->
+                    <sf0030209 [helper]="helper"></sf0030209>
+
+                    <!-- 型出し・箔押し加工 -->
+                    <sf0030210 [helper]="helper"></sf0030210>
+
+                    <!-- 窓貼り加工 -->
+                    <sf0030211 [helper]="helper"></sf0030211>
+
+                    <!-- 打抜・貼り工程 -->
+                    <sf0030212 [helper]="helper"></sf0030212>
+
+                    <!-- 検品・梱包・配送 -->
+                    <sf0030213 [helper]="helper"></sf0030213>
+
+                    <!-- バーコード -->
+                    <sf0030227-barcode [helper]="helper"></sf0030227-barcode>
+
+                    <!-- 備考 -->
+                    <sf0030223 [helper]="helper"></sf0030223>
+
+                    <!-- その他（製造単価に含める特殊加工工賃等） -->
+                    <sf0030214 [helper]="helper"></sf0030214>
+                    <!-- 関連ファイル -->
+                    <sf0030205 [helper]="helper"></sf0030205>
+
+                    <div class="push-30-t push-20 text-right">
+                        <button class="btn btn-link" (click)="cancelProduct()">キャンセル</button>
+                        <div class="btn-group">
+                            <button class="btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown"
+                                    [disabled]="isView" *ngIf="hasProduct">
+                                複製して保存
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a (click)="duplicateProduct(1)">改版として保存</a>
+                                </li>
+                                <li>
+                                    <a (click)="duplicateProduct(2)">新版として保存</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-primary" (click)="saveProduct()"
+                                [disabled]="isView">
+                            保存する
+                        </button>
+                    </div>
+                    <div class="push-30-t push-20">
+                        <button class="btn btn-link text-danger" (click)="deleteDealProduct()"
+                                *ngIf="hasProduct" [disabled]=" isView">削除
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <!--試算表出力-->
+            <sf0030202 [helper]="helper"></sf0030202>
+            <!--見積り共通費目-->
+            <sf0030203 [helper]="helper"></sf0030203>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="push-10-t push-30-l">
+        <button class="btn btn-link" (click)="cancelProduct()">戻る</button>
+    </div>
+</div>

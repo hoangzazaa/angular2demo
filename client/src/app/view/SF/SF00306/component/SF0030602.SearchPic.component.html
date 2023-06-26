@@ -1,0 +1,61 @@
+<div id="searchModal" class="modal fade" role="dialog" tabindex="-1"
+     data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document" id="dialog-center">
+        <!-- Modal content-->
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">担当者検索</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="remove-margin-t col-xs-12">
+                        <div class="remove-margin-t" style="margin-bottom: 10px;border: 1px solid black">
+                            <input class="js-tags-input form-control" type="text" id="inputTab" name="inputTab"
+                                   js-tags-input [(tags)]="keySearchs" (tagsChange)="onKeywordsChange($event)">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-horizontal">
+                    <div class="col-xs-6" style="margin-top: 30px;">
+                        <table class="table table-borderless table-hover">
+                            <tr class = "bg-gray-lighter">
+                                <th>支店/グループ</th>
+                            </tr>
+                            <tbody style="height: 300px; overflow-y: auto; display: block;"  id="table-body-department">
+                            <div class="list-group">
+                                <a class="list-group-item cursor-hand"
+                                   *ngFor="let dpm of pageData.listDepartmentScreen, let i = index"
+                                   (click)="changeDepartment(i)" [ngClass]="{'active': dpm['active'] }">{{dpm.department}}</a>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-xs-6" style="margin-top: 30px;">
+                        <table class="table table-borderless table-hover">
+                            <tr class = "bg-gray-lighter">
+                                <th>担当者名</th>
+                            </tr>
+                            <tbody style="height: 300px; overflow-y: auto; display: block;" id="table-body-userPic">
+                            <div class="list-group">
+                                <a class="list-group-item cursor-hand"
+                                   *ngFor="let u of pageData.listPicScreen, let i = index"
+                                   (click)="changeUser(i)" [ngClass]="{'active': u['active'] }">{{u.username}}</a>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="background-color: white; border: none;">
+                <div class="col-sm-8">
+                    <button class="btn btn-link pull-left" (click)="closeModalUserPic()">キャンセル</button>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-block btn-info" (click)="submitUserPic()">選択</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

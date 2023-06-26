@@ -1,0 +1,133 @@
+<div class="modal sdm_shipping-detail-modal" #modal tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="block remove-margin-b">
+                <div class="block-header">
+                    <h3 class="block-title">納入先情報</h3>
+                </div>
+                <div class="block-content remove-padding-t">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">納入先情報</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" [(ngModel)]="destinationId">
+                                    <option *ngFor="let dstn of destinationList" [ngValue]="dstn.sdm_id">
+                                        {{ dstn.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">納入先名</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" maxlength="30" [(ngModel)]="destination.sdm_deliveryName">
+                            </div>
+                            <label class="control-label col-sm-2">略称</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" maxlength="8" [(ngModel)]="destination.sdm_abbreviation">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">フリガナ</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" maxlength="30" [(ngModel)]="destination.sdm_furigana">
+                            </div>
+                            <label class="control-label col-sm-2">略称カナ</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" maxlength="8" [(ngModel)]="destination.sdm_abbrFurigana">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">郵便番号</label>
+                            <div class="col-sm-4 form-material">
+                                <input type="text" maxlength="8" class="form-control" [(ngModel)]="destination.sdm_postalCode">
+                            </div>
+                            <label class="control-label col-sm-2 col-sm-offset-1">地区コード</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" [(ngModel)]="destination.sdm_districtCode">
+                                    <option *ngFor="let opt of districtList" [ngValue]="opt.value">{{ opt.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">住所1</label>
+                            <div class="col-sm-10 form-material">
+                                <input type="text" class="form-control" maxlength="40" [(ngModel)]="destination.sdm_address1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">住所2</label>
+                            <div class="col-sm-10 form-material">
+                                <input type="text" class="form-control" maxlength="40" [(ngModel)]="destination.sdm_address2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">TEL</label>
+                            <div class="col-sm-4 form-material">
+                                <input type="text" class="form-control" maxlength="13" [(ngModel)]="destination.sdm_tel">
+                            </div>
+                            <label class="control-label col-sm-2">納入可能車両サイズ</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" [(ngModel)]="destination.sdm_availableVehicleSize">
+                                    <option *ngFor="let opt of vehicleList" [ngValue]="opt.value">{{ opt.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">FAX</label>
+                            <div class="col-sm-4 form-material">
+                                <input type="text" class="form-control" maxlength="13" [(ngModel)]="destination.sdm_fax">
+                            </div>
+                            <label class="control-label col-sm-2">時間指定</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-sm" readonly [ngModel]="destination.sdm_specifyTime">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" (click)="pickSpecifyTime()">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">担当部署</label>
+                            <div class="col-sm-4 form-material">
+                                <input type="text" class="form-control" maxlength="30" [(ngModel)]="destination.sdm_deptName">
+                            </div>
+                            <label class="control-label col-sm-2">付帯作業</label>
+                            <div class="col-sm-4 form-material">
+                                <input type="text" class="form-control" maxlength="30" [(ngModel)]="destination.sdm_extraWork">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">得意先担当者</label>
+                            <div class="col-sm-4 form-material">
+                                <input type="text" class="form-control" maxlength="30" [(ngModel)]="destination.sdm_salerName">
+                            </div>
+                            <label class="control-label col-sm-2">伝票指定</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" [(ngModel)]="destination.sdm_extraMethod">
+                                    <option *ngFor="let opt of formList" [value]="opt.value">{{ opt.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">備考</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" style="resize:none" rows="2" maxlength="60" [(ngModel)]="destination.sdm_memo"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-link" type="button" (click)="cancel()"><strong>キャンセル</strong></button>
+                <button class="btn btn-primary" type="button" (click)="save()" preventDC [valid]="saveEnable">
+                    <strong>新しい納入先場所として追加する</strong>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<specify-time-modal></specify-time-modal>

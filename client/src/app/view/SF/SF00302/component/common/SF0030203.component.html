@@ -1,0 +1,99 @@
+<!--見積り共通費目-->
+<div class="block">
+    <div class="block-header">
+        <h3 class="h5">見積り共通費目</h3>
+    </div>
+    <div class="block-content">
+        <div class="form-horizontal material-form-group">
+            <div class="form-group">
+                <label class="control-label control-label--material col-sm-5">デザイン代</label>
+                <div class="col-sm-5">
+                    <div class="form-material">
+                        <input type="text" class="form-control text-right"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="designFee" [maxValue] = "9999999999"
+                               [numberPrecision]="0">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-control-static form-control-static--material">
+                        円
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label control-label--material col-sm-5">製版代</label>
+                <div class="col-sm-5">
+                    <div class="form-material">
+                        <input type="text" class="form-control text-right"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="plateMakingFee" [maxValue] = "9999999999"
+                               [numberPrecision]="0">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-control-static form-control-static--material">
+                        円
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label control-label--material col-sm-5">木型代</label>
+                <div class="col-sm-5">
+                    <div class="form-material">
+                        <input type="text" class="form-control text-right"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="woodenFee" [maxValue] = "9999999999"
+                               [numberPrecision]="0">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-control-static form-control-static--material">
+                        円
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label control-label--material col-sm-5">金型代</label>
+                <div class="col-sm-5">
+                    <div class="form-material">
+                        <input type="text" class="form-control text-right"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="moldFee" [maxValue] = "9999999999"
+                               [numberPrecision]="0">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-control-static form-control-static--material">
+                        円
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label control-label--material col-sm-5">樹脂版代</label>
+                <div class="col-sm-5">
+                    <div class="form-material">
+                        <input type="text" class="form-control text-right"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="resinFee" [maxValue] = "9999999999"
+                               [numberPrecision]="0">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-control-static form-control-static--material">
+                        円
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="push-20-t text-center">
+            <button class="btn btn-sm btn-primary" (click)="resetProductCommon()"
+                    *ngIf="checkCreate" [disabled]="isCreateNewProduct || isView">キヤンセル
+            </button>
+
+            <button class="btn btn-sm btn-primary" (click)="saveProductCommon()"
+                    *ngIf="checkCreate" [disabled]="isCreateNewProduct || isView">保存する
+            </button>
+        </div>
+    </div>
+</div>

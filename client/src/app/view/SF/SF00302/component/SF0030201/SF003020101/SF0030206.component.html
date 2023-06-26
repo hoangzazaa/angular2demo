@@ -1,0 +1,169 @@
+<!-- 材料 -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body03" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body03" role="button">
+                <i class="fa push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateProductMaterial,'fa-circle-o text-gray':!stateProductMaterial}"></i>
+                <span>材料</span>
+
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body03">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('paperNameId') }">原紙名/坪量</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" [(ngModel)]="paperNameId"
+                                [disabled]="isCreateNewProduct || isView"
+                                [style.border]="checkBorderPaperNameId.style"
+                                [style.border-radius]="checkBorderPaperNameId.radius">
+                            <optgroup label="コートボール系">
+                                <option *ngFor="let t of paperCoalBallOption" [value]="t['id']">{{t['name']}}</option>
+                            </optgroup>
+                            <optgroup label="カードB系">
+                                <option *ngFor="let t of paperCardBOption" [value]="t['id']">{{t['name']}}</option>
+                            </optgroup>
+                            <option *ngIf="paperTmp.paperName" value="100">{{paperTmp.paperName}}
+                            </option>
+                            <option value="99">その他（板紙・ライナー）</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="paperWeight"
+                                [disabled]="isCreateNewProduct || isView"
+                                [style.border]="checkBorderPaperWeight.style"
+                                [style.border-radius]="checkBorderPaperWeight.radius">
+                            <option *ngFor="let t of paperOptions" [value]="t">{{t}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 remove-padding" *ngIf="paperNormValue!=0">
+                        <div class="form-control-static">{{paperNormValue + '円（k@）'}}</div>
+                    </div>
+                    <div class="col-sm-2 remove-padding" *ngIf="paperNormValue==0">
+                        <div class="form-control-static">要確認</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"></label>
+                    <div class="col-sm-9">
+                        <label
+                                class="css-input css-checkbox css-checkbox-success"
+                                [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('paperApprovalFlag') }">
+                            <input type="checkbox" [checked]="paperHeadApprovalFlag"
+                                   [(ngModel)]="paperHeadApprovalFlag"
+                                   [disabled]="isCreateNewProduct || isView"/><span></span>
+                            <span>部門長建値を使用</span>
+                        </label>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('paperSize') }">原紙サイズ (mm)</label>
+                    <div class="col-sm-7">
+                        <select class="form-control" [(ngModel)] = "sheetSize"
+                                [disabled]="isCreateNewProduct || isView || disabledIssue2344"
+                                [style.border]="checkBorderPaperSheetSize.style"
+                                [style.border-radius]="checkBorderPaperSheetSize.radius">
+                            <option *ngFor="let item of pageData.mstSheetSizeDisplay; let idx = index" [ngValue]="idx+1">
+                                {{item.width}} x {{item.height}}
+                            </option>
+                            <option value="0">その他のサイズ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" style="padding-top: 25px;"></label>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px;"><small>縦</small></span>
+                        <input type="text" class="form-control" placeholder="縦"
+                               [disabled]="isCreateNewProduct || isView || sheetSize !=0 || disabledIssue2344" value="640" [defaultValue]="0"
+                               number-input
+                               [(numberValue)]="paperSizeW" [maxValue]="9999" [numberPrecision]="0"
+                               [style.border]="checkBorderPaperSizeW.style"
+                               [style.border-radius]="checkBorderPaperSizeW.radius">
+                    </div>
+                    <div class="col-sm-1 text-center">
+                        <div class="form-control-static" style="padding-top: 25px;">×</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px;"><small>横</small></span>
+                        <input type="text" class="form-control" placeholder="横"
+                               [disabled]="isCreateNewProduct || isView || sheetSize !=0 || disabledIssue2344" [defaultValue]="0" number-input
+                               [(numberValue)]="paperSizeH"
+                               [maxValue]="9999" [numberPrecision]="0"
+                               [style.border]="checkBorderPaperSizeH.style"
+                               [style.border-radius]="checkBorderPaperSizeH.radius">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" style="padding-top: 25px;"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('cutPaperSize') }">断裁サイズ (mm)</label>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px;"><small>縦</small></span>
+                        <input type="text" class="form-control" placeholder="縦"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="cutPaperSizeW" [maxValue]="9999"
+                               [numberPrecision]="0"
+                               [style.border]="checkBorderCutPaperSizeW.style"
+                               [style.border-radius]="checkBorderCutPaperSizeW.radius">
+                    </div>
+                    <div class="col-sm-1 text-center">
+                        <div class="form-control-static" style="padding-top: 25px;">×</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <span style="padding-left: 15px;"><small>横</small></span>
+                        <input type="text" class="form-control" placeholder="横"
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="cutPaperSizeH"
+                               [maxValue]="9999" [numberPrecision]="0"
+                               [style.border]="checkBorderCutPaperSizeH.style"
+                               [style.border-radius]="checkBorderCutPaperSizeH.radius">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('takenNumber') }">取数（丁）</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="takenNumber"
+                               [maxValue]="999" [numberPrecision]="0"
+                               [style.border]="checkBorderTakenNumber.style"
+                               [style.border-radius]="checkBorderTakenNumber.radius">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('impositionNumber') }">面付数（丁）</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView" [defaultValue]="0" number-input
+                               [(numberValue)]="impositionNumber"
+                               [maxValue]="999" [numberPrecision]="0"
+                               [style.border]="checkBorderImpositionNumber.style"
+                               [style.border-radius]="checkBorderImpositionNumber.radius">
+                    </div>
+                </div>
+                <div style="background:#FCDFDF" class="text-center" style="padding:10px" *ngIf="checkImposition">
+                    <p style="color: #b95e5e;font-size:16px"><strong>材料の在庫有無を購買に確認してください</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /材料 -->
+<div class="modal fade"
+     [mstPapersBackground]="mstPapersBackground"
+     [mstPapersBackgroundTab2]="mstPapersBackgroundTab2"
+     paper-modal (emitSubmitData)="setPaperModalResult($event)"
+     tabindex="-1" role="dialog" id="paperModal"
+     data-backdrop="static" data-keyboard="false" (emitClosed)="closedModal()" [helper]="helper">
+</div>

@@ -1,0 +1,73 @@
+<div class="content sf00305">
+    <div class="block">
+        <div class="block-content">
+            <div class="row">
+                <div class="col-sm-4 push">
+                    <img src="{{quotationImage}}" class="img-responsive">
+                </div>
+                <div class="col-sm-offset-1 col-sm-7">
+                    <form id="validateForm" class="js-validation-material">
+                        <div class="form-horizontal form-material">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 control-label--material">宛先：</label>
+                                <div class="col-sm-10">
+                                    <div class="form-material form-material--mail-input">
+                                        <input class="js-tags-input form-control" type="text" id="mailto" name="mailto"
+                                               js-tags-input [preAddTag]="preAddTag" [tags]="addressTo"
+                                               (tagsChange)="_setAddressTo($event)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 control-label--material">CC：</label>
+                                <div class="col-sm-10">
+                                    <div class="form-material form-material--mail-input">
+                                        <input class="js-tags-input form-control" type="text" id="mailcc" name="mailcc"
+                                               js-tags-input [preAddTag]="preAddTag"
+                                               (tagsChange)="_setAddressCc($event)"
+                                               [tags]="addressCc">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 control-label--material">件名：</label>
+                                <div class="col-sm-10">
+                                    <div class="form-material">
+                                        <input type="text" class="form-control" placeholder="" [(ngModel)]="subject"
+                                               id="subject" name="subject">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">本文：</label>
+                                <div class="col-sm-10">
+                      <textarea class="form-control" rows="10" [(ngModel)]="contentMail" id="contentMail"
+                                name="contentMail">
+
+                      </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group push-50">
+                                <label class="control-label col-sm-2">添付：</label>
+                                <div class="col-sm-10">
+                                    <!-- DropzoneJS  -->
+                                    <!-- For more info and examples you can check out http://www.dropzonejs.com/#usage -->
+                                    <form class="dropzone push-30-t push-30" action="index.html"></form>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                </div>
+                                <div class="col-sm-8 text-right">
+                                    <button class="btn btn-link" (click)="backToPrevious()">キャンセル</button>
+                                    <button class="btn btn-primary" (click)="sendQuotationMail()">送信</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

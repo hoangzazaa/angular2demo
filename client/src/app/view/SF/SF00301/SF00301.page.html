@@ -1,0 +1,207 @@
+<div class="content sf0030103">
+    <div class="row">
+        <div class="col-sm-9">
+
+            <div class="block">
+                <div class="block-content">
+
+                    <!--DealInfo-->
+                    <sf0030101-dealOverview [deal]="deal"
+                                            [defaultDeliveryDate]="pageData.defaultDeliveryDate"
+                                            [departments]="pageData.departments"
+                                            [canSelectCustomer]="canSelectCustomer"
+                                            [customers]="pageData.customers"
+                                            [loginUser]="pageData.user"
+                                            (requestAssignCustomer)="assignCustomer($event)"
+                                            (requestOrder)="requestOrder($event)"
+                                            (requestDesign)="requestDesign()"
+                                            (requestSubmitDeal)="submitDeal()"
+                                            (requestCancel)="backToDashboard()"
+                    ></sf0030101-dealOverview>
+
+                    <hr class="hidden-print">
+
+                    <div class="row push">
+                        <div class="col-sm-8">
+                            <label class="push-30-r">表示:</label>
+                            <label class="css-input css-radio css-radio-primary push-30-r">
+                                <input name="radio-group10" checked="" type="radio" value="{{CATEGORY_ANY}}"
+                                       (change)="onFilterChanged(CATEGORY_ANY)"><span></span> すべて
+                            </label>
+                            <label class="css-input css-radio css-radio-primary push-30-r">
+                                <input name="radio-group10" type="radio" value="{{CATEGORY_QUOTATION}}"
+                                       (change)="onFilterChanged(CATEGORY_QUOTATION)"><span></span> 見積
+                            </label>
+                            <label class="css-input css-radio css-radio-primary push-30-r">
+                                <input name="radio-group10" type="radio" value="{{CATEGORY_PRODUCT}}"
+                                       (change)="onFilterChanged(CATEGORY_PRODUCT)"><span></span> 製品
+                            </label>
+                            <label class="css-input css-radio css-radio-primary">
+                                <input name="radio-group10" type="radio" value="{{CATEGORY_ANY_FILE}}"
+                                       (change)="onFilterChanged(CATEGORY_ANY_FILE)"><span></span> ファイル
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown"
+                                        [disabled]="!deal.isSaved || deal.isImmutableDeal">
+                                    追加
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a tabindex="-1" (click)="addNewPaperWareLamination()" role="button">新規製品（紙器・貼合）を追加</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" (click)="addNewPaperWareDecorativeSheet()" role="button">新規製品（美粧）を追加</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" (click)="addNewCarton()" role="button">新規製品（段ボール）を追加</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" role="button" (click)="addCartonNotA()">新規製品（A式以外段ボール）を追加</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" (click)="addOneStage()" role="button">新規製品（片段）を追加</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" (click)="searchProduct()" role="button">既存製品を検索・追加</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" (click)="addNewQuotation()" role="button">見積書作成</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" (click)="uploadDealFile()" role="button">関連ファイルを追加</a>
+                                    </li>
+                                    <!--<li class="disabled">-->
+                                        <!--<a tabindex="-1" role="button" disabled>新規仕入品を追加</a>-->
+                                    <!--</li>-->
+                                    <!--<li class="disabled">-->
+                                        <!--<a tabindex="-1" role="button" disabled>既存仕入品を検索・追加</a>-->
+                                    <!--</li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <deal-checkSheet (emitRedirectSF00308)="viewCheckSheet()"
+                                     [checkSheets]="pageData.checkSheets"
+                                     [canEdit]="deal.isSaved"></deal-checkSheet>
+
+                    <template ngFor let-item [ngForOf]="pageData.concernsItems" let-idx="index">
+                        <!--DealProductInfo-->
+                        <div sf0030103-dealProductInfo
+                             class="panel panel-default sfr-panel-concern-item panel--product"
+                             *ngIf="item.category == CATEGORY_PRODUCT"
+                             [index]="idx"
+                             [item]="item"
+                             [orderItems]="pageData.orderItems"
+                             [deal]="deal"
+                             [mstLaminations]="pageData.mstLaminations"
+                             [canViewDetailed]="deal.isSaved"
+                             [canRemove]="deal.isSaved && !deal.isImmutableDeal"
+                             (requestViewProductInfo)="viewProductInfo($event)"
+                             (requestDetachProduct)="detachProduct($event)"
+                             (requestHighlightFlag)="updateHighLightFlag($event)"
+                        >
+                        </div>
+
+                        <!--DealFile-->
+                        <div sf0030105-dealFile
+                             class="panel panel-default sfr-panel-concern-item panel--file"
+                             *ngIf="item.category == CATEGORY_DEAL_FILE"
+                             [index]="idx"
+                             [item]="item"
+                             [canViewDetailed]="deal.isSaved"
+                             [canRemove]="deal.isSaved && !deal.isImmutableDeal"
+                             (requestViewDealFileInfo)="viewDealFileInfo($event)"
+                             (requestRemoveDealFile)="removeDealFile($event)"
+                        >
+                        </div>
+
+                        <!--QuotationInfo-->
+                        <div sf0030104-quotationInfo
+                             class="panel panel-default sfr-panel-concern-item panel--quotation"
+                             *ngIf="item.category == CATEGORY_QUOTATION"
+                             [item]="item" [index]="idx"
+                             [canViewDetailed]="deal.isSaved"
+                             [canRemove]="deal.isSaved && !deal.isImmutableDeal"
+                             (requestViewQuotationInfo)="viewQuotationInfo($event)"
+                             (requestRemoveQuotation)="removeQuotation($event)"
+                             (requestHighlightFlag)="updateHighLightFlag($event)"
+                        >
+                        </div>
+
+                        <!--ProductFileInfo-->
+                        <div sf0030108-productFileInfo
+                             class="panel panel-default sfr-panel-concern-item panel--file"
+                             *ngIf="item.category == CATEGORY_PRODUCT_FILE"
+                             [index]="idx"
+                             [item]="item"
+                             [canViewDetailed]="deal.isSaved"
+                             [canRemove]="deal.isSaved && !deal.isTemplate"
+                             (requestViewProductInfo)="viewProductFileInfo($event)"
+                             (requestRemoveProductFile)="removeProductFile($event)"
+                        >
+                        </div>
+                    </template>
+
+                    <div class="block-content block-content-full">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <a class="btn btn-success btn-block" *ngIf="!deal.isTemplate"
+                                  (click)="showMoreItem()" [class.disabled]="isDisabledShowMoreDealItem">もっと見る</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="push-30-t push-20">
+                        <button class="btn btn-link text-success" *ngIf="deal.isSaved"
+                                [disabled]="!deal.canDelete"
+                                (click)="deleteDeal()">案件を削除する
+                        </button>
+                        <button class="btn btn-link text-success" *ngIf="deal.isSaved"
+                                [disabled]="deal.isConfirmedOrder || deal.isClosed"
+                                (click)="closedDeal()">案件を終了する
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="block" *ngIf="pageData.relatedDeals && pageData.relatedDeals.length">
+                <!-- リピート案件一覧(ある場合のみ) -->
+                <sf0030110-repeatDeal [deal]="deal" [repeatDeals]="pageData.relatedDeals"></sf0030110-repeatDeal>
+            </div>
+
+            <div class="block">
+                <!--SF00301_Comment-->
+                <sf0030107-comment
+                        [canShowMore]="deal.isSaved && !deal.isTemplate && !deal.isClosed"
+                        [history]="pageData.comments"
+                        [totalRows]="pageData.totalComments"
+                        (requestMail)="requestMail($event)"
+                ></sf0030107-comment>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 push-30-l">
+        <button class="btn btn-link text-info" (click)="backToDashboard()">戻る
+        </button>
+    </div>
+</div>
+<!--modal file-->
+<div class="sf0030106 modal fade" tabindex="-1" role="dialog" id="dealFile-form"
+     data-backdrop="static" data-keyboard="false"
+     sf0030106-fileModal
+     [readOnly]="deal.isTemplate"
+     [item]="pageData.stagingFileItem"
+     [fileUploadInProgress]="pageData.fileUploadInProgress"
+     (requestSaveItem)="saveItemModal($event)"
+     (requestRemoveItem)="removeObjectFileByItemType($event)"
+     (requestCancel)="resetStagingFileAndCloseFileModal()"
+     (requestDownloadFile)="download($event)">
+</div>

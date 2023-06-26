@@ -1,0 +1,94 @@
+{
+  "customerGoal":{
+    "year": 2019,
+    "customerId": 1,
+    "picId":2,
+    "activityPolicy":"test add",
+    "goalItems": [
+      {
+        "type": 2,
+        "goal": 222222,
+        "month": 1,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 2,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 3,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 4,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 5,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 6,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 7,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 8,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 9,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 10,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 11,
+        "customerGoalId": 21,
+        "customerType": 0
+      },
+      {
+        "type": 2,
+        "goal": 111,
+        "month": 12,
+        "customerGoalId": 21,
+        "customerType": 0
+      }
+    ]
+  }
+}

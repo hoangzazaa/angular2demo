@@ -1,0 +1,92 @@
+.sfn0505 .panel-heading .panel-title {
+    font-size: 24px;
+    opacity: 0.6;
+}
+
+.sfn0505 .filter-form .form-inline .form-group {
+    margin-bottom: 10px;
+}
+
+.sfn0505 .filter-form .form-inline .form-group label {
+    padding-right: 15px;
+}
+
+.sfn0505 .filter-form .form-inline .form-group label.label-clm-1 {
+    text-align: right;
+    min-width: 85px;
+}
+
+.sfn0505 .filter-form .form-inline .form-group label.label-clm-2 {
+    min-width: 40px;
+    padding-right: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .sfn0505 .filter-form .form-inline .form-group select,
+    .sfn0505 .filter-form .form-inline .form-group input {
+        width: 200px;
+    }
+}
+
+.sfn0505 .filter-form .fix-spacing {
+    display: inline-block;
+    width: 10px;
+}
+
+.sfn0505 .shipping-table {
+    width: 100%;
+    overflow: auto;
+}
+
+.sfn0505 .shipping-table table.htCore thead tr th {
+    color: white;
+    background-color: #9A9A9A;
+    /*font-weight: bold;*/
+}
+
+.sfn0505 .shipping-table table.htCore th,
+.sfn0505 .shipping-table table.htCore td {
+    border-color: #9A9A9A;
+}
+
+.sfn0505 .shipping-table th:nth-child(2) span.colHeader,
+.sfn0505 .shipping-table th:nth-child(3) span.colHeader,
+.sfn0505 .shipping-table th:nth-child(4) span.colHeader {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+.sfn0505 .shipping-table th span.colHeader.columnSorting::after {
+    color: #FFF !important;
+}
+
+.sfn0505 .shipping-table th:nth-child(2) span.colHeader.columnSorting::after,
+.sfn0505 .shipping-table th:nth-child(3) span.colHeader.columnSorting::after,
+.sfn0505 .shipping-table th:nth-child(4) span.colHeader.columnSorting::after {
+    right: 5px !important;
+}
+
+.sfn0505 .shipping-table table.htCore tbody tr td.htDimmed {
+    color: inherit;
+}
+
+.sfn0505 .shipping-table tr td:nth-child(2),
+.sfn0505 .shipping-table tr td:nth-child(3),
+.sfn0505 .shipping-table tr td:nth-child(4) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sfn0505 .shipping-table table.htCore tbody tr td:nth-child(1),
+.sfn0505 .shipping-table table.htCore tbody tr td:nth-child(7) {
+    text-align: center;
+}
+
+.sfn0505 .shipping-table table.htCore tbody tr td.row-highlight {
+    background-color: #F5C1C1;
+}
+
+.sfn0505 .shipping-table table.htCore tbody tr td a {
+    white-space: nowrap;
+}

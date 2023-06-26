@@ -1,0 +1,30 @@
+{
+  "product_id":1,
+  "selected_shape":99,
+  "selected_paper":2,
+  "selected_basis_weight":1,
+  "selected_sheet_size":99,
+  "sheet_size":{
+    "name": "L半",
+    "width":800,
+    "height": 550,
+    "grain": 0,
+    "paperId":1
+  },
+  "imposition":2,
+  "objects": [
+    {"id": "", "x": 110, "y": 110, "rotation": 110}
+  ],
+  "original_shape_params": {
+    "image": "a3821ddb17f759ecd275d53cc60ee490533b350d",
+    "development_width": 314,
+    "development_height": 278,
+    "width": 80,
+    "depth": 70,
+    "height": 70,
+    "flap": 70,
+    "insertion": 0,
+    "grain": 1,
+    "groove": 10
+  }
+}

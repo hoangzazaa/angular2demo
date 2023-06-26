@@ -1,0 +1,9 @@
+.sf0030103 .div-scroll-y{
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.select2-selection .select2-selection--single {
+    border: solid 2px #43a3e5;
+}

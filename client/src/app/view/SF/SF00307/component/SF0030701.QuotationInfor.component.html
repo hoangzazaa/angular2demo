@@ -1,0 +1,53 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">見積情報</h3>
+    </div>
+    <div class="panel-collapse collapse in">
+        <div class="panel-body">
+
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>見積書ID</th>
+                    <th>件名</th>
+                    <th>ロット</th>
+                    <th>提出単価</th>
+                    <th>提出金額</th>
+                    <th>利益率</th>
+                    <th>メモ</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngIf="quotations.length>0">
+                    <tr class="tr--has_radio" *ngFor="let quotation of quotations;let idx=index">
+                        <td>
+                            <label class="css-input css-radio css-radio-primary">
+                                <input [disabled]="dealInfo.confirmedOrder" type="radio" name="radio-group1"
+                                       (change)="viewDataProductInfo(quotation)"
+                                       [checked]="idx === 0">
+                                <span></span>
+                            </label>
+                        </td>
+                        <td>{{quotation.quotationCode}}</td>
+                        <td><a (click)="viewQuotationInfo(quotation)"
+                               class="panel-title__link btn btn-link">{{quotation.subject}}</a>
+                        </td>
+                        <td>{{quotation.lot | numberFormat}}</td>
+                        <td>@{{quotation.unitPrice==undefined?'':quotation.unitPrice|number : '1.2-2'}}</td>
+                        <td>{{totalCost(quotation)}}</td>
+                        <td></td>
+                        <td>{{quotation.memo | ellipsis}}</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="quotations.length==0">
+                    <tr>
+                        <td class="text-center" colspan="8">No record</td>
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

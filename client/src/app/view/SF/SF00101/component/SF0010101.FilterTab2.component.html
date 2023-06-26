@@ -1,0 +1,45 @@
+<div class="push-10 text-center">
+    <div class="form-group">
+        <div class="font-w600 font-s36">{{sysDate | date:'yyyy/M/d'}}</div>
+    </div>
+    <div class="form-group">
+        <div class="form-inline">
+
+            <div class="overflow-scroll" style="width: 950px;margin: 0 auto;">
+                <div class="col-sm-4" style="padding-left: 0px; text-align: left">
+                    <div class="form-material--group">
+                        <span class="text-left push-10-r">支店</span>
+                        <select class="form-control sameWidthOption" [(ngModel)]="department">
+                            <option value="0">全社</option>
+                            <option *ngFor="let item of departments; let idx = index" [ngValue]="item.id">
+                                {{item.department}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-material--group">
+                        <span class="text-right push-10-r">担当</span>
+                        <select class="form-control sameWidthOption" [(ngModel)]="sale" [disabled]="isWholeCompany">
+                            <option value="0">指定なし</option>
+                            <option *ngFor="let item of sales; let idx = index" [ngValue]="item.id">
+                                {{item.username}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4" style="padding-right: 0px; text-align: right">
+                    <div class="form-material--group">
+                        <span class="text-right push-10-r">期間</span>
+                        <select class="form-control sameWidthOption" [(ngModel)]="period">
+                            <option *ngFor="let item of mstPeriods" [value]="item.id">
+                                {{item.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

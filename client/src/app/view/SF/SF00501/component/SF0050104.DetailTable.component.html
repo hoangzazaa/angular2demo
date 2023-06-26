@@ -1,0 +1,12 @@
+<table id="sf0050104-table" class="table table-borderless">
+    <thead>
+    <tr>
+        <th class="text-left">分類</th>
+        <th class="text-center">合計</th>
+        <th class="text-center" *ngFor="let date of dateList">{{ date }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr sf0050105 *ngFor="let data of dataWrapper; let i = index" [index]="i"></tr>
+    </tbody>
+</table>

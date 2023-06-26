@@ -1,0 +1,32 @@
+<div class="modal pib_loading-address" #modal tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="block remove-margin-b">
+                <div class="block-header">
+                    <h3 class="block-title">積込場所</h3>
+                </div>
+                <div class="block-content remove-padding-t">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input class="form-control" type="text" js-tags-input [(tags)]="keywords">
+                            <br>
+                        </div>
+                        <div class="col-sm-12">
+                            <div #hot class="pib_address-table"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <button class="btn btn-link" type="button" (click)="cancel()"><strong>キャンセル</strong></button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary w150-sm" type="button" (click)="select()"><strong>選択</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

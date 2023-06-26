@@ -1,0 +1,23 @@
+<div class="block-header bg-gray-lighter">
+    <h3 class="block-title">売上実績</h3>
+</div>
+<div class="block-content">
+    <div class="row">
+        <div class="col-sm-12 form-horizontal">
+            <div class="form-group year-select">
+                <label class="col-sm-1 control-label">年度</label>
+                <div class="col-sm-3">
+                    <select class="form-control" [(ngModel)]="selectedYear">
+                        <option *ngFor="let year of yearList" [ngValue]="year">{{ year }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 text-right">
+            <button class="btn btn-link" (click)="exportCsv()"><strong>CSV出力</strong></button>
+        </div>
+        <div class="col-sm-12">
+            <div #hot class="sales-performance-table"></div>
+        </div>
+    </div>
+</div>

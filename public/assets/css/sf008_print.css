@@ -1,0 +1,24 @@
+@media print {
+  #print .printHead > div {
+    padding: 20px;
+  }
+  #print .printHead > div table {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  #print .printBody {
+    position: relative;
+    text-align: center;
+  }
+  #print .printBody img {
+    width: 100%;
+  }
+  #print .printBody img p {
+    background: #999;
+  }
+  #print .printBody #unitT {
+    position: absolute;
+    top: 50%;
+    left: 0;
+  }
+}

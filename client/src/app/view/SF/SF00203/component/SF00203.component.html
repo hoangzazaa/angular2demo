@@ -1,0 +1,315 @@
+<!-- template info-->
+<template [ngIf]="deal.templateFlag==1">
+    <div class="panel panel-default sfr-panel-concern-item">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="panel-title__note">{{deal.dealCode}}</span>
+                <button (click)="requestViewDetailDeal(deal)"
+                        class="btn btn-link remove-padding panel-title__link"
+                        role="button">
+                    {{deal.dealName | ellipsis}}
+                </button>
+                <div class="pull-right panel-title__flex-space">
+                    <span class="panel-title__date panel-title__date_label">更新日</span>
+                    <span class="panel-title__date panel-title__date_strong">{{getDateDeal(deal) | date:'yyyy/MM/dd'}}</span>
+                </div>
+                <a role="button" data-toggle="collapse" class="pull-right accordion-toggle" href="#panelTemplate{{index}}"
+                   aria-expanded="true" aria-controls="true">
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            </h3>
+            <!-- /.panel-heading -->
+        </div>
+
+        <div class="panel-collapse collapse in" id="panelTemplate{{index}}">
+            <div class="panel-body panel-body--has-tab_block block">
+                <ul class="nav nav-tabs nav-tabs-alt">
+                    <li class="pull-right">
+                        <div class="block-options-simple">
+                            <button type="button" class="btn btn-link"
+                                    (click)="requestViewDetailDeal(deal)">詳細
+                            </button>
+                            <button type="button" class="btn btn-success"
+                                    (click)="copyAndAddDeal(deal.dealCode)">複製して案件追加
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="tab-content" *ngFor="let product of deal.products | slice: 0: 1">
+                    <div class="tab-pane tab-pane--default active">
+                        <div class="row">
+                            <div class="col-md-4 panel-body__thumb">
+                                <file-viewer [srcFile]="product.srcImg"></file-viewer>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <table class="table table-condensed">
+                                        <tbody>
+                                        <tr>
+                                            <th>製品名</th>
+                                            <td><span class="text-ellipsis w200-md w150-xs">{{product.productName | ellipsis}}</span></td>
+                                            <th>用途</th>
+                                            <td>{{product.application | ellipsis}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>サイズ</th>
+                                            <td>{{getDimension(product)}}</td>
+                                            <th>カラー</th>
+                                            <td>{{product.colorFSelect}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>材料</th>
+                                            <td>{{getPaperName(product)}}</td>
+                                            <th>表面加工</th>
+                                            <td>{{getSurfaceTreatment(product)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>木型</th>
+                                            <td>{{product.woodenCode}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>面付</th>
+                                            <td>{{getImpositionNumber(product)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 18%">メモ</th>
+                                            <td colspan="3">
+                                                <table>
+                                                    <tbody class="has-strong-top-border">
+                                                    <tr>
+                                                        <td style="width: 88%;">
+                                                            <div class="block-with-text">
+                                                                {{product.memo}}
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 18%"></th>
+                                            <td style="width: 42%;"></td>
+                                            <th style="width: 18%"></th>
+                                            <td style="width: 22%;"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- deal info-->
+<template [ngIf]="deal.templateFlag!=1">
+    <div class="panel panel-default sfr-panel-concern-item">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="panel-title__note">{{deal.dealCode}}</span>
+                <button (click)="requestViewDetailDeal(deal)"
+                        *ngIf="!!deal.dealName"
+                        class="btn btn-link remove-padding panel-title__link">
+                    {{deal.dealName | ellipsis:30}}
+                </button>
+                <div class="pull-right panel-title__flex-space">
+                    <span class="panel-title__date panel-title__date_label">更新日</span>
+                    <span class="panel-title__date panel-title__date_strong">{{getDateDeal(deal) | date: 'yyyy/MM/dd'}}</span>
+                </div>
+                <a role="button" data-toggle="collapse" class="pull-right accordion-toggle" href="#panelDeal{{idx}}"
+                   aria-expanded="true" aria-controls="true">
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            </h3>
+            <!-- /.panel-heading -->
+        </div>
+        <div class="panel-collapse collapse in" id="panelDeal{{idx}}">
+            <div class="panel-body panel-body--has-tab_block block">
+                <ul class="nav nav-tabs nav-tabs-alt">
+                    <li class="active">
+                        <a href="#dealInfo{{idx}}" data-toggle="tab">基本情報</a>
+                    </li>
+                    <li>
+                        <a href="#tradingRecord{{idx}}" data-toggle="tab">取引実績・在庫数</a>
+                    </li>
+                    <li>
+                        <a href="#listProduct{{idx}}" data-toggle="tab">製品一覧</a>
+                    </li>
+                    <li class="pull-right">
+                        <div class="block-options-simple">
+                            <button type="button" class="btn btn-link"
+                                    (click)="requestViewDetailDeal(deal)">詳細
+                            </button>
+                            <button type="button" class="btn btn-success"
+                                    (click)="copyAndAddDeal(deal)">複製して案件追加
+                            </button>
+                        </div>
+                    </li>
+                    <!-- /.nav --></ul>
+                <div class="tab-content">
+                    <div class="tab-pane tab-pane--default active" id="dealInfo{{idx}}">
+                        <div class="row">
+                            <div class="col-md-4 panel-body__thumb">
+                                <div *ngIf="deal.products != null && deal.products.length > 0">
+                                    <div *ngFor="let product of deal.products | slice: 0: 1">
+                                        <file-viewer [srcFile]="product.srcImg"></file-viewer>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12 pad-10-t">
+                                        <table class="table table-condensed">
+                                            <tbody class="no-border">
+                                            <tr>
+                                                <th>得意先名</th>
+                                                <td><span class="text-ellipsis w200-md w150-xs">{{deal.customerName | ellipsis}}</span></td>
+                                                <th>受注額</th>
+                                                <td><strong>{{deal.estTotalDeal|number}}{{deal.estTotalDeal == undefined
+                                                    || deal.estTotalDeal == "" ? "" : '円'}}</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <th>担当営業</th>
+                                                <td><span class="text-ellipsis w200-md w150-xs">{{deal.saleName}}</span></td>
+                                                <th>納期</th>
+                                                <td>{{deal.deliveryDate | date:'yyyy/MM/dd'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>案件区分</th>
+                                                <td>{{getDealType(deal)}}</td>
+                                                <th>ステータス</th>
+                                                <td>{{getDealStatus(deal)}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table push-5">
+                                            <tbody class="has-strong-top-border">
+                                            <tr *ngFor="let product of deal.products | slice: 0: 1">
+                                                <th><span class="text-ellipsis w150-md w100-xs">{{product.productName | ellipsis}}</span></th>
+                                                <td>{{getDimension(product)}}</td>
+                                                <td>{{getPaperName(product)}}</td>
+                                                <td>{{getPrintMethod(product)}}</td>
+                                                <td>{{getColor(product)}}</td>
+                                                <td>{{getSurfaceTreatment(product)}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <p class="text-muted push-10-l">他 {{(deal.products==null
+                                            || deal.products.length == 0) ? '0':(deal.products.length-1)}} 点</p>
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.col-md-8 -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <div class="tab-pane tab-pane--stock" id="tradingRecord{{idx}}">
+                        <div class="row">
+                            <div class="col-md-7 scollTable">
+                                <h4 class="h6 tab-pane--stock__list-title">直近のお取引状況</h4>
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>日付</th>
+                                        <th>案件名</th>
+                                        <th>注文数</th>
+                                        <th>単価</th>
+                                        <th>金額</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let item of deal.orderItems">
+                                        <td>{{item.updatedDate | date:'yyyy/MM/dd'}}</td>
+                                        <td><span class="text-ellipsis w150-md w100-xs">{{deal.dealName}}</span></td>
+                                        <td>{{getLot(item)}}ロット</td>
+                                        <td>@{{item.submittedPrice|number : '1.2-2'}}</td>
+                                        <td>{{item.total}}円</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-5 scollTable">
+                                <h4 class="h6 tab-pane--stock__list-title">在庫リスト</h4>
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>製品名</th>
+                                        <th>在庫数</th>
+                                        <th>単価</th>
+                                        <th>日数</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let item of deal.orderItems">
+                                        <td><span class="text-ellipsis w150-md w100-xs">{{getProductName(item) | ellipsis}}</span></td>
+                                        <td>{{getQuantityStock(item)}}</td>
+                                        <td>{{getEstimatedUnitPrice(item)|number : '1.2-2'}}</td>
+                                        <td>{{countDelayDate(item)}}日</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!-- /.col-md-5 -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <div class="tab-pane tab-pane--products" id="listProduct{{idx}}">
+                        <div class="row">
+                            <div class="col-md-12 scollTable">
+                                <h4 class="h6 tab-pane--stock__list-title">製品一覧</h4>
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>製品番号</th>
+                                        <th>製品名</th>
+                                        <th>サイズ</th>
+                                        <th>材料</th>
+                                        <th>標準ロット</th>
+                                        <th>単価</th>
+                                        <th>木型</th>
+                                        <th>通算生産数</th>
+                                        <th>木型保管期限</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let product of deal.products | slice: 1; let idx = index">
+                                        <td>{{product.customerProductCode ? product.customerProductCode : product.productCode}}</td>
+                                        <td>{{product.productName|ellipsis}}</td>
+                                        <td>{{getDimension(product)}}</td>
+                                        <td>{{getPaperName(product)}}</td>
+                                        <td>{{product.lot}}ロット</td>
+                                        <td>@{{product.estimatedUnitPrice|number : '1.2-2'}}</td>
+                                        <td>{{product.woodenCode}}</td>
+                                        <td>{{product.woodenTotalNumber}}</td>
+                                        <td>{{product.woodenExpiredDate | date:'yyyy/MM/dd'}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel-collapse -->
+        </div>
+        <!-- /.panel -->
+    </div>
+</template>

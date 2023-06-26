@@ -1,0 +1,191 @@
+<div class="panel panel-default panel--product sf0050107" style="border: 1px solid #e9e9e9;">
+    <div class="panel-heading" style="height: 40px;">
+        <div class="panel-title">
+            <span class="panel-title__label" style="font-weight: bold;color:#999999;">{{deal.dealId}}</span>
+            <button type="button" class="btn btn-link panel-title__link" style="padding-top: 0px;"
+                    (click)="requestViewDetailDeal(deal)" *ngIf="deal.dealName != undefined">
+                {{deal.dealName | ellipsis}}
+            </button>
+            <a role="button" data-toggle="collapse" class="pull-right accordion-toggle"
+               href="#panelDeal{{index}}" aria-expanded="true" aria-controls="true"
+               style="padding: 3px;">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </a>
+            <span class="pull-right panel-title__date">更新日 {{deal.updatedDate | date: 'yyyy/MM/dd'}}&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;</span>
+        </div>
+    </div>
+    <div class="panel-collapse collapse in" id="panelDeal{{index}}" aria-expanded="true">
+        <div class="panel-body block panel-body--has-tab_block">
+            <ul class="nav nav-tabs nav-tabs-alt">
+                <li class="active">
+                    <a href="#dealInfo{{index}}" data-toggle="tab">基本情報</a>
+                </li>
+                <li>
+                    <a href="#tradingRecord{{index}}" data-toggle="tab">取引実績・在庫数</a>
+                </li>
+                <li>
+                    <a href="#listProduct{{index}}" data-toggle="tab">製品一覧</a>
+                </li>
+                <li class="pull-right" style="padding: 8px 5px;">
+                    <div class="block-options-simple">
+                        <button type="button" class="btn btn-link"
+                                (click)="requestViewDetailDeal(deal)">詳細
+                        </button>
+                    </div>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane tab-pane--default active" >
+                    <div class="row">
+                        <div class="col-sm-2 panel-body__thumb">
+                            <file-viewer [srcFile]="productInfo.srcImg"></file-viewer>
+                        </div>
+                        <div class="col-sm-10 push-20-t">
+                            <div class="row row-h-36">
+                                <div class="form-group">
+                                    <div class="col-xs-2 push-5-t">得意先名</div>
+                                    <div class="col-xs-4 text-left push-5-t">{{deal.customerName}}</div>
+                                    <div class="col-xs-2 push-5-t padding-40-l">受注額</div>
+                                    <div class="col-xs-4 text-left" style="font-size: x-large;">{{deal.estTotalDeal |
+                                        number}} {{deal.estTotalDeal == undefined || deal.estTotalDeal == "" ? "" :
+                                        '円'}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-h-36">
+                                <div class="form-group">
+                                    <div class="col-xs-2 push-5-t">担当営業</div>
+                                    <div class="col-xs-4 text-left push-5-t">{{deal.saleName}}</div>
+                                    <div class="col-xs-2 padding-55-l push-5-t">納期</div>
+                                    <div class="col-xs-4 text-left push-5-t">{{deal.deliveryDate | date:'yyyy/MM/dd'}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-h-36">
+                                <div class="form-group">
+                                    <div class="col-xs-2 push-5-t">案件区分</div>
+                                    <div class="col-xs-4 text-left push-5-t">{{getDealType(deal)}}</div>
+                                    <div class="col-xs-2 push-5-t">ステータス</div>
+                                    <div class="col-xs-4 text-left push-5-t"><p>{{getDealStatus(deal)}}</p></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-condensed push-5">
+                                        <!--TODO: fix border-->
+                                        <tbody class="has-strong-top-border" style="border-top: solid 1px lightslategray">
+                                        <tr>
+                                            <th style="width: 35%"><span class="text-ellipsis w200-sm w150-xs">
+                                                    {{productInfo.productName | ellipsis}}</span>
+                                            </th>
+                                            <td style="width: 65%">
+                                                {{getDescription()}}
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <span class="push-10-l text-muted">他　{{(deal.products==null
+                                        || deal.products.length == 0) ? '0':(deal.products.length)}}点（商事含む）</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane tab-pane--default" id="tradingRecord{{index}}">
+                    <div class="row">
+                        <div class="col-sm-7 panel-body scollTable">
+                            <label class="control-label">直近のお取引状況</label>
+                            <button type="button" class="btn btn-link" disabled>詳細
+                            </button>
+                            <table class="table table-striped table-condensed ">
+                                <thead>
+                                <tr>
+                                    <th>日付</th>
+                                    <th>案件名</th>
+                                    <th>注文数</th>
+                                    <th>単価</th>
+                                    <th>金額</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let item of deal.orderItems">
+                                    <td>{{item.updatedDate | date:'yyyy/MM/dd'}}</td>
+                                    <td>{{deal.dealName}}</td>
+                                    <td>{{getLot(item)}}ロット</td>
+                                    <td>@{{item.submittedPrice}}</td>
+                                    <td>{{item.total}}円</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-sm-5 panel-body scollTable">
+                            <label class="control-label">在庫リスト</label>
+                            <button type="button" class="btn btn-link" disabled>詳細
+                            </button>
+                            <table class="table table-striped table-condensed ">
+                                <thead>
+                                <tr>
+                                    <th>製品名</th>
+                                    <th>在庫数</th>
+                                    <th>単価</th>
+                                    <th>日数</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let item of deal.orderItems">
+                                    <td>{{getProductName(item) | ellipsis: 20}}</td>
+                                    <td>{{getQuantityStock(item)}}</td>
+                                    <td>{{getEstimatedUnitPrice(item)}}</td>
+                                    <td>{{countDelayDate(item)}}日</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane tab-pane--default" id="listProduct{{index}}">
+                    <div class="row">
+                        <label style="padding: 12px 21px;">製品一覧</label>
+                    </div>
+                    <div class="row">
+                        <div class="panel-body scollTable">
+                            <table class="table table-striped table-condensed ">
+                                <thead>
+                                <tr>
+                                    <th>製品番号</th>
+                                    <th>製品名</th>
+                                    <th>サイズ</th>
+                                    <th>材料</th>
+                                    <th>標準ロット</th>
+                                    <th>単価</th>
+                                    <th>木型</th>
+                                    <th>通算生産数</th>
+                                    <th>木型保管期限</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let product of deal.products">
+                                    <td>
+                                        {{product.customerProductCode ? product.customerProductCode :
+                                        product.productCode}}
+                                    </td>
+                                    <td>{{product.productName | ellipsis : 20}}</td>
+                                    <td>{{getDimension(product)}}</td>
+                                    <td>{{getPaperName(product)}}</td>
+                                    <td>{{product.lot}}ロット</td>
+                                    <td>@{{product.estimatedUnitPrice}}</td>
+                                    <td>{{product.woodenCode}}</td>
+                                    <td>{{product.woodenTotalNumber}}</td>
+                                    <td>{{product.woodenExpiredDate | date:'yyyy/MM/dd'}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

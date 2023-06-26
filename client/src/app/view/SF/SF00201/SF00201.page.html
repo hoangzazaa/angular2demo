@@ -1,0 +1,115 @@
+<div class="block-content">
+
+    <p>該当件数 <strong>{{totalRecords}}</strong> 件</p>
+
+    <div id="templatesList" *ngFor="let template of templates; let idx = index" class="panel panel-default sfr-panel-concern-item">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="panel-title__note">{{template.dealCode}}</span>
+                <button (click)="viewTemplate(template)" class="btn btn-link remove-padding panel-title__link">
+                    {{template.dealName | ellipsis:30}}
+                </button>
+                <div class="pull-right panel-title__flex-space">
+                    <span class="panel-title__date panel-title__date_label">更新日</span>
+                    <span class="panel-title__date panel-title__date_strong">{{template.updatedDate | date:'yyyy/MM/dd'}}</span>
+                </div>
+                <a role="button" data-toggle="collapse" class="pull-right accordion-toggle" href="#panel_body{{idx}}"
+                   aria-expanded="true" aria-controls="true">
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            </h3>
+            <!-- /.panel-heading -->
+        </div>
+
+        <div class="panel-collapse collapse in" id="panel_body{{idx}}">
+            <div class="panel-body panel-body--has-tab_block block">
+                <ul class="nav nav-tabs nav-tabs-alt">
+                    <li class="pull-right">
+                        <div class="block-options-simple">
+                            <button type="button" class="btn btn-link" (click)="viewTemplate(template)">詳細</button>
+                            <button type="button" class="btn btn-link"
+                                    [ngClass]="{'btn-color-grey': template.isInMybox}"
+                                    [disabled]="template.isInMybox"
+                                    (click)="addTemplateToMybox(template)">マイボックスに追加
+                            </button>
+                            <button type="button" class="btn btn-success"
+                                    (click)="copyAndAddDeal(template)">複製して案件追加
+                            </button>
+                        </div>
+                    </li>
+                    <!-- /.nav -->
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane tab-pane--default active">
+                        <div class="row">
+                            <div class="col-md-4 panel-body__thumb">
+                                <file-viewer [srcFile]="srcImg(template)"></file-viewer>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <table class="table table-condensed">
+                                        <tbody>
+                                        <tr>
+                                            <th>製品名</th>
+                                            <td><span class="text-ellipsis w200-md w150-xs">{{productInfo(template).productName | ellipsis}}</span></td>
+                                            <th>用途</th>
+                                            <td>{{productInfo(template).application | ellipsis}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>サイズ</th>
+                                            <td>{{getDimension(productInfo(template))}}</td>
+                                            <th>カラー</th>
+                                            <td>{{productInfo(template).colorFSelect}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>材料</th>
+                                            <td>{{getPaperName(productInfo(template))}}</td>
+                                            <th>表面加工</th>
+                                            <td>{{getSurfaceTreatment(productInfo(template).surfaceF_varnishType)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>木型</th>
+                                            <td>{{productInfo(template).woodenCode}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>面付</th>
+                                            <td>{{getImpositionNumber(productInfo(template).impositionNumber)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 18%">メモ</th>
+                                            <td colspan="3">
+                                                <table>
+                                                    <tbody class="has-strong-top-border">
+                                                    <tr>
+                                                        <td style="width: 88%;">
+                                                            <div class="block-with-text">
+                                                                {{productInfo(template).memo}}
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 18%"></th>
+                                            <td style="width: 42%;"></td>
+                                            <th style="width: 18%"></th>
+                                            <td style="width: 22%;"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <pagination-component [total]="totalRecords" [pageSize]="pageSize"
+                          (currentPageChange)="onPageChange($event)"></pagination-component>
+
+</div>

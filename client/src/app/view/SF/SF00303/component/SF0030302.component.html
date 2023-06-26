@@ -1,0 +1,113 @@
+<div class="row" *ngIf="viewMode&&!view">
+    <div class="col-xs-12 text-right">
+        <a (click)="goEditMode()" class="btn btn-success" *ngIf="!isView">
+            <i class="fa fa-pencil"></i>
+            編集
+        </a>
+    </div>
+</div>
+<div class="row" *ngIf="!viewMode&&!view">
+    <div class="col-xs-12 text-right">
+        <a (click)="goViewMode()" class="btn btn-success">
+            編集完了
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-condensed js-table-handle_sort" [class.js-table-handle_sort-active]="!viewMode">
+                <thead>
+                <tr *ngIf="viewMode">
+                    <th class="text-center" style="width: 5%">No.</th>
+                    <th class="text-center" style="width: 15%">品名</th>
+                    <th class="text-center" style="width: 20%">内容</th>
+                    <th class="text-center" style="width: 10%">数量</th>
+                    <th class="text-center" style="width: 10%">単位</th>
+                    <th class="text-center" style="width: 15%">提出単価</th>
+                    <th class="text-center" style="width: 15%">提出金額</th>
+                    <th class="text-center" style="width: 10%">利益率</th>
+                </tr>
+                <tr *ngIf="!viewMode">
+                    <th style="width: 5%"></th>
+                    <th class="text-center" style="width: 5%"></th>
+                    <th class="text-center" style="width: 15%">品名</th>
+                    <th class="text-center" style="width: 20%">内容</th>
+                    <th class="text-center" style="width: 10%">数量</th>
+                    <th class="text-center" style="width: 10%">単位</th>
+                    <th class="text-center" style="width: 15%">提出単価</th>
+                    <th class="text-center" style="width: 15%">提出金額</th>
+                    <th class="text-center" style="width: 5%"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr #sf0030301Rows sf0030301-rows *ngFor="let quotationItem of quotationItems"
+                    [dealData]="deal"
+                    [itemData]="quotationItem"
+                    [dataList]="quotationItems" [viewMode]="viewMode"
+                    (getChangeCalculator)="getChangeCalculator()"
+                    (updateDataParent)="updateDataParent()"
+                    (closedQuotationItemGroups)="closedQuotationItemGroups()"
+                    (onRemove)="removeQuotationItem($event)"></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="!viewMode">
+    <div class="col-xs-6">
+        <div class="btn-group">
+            <a class="btn btn-info btn-sm btn-add_row"
+               (click)="triggerMenuAddItem($event)">
+                <i class="fa fa-plus"></i> 項目追加
+            </a>
+            <div class="btn-group">
+                <a data-toggle="dropdown" id="SF00303-dropdown-button"></a>
+                <ul class="dropdown-menu" role="menu"
+                    style="overflow-x: hidden;overflow-y: scroll; width: 340px; height: 180px;">
+                    <li>
+                        <button type="button" (click)="addHeadingItem()"
+                                class="btn btn-link row-item-selector__item">見出し
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" (click)="addBlankItem()"
+                                class="btn btn-link row-item-selector__item">空欄
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" (click)="addGroups()"
+                                class="btn btn-link row-item-selector__item">グループ
+                        </button>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <button type="button" (click)="addProductRow()"
+                                class="btn btn-link row-item-selector__item">カスタム項目
+                        </button>
+                    </li>
+                    <li *ngIf="dealProducts.length > 0" class="divider"></li>
+                    <li *ngFor="let dealProduct of dealProducts">
+                        <button type="button" (click)="addProductRow(dealProduct)"
+                                class="btn btn-link row-item-selector__item">
+                            {{dealProduct.product.productCode}}
+                            {{dealProduct.product.productName}}
+                        </button>
+                    </li>
+                    <template ngFor let-dealProduct [ngForOf]="dealProducts">
+                        <li *ngIf="hasProductCommonFee(dealProduct.product.productCommon)" class="divider"></li>
+                        <sf0030303 [productCommonFee]="dealProduct.product.productCommon" [dealProduct]="dealProduct"
+                                   [productCode]="dealProduct.product.productCode"
+                                   (addProductCommon)="addProductCommonRow($event)"></sf0030303>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="quotate-footer">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,210 @@
+.sfn0402 .block-header h3.block-title {
+    font-size: 20px;
+}
+
+.sfn0402 input,
+.sfn0402 input[readonly],
+.sfn0402 select,
+.sfn0402 textarea {
+    background: #ffffff;
+}
+
+.sfn0402 .pagination {
+    margin: 0;
+}
+
+.sfn0402 .btn.btn-primary {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.sfn0402 .basic-info-table {
+    table-layout: fixed;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.sfn0402 .basic-info-table tr td.title-1,
+.sfn0402 .basic-info-table tr td.title-2 {
+    text-align: right;
+}
+
+.sfn0402 .basic-info-table tr td.title-1 {
+    width: 120px;
+}
+
+.sfn0402 .basic-info-table tr td.title-2 {
+    width: 120px;
+}
+
+.sfn0402 .basic-info-table tr td.data-1,
+.sfn0402 .basic-info-table tr td.data-2 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.sfn0402 .basic-info-table tr td.data-2 {
+    width: 190px;
+}
+
+.sfn0402 .basic-info-table tr.partner-row td.title-1 {
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0.4;
+    vertical-align: middle;
+}
+
+.sfn0402 .basic-info-table tr.partner-row td.data-1 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.sfn0402 .basic-info-table tr.partner-row td.data-2 span.partner-type {
+    border: 1px solid;
+    padding: 3px 15px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 15px;
+}
+
+.sfn0402 .year-select label {
+    width: 60px;
+}
+
+.sfn0402 .year-select select {
+    width: 140px;
+}
+
+/* START format sales performance */
+.sfn0402 .sales-performance-table table.htCore tbody tr:first-child td {
+    color: white;
+    background-color: #9a9a9a;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sfn0402 .sales-performance-table table.htCore tbody tr:first-child td:first-child {
+    text-align: left;
+}
+
+.sfn0402 .sales-performance-table table.htCore tbody tr:not(:first-child) td:nth-child(1) {
+    font-weight: bold;
+}
+
+.sfn0402 .sales-performance-table table.htCore tbody tr:not(:first-child) td:nth-child(1),
+.sfn0402 .sales-performance-table table.htCore tbody tr:not(:first-child) td:nth-child(2) {
+    background-color: #f5f5f5;
+}
+
+.sfn0402 .sales-performance-table table.htCore tbody tr:nth-child(8) td,
+.sfn0402 .sales-performance-table table.htCore tbody tr:nth-child(11) td {
+    font-weight: bold;
+}
+
+.sfn0402 .sales-performance-table table.htCore tbody tr:not(:first-child) td:not(:first-child) {
+    text-align: right;
+}
+
+/* END format sales performance */
+
+.sfn0402 .revenue-panel .form-inline .form-group {
+    margin-bottom: 10px;
+}
+
+.sfn0402 .revenue-panel .form-inline .form-group label.label-clm-1 {
+    padding-right: 10px;
+}
+
+.sfn0402 .revenue-panel .form-inline .form-group label.label-clm-2 {
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .sfn0402 .revenue-panel .form-inline .form-group input.input-date {
+        width: 120px;
+    }
+}
+
+.sfn0402 .stock-panel .form-inline .form-group {
+    margin-bottom: 10px;
+}
+
+.sfn0402 .stock-panel .form-inline .form-group label.label-clm-1 {
+    padding-right: 10px;
+}
+
+.sfn0402 .stock-panel .form-inline .form-group label.label-clm-2 {
+    padding-left: 40px;
+    padding-right: 10px;
+}
+
+.sfn0402 .stock-panel .form-inline .form-group select {
+    width: 150px;
+}
+
+/* start fix bug 3193*/
+.sfn0402 .revenue-list-table table.htCore td{
+    padding-top: 5px;
+    line-height: 25px;
+}
+.sfn0402 .revenue-list-table table.htCore td .css-checkbox{
+    margin: 4px 0px;
+}
+
+.sfn0402 .stock-list-table table.htCore td{
+    padding-top: 5px;
+    line-height: 25px;
+}
+
+.sfn0402 .stock-list-table table.htCore td .css-checkbox{
+    margin: 4px 0px;
+}
+
+.sfn0402 .product-list-table table.htCore td{
+    padding-top: 5px;
+    line-height: 25px;
+}
+
+/* end fix bug 3193*/
+
+/*start: fix bug 3063*/
+.sfn0402 .stock-panel table.htCore thead th{
+    color: white;
+    background-color: #9A9A9A;
+}
+.sfn0402 .revenue-panel table.htCore thead th{
+    color: white;
+    background-color: #9A9A9A;
+}
+.sfn0402 .product-panel table.htCore thead th{
+    color: white;
+    background-color: #9A9A9A;
+}
+/*end: fix bug 3063*/
+
+.sfn0402 .stock-panel .form-inline .form-group label.css-input {
+    margin-right: 15px;
+}
+
+.sfn0402 .product-panel .form-inline .form-group {
+    margin-bottom: 10px;
+}
+
+.sfn0402 .product-panel .form-inline .form-group label.label-clm-1 {
+    padding-right: 10px;
+}
+
+.sfn0402 .product-panel .form-inline .form-group label.label-clm-2 {
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .sfn0402 .product-panel .form-inline .form-group input.input-date {
+        width: 120px;
+    }
+}

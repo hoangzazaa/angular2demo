@@ -1,0 +1,262 @@
+<!-- 製品仕様 -->
+<div class="panel panel-default panel--index">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body01" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body02" role="button">
+                <i class="fa push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': true,'fa-circle-o text-gray':!true}"></i>
+                <span>材料</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body02">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('laminationFrontBasicWeight') }">表ライナー</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationPaperTypeFront"
+                                [disabled]="isCreateNewProduct || isView ||laminationFlute==0  "
+                                [style.border]="checkBorderLaminationFrontBasicWeight.style"
+                                [style.border-radius]="checkBorderLaminationFrontBasicWeight.radius">
+                            <option value="0">指定なし</option>
+                            <optgroup label="ライナー">
+                                <option *ngFor="let t of cartonLaminationFirstOption" [value]="t.id">{{t.name | ellipsis}}</option>
+                            </optgroup>
+                            <optgroup label="中芯">
+                                <option *ngFor="let t of cartonLaminationSecondOption" [value]="t.id">{{t.name | ellipsis}}</option>
+                            </optgroup>
+                            <optgroup label="その他のライナー・中芯">
+                                <option *ngIf="paperTmp1.paperName" value="100">{{paperTmp1.paperName}}
+                                </option>
+                                <option value="99">その他</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationFrontBasicWeight"
+                                [disabled]="isCreateNewProduct || isView ||laminationFlute==0 "
+                                [style.border]="checkBorderLaminationFrontBasicWeight.style"
+                                [style.border-radius]="checkBorderLaminationFrontBasicWeight.radius">
+                            <option *ngFor="let t of laminationWeightFrontOption" [value]="t">{{t}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3 text-left">
+                        <div class="form-control-static" *ngIf="laminationPaperTypeFront!=99">
+                            {{laminationFrontThroughWage| number:'1.2-2'}} 円（k@）
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="laminationB">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('laminationBBasicWeight') }">B中芯<br>
+                        <small>（WFのみ）</small></label>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationPaperTypeB"
+                                [disabled]="isCreateNewProduct || isView  ||laminationFlute!=3">
+                            <option value="0">指定なし</option>
+                            <optgroup label="ライナー">
+                                <option *ngFor="let t of cartonLaminationFirstOption" [value]="t.id">{{t.name | ellipsis}}</option>
+                            </optgroup>
+                            <optgroup label="中芯">
+                                <option *ngFor="let t of cartonLaminationSecondOption" [value]="t.id">{{t.name | ellipsis}}</option>
+                            </optgroup>
+                            <optgroup label="その他のライナー・中芯">
+                                <option *ngIf="paperTmp2.paperName" value="101">{{paperTmp2.paperName}}
+                                </option>
+                                <option value="99">その他</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationBBasicWeight"
+                                [disabled]="isCreateNewProduct || isView  ||laminationFlute!=3"
+                                *ngIf="laminationPaperTypeB!=99">
+                            <option *ngFor="let t of laminationWeightBOption" [value]="t">{{t}}</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView  ||(laminationFlute!=3 && laminationFlute!=0)"
+                               *ngIf="laminationPaperTypeB==99"
+                               number-input [defaultValue]="0" [maxValue]="9999"
+                               [(numberValue)]="laminationBBasicWeight" [numberPrecision]="0">
+                    </div>
+                    <div class="col-sm-3 text-left">
+                        <div class="form-control-static" *ngIf="laminationPaperTypeB!=99">
+                            {{laminationBThroughWage | number:'1.2-2'}}円（k@）
+                        </div>
+                        <ng-container *ngIf="laminationPaperTypeB==99">
+                            <div class="form-material--group">
+                                <input type="text" class="form-control text-right" placeholder=""
+                                       [disabled]="isCreateNewProduct || isView  ||laminationFlute!=3"
+                                       number-input [defaultValue]="0" [maxValue]="9999"
+                                       [(numberValue)]="laminationBThroughWage" [numberPrecision]="0">
+                                <span class="form-material--group__unit">円（k@）</span>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('laminationMediumBasicWeight') }">中芯</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationPaperTypeMedium"
+                                [disabled]="isCreateNewProduct || isView ||laminationFlute==0 "
+                                [style.border]="checkBorderLaminationMediumBasicWeight.style"
+                                [style.border-radius]="checkBorderLaminationMediumBasicWeight.radius">
+                            <option value="0">指定なし</option>
+                            <optgroup label="ライナー">
+                                <option *ngFor="let t of cartonLaminationFirstOption" [value]="t.id">{{t.name | ellipsis}}</option>
+                            </optgroup>
+                            <optgroup label="中芯">
+                                <option *ngFor="let t of cartonLaminationSecondOption" [value]="t.id">{{t.name | ellipsis}}</option>
+                            </optgroup>
+                            <optgroup label="その他のライナー・中芯">
+                                <option *ngIf="paperTmp3.paperName" value="102">{{paperTmp3.paperName}}
+                                </option>
+                                <option value="99">その他</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationMediumBasicWeight"
+                                [disabled]="isCreateNewProduct || isView ||laminationFlute==0 "
+                                *ngIf="laminationPaperTypeMedium!=99"
+                                [style.border]="checkBorderLaminationMediumBasicWeight.style"
+                                [style.border-radius]="checkBorderLaminationMediumBasicWeight.radius">
+                            <option *ngFor="let t of laminationWeightMediumOption" [value]="t">{{t}}</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView"
+                               *ngIf="laminationPaperTypeMedium==99"
+                               number-input [defaultValue]="0" [maxValue]="9999"
+                               [(numberValue)]="laminationMediumBasicWeight" [numberPrecision]="0"
+                               [style.border]="checkBorderLaminationMediumBasicWeight.style"
+                               [style.border-radius]="checkBorderLaminationMediumBasicWeight.radius">
+                    </div>
+                    <div class="col-sm-3 text-left">
+                        <div class="form-control-static" *ngIf="laminationPaperTypeMedium!=99">
+                            {{laminationMediumThroughWage | number:'1.2-2'}} 円（k@）
+                        </div>
+                        <ng-container *ngIf="laminationPaperTypeMedium==99">
+                            <div class="form-material--group">
+                                <input type="text" class="form-control text-right" placeholder=""
+                                       [disabled]="isCreateNewProduct || isView"
+                                       number-input [defaultValue]="0" [maxValue]="9999"
+                                       [(numberValue)]="laminationMediumThroughWage" [numberPrecision]="0"
+                                       [style.border]="checkBorderLaminationMediumThroughWage.style"
+                                       [style.border-radius]="checkBorderLaminationMediumThroughWage.radius">
+                                <span class="form-material--group__unit">円（k@）</span>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="form-group" id="laminationA">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('laminationABasicWeight') }">A中芯<br>
+                        <small>（WFのみ）</small></label>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationPaperTypeA"
+                                [disabled]="isCreateNewProduct || isView ||laminationFlute!=3">
+                            <option value="0">指定なし</option>
+                            <optgroup label="ライナー">
+                                <option *ngFor="let t of cartonLaminationFirstOption" [value]="t.id">{{t.name | ellipsis}}</option>
+                            </optgroup>
+                            <optgroup label="中芯">
+                                <option *ngFor="let t of cartonLaminationSecondOption" [value]="t.id">{{t.name | ellipsis}}</option>
+                            </optgroup>
+                            <optgroup label="その他のライナー・中芯">
+                                <option *ngIf="paperTmp4.paperName" value="103">{{paperTmp4.paperName}}
+                                </option>
+                                <option value="99">その他</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationABasicWeight"
+                                [disabled]="isCreateNewProduct || isView ||laminationFlute!=3  "
+                                *ngIf="laminationPaperTypeA!=99">
+                            <option *ngFor="let t of laminationWeightAOption" [value]="t">{{t}}</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView ||laminationFlute!=3"
+                               *ngIf="laminationPaperTypeA==99"
+                               number-input [defaultValue]="0" [maxValue]="9999"
+                               [(numberValue)]="laminationABasicWeight" [numberPrecision]="0">
+                    </div>
+                    <div class="col-sm-3 text-left">
+                        <div class="form-control-static" *ngIf="laminationPaperTypeA!=99">
+                            {{laminationAThroughWage | number:'1.2-2'}} 円（k@）
+                        </div>
+                        <ng-container *ngIf="laminationPaperTypeA==99">
+                            <div class="form-material--group">
+                                <input type="text" class="form-control text-right" placeholder=""
+                                       [disabled]="isCreateNewProduct || isView ||laminationFlute!=3"
+                                       number-input [defaultValue]="0" [maxValue]="9999"
+                                       [(numberValue)]="laminationAThroughWage" [numberPrecision]="0">
+                                <span class="form-material--group__unit">円（k@）</span>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('laminationBackBasicWeight') }">裏ライナ</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationPaperTypeBack"
+                                [disabled]="isCreateNewProduct || isView ||laminationFlute==0  "
+                                [style.border]="checkBorderLaminationBackBasicWeight.style"
+                                [style.border-radius]="checkBorderLaminationBackBasicWeight.radius">
+                            <option value="0">指定なし</option>
+                            <optgroup label="ライナー">
+                                <option *ngFor="let t of cartonLaminationFirstOption" [value]="t.id">{{t.name | ellipsis}}</option>
+                            </optgroup>
+                            <optgroup label="中芯">
+                                <option *ngFor="let t of cartonLaminationSecondOption" [value]="t.id">{{t.name | ellipsis}}</option>
+                            </optgroup>
+                            <optgroup label="その他のライナー・中芯">
+                                <option *ngIf="paperTmp5.paperName" value="104">{{paperTmp5.paperName}}
+                                </option>
+                                <option value="99">その他</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control" [(ngModel)]="laminationBackBasicWeight"
+                                [disabled]="isCreateNewProduct || isView ||laminationFlute==0  "
+                                *ngIf="laminationPaperTypeBack!=99"
+                                [style.border]="checkBorderLaminationBackBasicWeight.style"
+                                [style.border-radius]="checkBorderLaminationBackBasicWeight.radius">
+                            <option *ngFor="let t of laminationWeightBackOption" [value]="t">{{t}}</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder=""
+                               [disabled]="isCreateNewProduct || isView" *ngIf="laminationPaperTypeBack==99"
+                               number-input [defaultValue]="0" [maxValue]="9999"
+                               [(numberValue)]="laminationBackBasicWeight" [numberPrecision]="0"
+                               [style.border]="checkBorderLaminationBackBasicWeight.style"
+                               [style.border-radius]="checkBorderLaminationBackBasicWeight.radius">
+                    </div>
+                    <div class="col-sm-3 text-left">
+                        <div class="form-control-static" *ngIf="laminationPaperTypeBack!=99">
+                            {{laminationBackThroughWage | number:'1.2-2'}} 円（k@）
+                        </div>
+                    </div>
+                </div>
+                <div style="background:#FCDFDF" class="text-center" style="padding:10px" *ngIf="checkImposition">
+                    <p style="color: #b95e5e;font-size:16px"><strong>材料の在庫有無を購買に確認してください</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /製品仕様 -->
+<div class="modal fade"
+     [mstPapersBackground]="mstPapersBackground"
+     paper-modal (emitSubmitData)="setPaperModalResult($event)"
+     tabindex="-1" role="dialog" id="paperModal"
+     data-backdrop="static" data-keyboard="false" (emitClosed)="closedModal()" [helper]="helper">
+</div>

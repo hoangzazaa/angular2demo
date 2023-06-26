@@ -1,0 +1,114 @@
+<div class="panel panel-default sfr-panel-concern-item panel--product">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="panel-title__note">{{deal.dealCode}}</span>
+            <button class="btn btn-link remove-padding panel-title__link" (click)="requestViewDetailDeal(deal)"
+                    *ngIf="deal.isEdit">
+                {{deal.dealName}}
+            </button>
+            <span class="font-large push-10-l" *ngIf="!deal.isEdit">{{deal.dealName}}</span>
+            <div class="panel-title__flex-space pull-right">
+                <span class="panel-title__date panel-title__date_label">更新日</span>
+                <span class="panel-title__date panel-title__date_strong">{{updatedDate | date:'yyyy/MM/dd'}}</span>
+                <a role="button" data-toggle="collapse" class="pull-right accordion-toggle"
+                   href="#panel_body{{idx}}"
+                   aria-expanded="true" aria-controls="sample01" style="color: #333;">
+                    <i class="glyphicon glyphicon-chevron-down"></i>
+                </a>
+            </div>
+        </h3>
+    </div>
+    <div [ngClass]="{'panel-collapse collapse in': idx==0, 'panel-collapse collapse': idx!=0}"
+         id="panel_body{{idx}}">
+        <div class="panel-body panel-body--has-tab_block block">
+            <ul class="nav nav-tabs nav-tabs-alt" data-toggle="tabs">
+                <li class="active">
+                    <a href="#dealInfo" data-toggle="tab">基本情報</a>
+                </li>
+                <li class="pull-right">
+                    <div class="block-options-simple">
+                        <button type="button" class="btn btn-link" (click)="requestViewDetailDeal(deal)"
+                                *ngIf="deal.isEdit">詳細
+                        </button>
+                    </div>
+                </li>
+            </ul>
+            <div class="block-content tab-content">
+                <div class="tab-pane tab-pane--default active" id="dealInfo">
+                    <div class="row">
+                        <div class="col-sm-3 panel-body__thumb">
+                            <file-viewer [srcFile]="productInfo.srcImg"></file-viewer>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-12 pad-10-t">
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed">
+                                            <tbody class="no-border">
+                                            <tr>
+                                                <th>得意先名</th>
+                                                <td><span class="text-ellipsis w200-md w150-xs">{{deal.customerName | ellipsis}}</span>
+                                                </td>
+                                                <th>受注額</th>
+                                                <td><strong>{{deal.estTotalDeal | number}} {{deal.estTotalDeal ==
+                                                    undefined
+                                                    || deal.estTotalDeal == "" ? "" : '円'}}</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <th>担当営業</th>
+                                                <td><span
+                                                        class="text-ellipsis w200-md w150-xs">{{deal.saleName}}</span>
+                                                </td>
+                                                <th>納期</th>
+                                                <td>{{deal.deliveryDate | date:'yyyy/MM/dd'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>案件区分</th>
+                                                <td>{{getDealType(deal)}}</td>
+                                                <th>ステータス</th>
+                                                <td>{{getDealStatus(deal)}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!--<div class="table-responsive">-->
+                                        <table class="table table-condensed push-5">
+                                            <tbody class="has-strong-top-border">
+                                            <tr>
+                                                <th style="width: 35%"><span class="text-ellipsis w200-sm w150-xs">
+                                                    {{productInfo.productName | ellipsis}}</span>
+                                                </th>
+                                                <td style="width: 65%">
+                                                    {{getDescription}}
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <span class="push-10-l text-muted">他　{{deal.products.length}} 点（商事含む）</span>
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="deal.activity.id"  style="background: #F9F9F9; margin-left: 0px">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-9" style="margin-left: -10px">
+                            <deal-activity [activity]="deal.activity"></deal-activity>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="form-group">-->
+<!--<pagination-component [total]="5" [pageSize]="2" (currentPageChange)="onPageChange($event)"></pagination-component>-->
+<!--</div>-->

@@ -1,0 +1,33 @@
+<table class="table table-borderless table-striped table-vcenter">
+    <thead>
+    <tr *ngIf="!isPredictionMode">
+        <th class="text-center column-no">#</th>
+        <th class="column-name">会社名／得意先名</th>
+        <th class="text-right column-product">段ボール</th>
+        <th class="text-right column-product">紙器</th>
+        <th class="text-right column-product">商事</th>
+        <th class="text-right column-total">合計</th>
+        <th class="text-right column-ratio">前年同月比</th>
+        <th class="column-comment">コメント</th>
+    </tr>
+    <tr *ngIf="isPredictionMode">
+        <th class="text-center column-no">#</th>
+        <th class="column-name">会社名／得意先名</th>
+        <th class="text-right column-product">段ボール</th>
+        <th class="text-right column-product">紙器</th>
+        <th class="text-right column-product">商事</th>
+        <th class="text-right column-total">合計</th>
+        <th class="text-right column-ratio">前年同月比</th>
+        <th class="column-comment">コメント</th>
+        <th class="column-action"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr sf0050204 *ngFor="let note of tableNotes; let i = index" [index]="i"></tr>
+    <tr sf0050204 *ngIf="displayWaitRow"></tr>
+    <tr *ngIf="showNoRecords">
+        <td colspan="8" class="text-center" *ngIf="!isPredictionMode">No records</td>
+        <td colspan="9" class="text-center" *ngIf="isPredictionMode">No records</td>
+    </tr>
+    </tbody>
+</table>

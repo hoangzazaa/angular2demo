@@ -1,0 +1,268 @@
+<!-- 印刷 -->
+<div class="panel panel-default panel--index sf0030208">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a aria-controls="panel_body05" aria-expanded="true"
+               class="accordion-toggle" data-toggle="collapse"
+               href="#panel_body05" role="button">
+                <i class="fa push-5-r"
+                   [ngClass]="{'fa-check-circle-o text-success': stateProductPrint,'fa-circle-o text-gray':!stateProductPrint}"></i>
+                <span>印刷</span>
+                <i class="pull-right glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body05">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('printMethod') }">印刷方法</label>
+                    <div class="col-sm-7">
+                        <select class="form-control" [(ngModel)]="printMethod"
+                                [disabled]="isCreateNewProduct || isView" *ngIf="helper.getSF00302Data().product.shapeId!=98">
+                            <option *ngFor="let t of printMethodOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                        <select class="form-control" [(ngModel)]="printMethod"
+                                [disabled]="isCreateNewProduct || isView" *ngIf="helper.getSF00302Data().product.shapeId==98">
+                        <option value="3">フレキソ印刷</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="printMethod!=0">
+                    <label class="control-label col-sm-3" *ngIf="printMethod==2"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('colorIdF') }">色（表）</label>
+                    <div class="col-sm-3">
+                        <div>
+                            <label class="control-label" *ngIf="printMethod==1"
+                                   [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('colorIdF') }">全使用色数（表）</label>
+                            <label class="control-label" *ngIf="printMethod==3"
+                                   [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('colorIdF') }">使用色数</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-7" *ngIf="printMethod==2">
+                        <select class="form-control" *ngIf="printMethod!=1"
+                                [disabled]="isCreateNewProduct || isView" [(ngModel)]="colorIdF">
+                            <option *ngFor="let t of digitalColorOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-7" *ngIf="printMethod==3">
+                        <select class="form-control"
+                                [disabled]="isView" [(ngModel)]="colorIdF">
+                            <option *ngFor="let t of cartonColorOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-7" *ngIf="printMethod==1">
+                        <select class="form-control" [(ngModel)]="colorIdF" style="padding: 0;"
+                                *ngIf="printMethod!=2" [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of offsetColorOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                    <label class="control-label" *ngIf="printMethod==1">数</label>
+                </div>
+                <div class="form-group" *ngIf="printMethod==1">
+                    <label class="control-label col-sm-3" *ngIf="printMethod==1"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('specialColorF') }">うち特殊色数（表）</label>
+                    <div class="col-sm-7" *ngIf="printMethod==1">
+                        <select class="form-control" [(ngModel)]="specialColorF" style="padding: 0;"
+                                *ngIf="printMethod==1"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of offsetColorOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                    <label class="control-label" *ngIf="printMethod==1">数</label>
+                </div>
+
+                <div class="form-group" *ngIf="printMethod!=0">
+                    <div class="col-sm-3">
+                        <div>
+                            <label class="control-label remove-padding-r" *ngIf="printMethod==1||printMethod==2"
+                                   [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('colorMemo') }">
+                                使用色（表）
+                            </label>
+                            <label class="control-label remove-padding-r" *ngIf="printMethod==3"
+                                   [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('colorMemo') }">
+                                使用色
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorFText1" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorFtext1" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorFText2" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorFtext2" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorFText3" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorFtext3" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r" *ngIf="printMethod!=3">
+                                <select id="colorFText4" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorFtext4" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="printMethod!=0&&printMethod!=3">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorFText5" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorFtext5" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorFText6" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorFtext6" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorFText7" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorFtext7" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorFText8" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorFtext8" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" *ngIf="printMethod!=0&&printMethod!=3">
+                    <label class="control-label col-sm-3" *ngIf="printMethod==2"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('colorIdB') }">色（裏）</label>
+                    <div class="col-sm-3">
+                        <div>
+                            <label class="control-label" *ngIf="printMethod==1"
+                                   [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('colorIdB') }">全使用色数（裏）</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-7" *ngIf="printMethod==2">
+                        <select class="form-control" *ngIf="printMethod==2" [(ngModel)]="colorIdB"
+                                [disabled]="isCreateNewProduct || isView">
+                            <option *ngFor="let t of digitalColorOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-7" *ngIf="printMethod==1">
+                        <select class="form-control" [(ngModel)]="colorIdB" style="padding: 0;"
+                                *ngIf="printMethod==1"
+                                [disabled]="isCreateNewProduct ||isView">
+                            <option *ngFor="let t of offsetColorOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                    <label class="control-label" *ngIf="printMethod==1">数</label>
+                    <div class="hidden">{{colorBText}}</div>
+                </div>
+
+                <div class="form-group" *ngIf="printMethod==1">
+                    <label for="selectSpecialColorB" class="control-label col-sm-3"
+                           *ngIf="printMethod==1"
+                           [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('specialColorB') }">うち特殊色数（裏）</label>
+                    <div class="col-sm-7" *ngIf="printMethod==1">
+                        <select id="selectSpecialColorB" name="selectSpecialColorB" class="form-control"
+                                [(ngModel)]="specialColorB" style="padding: 0;"
+                                *ngIf="printMethod==1"
+                                [disabled]="isView">
+                            <option *ngFor="let t of offsetColorOption" [value]="t.id">{{t.name}}</option>
+                        </select>
+                    </div>
+                    <label class="control-label" *ngIf="printMethod==1">数</label>
+                </div>
+
+                <div class="form-group" *ngIf="printMethod!=0&&printMethod!=3">
+                    <div class="col-sm-3">
+                        <div>
+                            <label class="control-label remove-padding-r"
+                                   *ngIf="printMethod!=0"
+                                   [ngClass]="{'sf00302-highlighted-dirty': isHighlighted('colorBText') }">
+                                使用色（裏）
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorBText1" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorBtext1" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorBText2" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorBtext2" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorBText3" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorBtext3" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorBText4" class="form-control" style="padding: 0;"
+                                        [disabled]="isCreateNewProduct || isView">
+                                    <option *ngFor="let t of mstColorBtext4" [value]="t">{{t}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" *ngIf="printMethod!=0&&printMethod!=3">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorBText5" class="form-control" style="padding: 0;"
+                                        [disabled]="true">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorBText6" class="form-control" style="padding: 0;"
+                                        [disabled]="true">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorBText7" class="form-control" style="padding: 0;"
+                                        [disabled]="true">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 select2Div remove-padding-r">
+                                <select id="colorBText8" class="form-control" style="padding: 0;"
+                                        [disabled]="true">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /印刷 -->

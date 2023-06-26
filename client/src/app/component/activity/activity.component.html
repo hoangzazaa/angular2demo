@@ -1,0 +1,15 @@
+<div class="block-content">
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-12">
+                <span class="text-muted" style="color: #A2A2A2; font-size: 14px;">最新の活動状況</span>
+                <span style="margin-left: 24px; font-size: 14px; color: #333333;">{{activity.getUpdatedDate('YYYY/MM/DD HH:mm')}} {{activity.username}}</span>
+            </div>
+        </div>
+        <div class="row push-10-t">
+            <div class="col-sm-12">
+                <span style="font-size: 16px; color: #333333">{{activity.value | ellipsis:40}}</span>
+            </div>
+        </div>
+    </div>
+</div>

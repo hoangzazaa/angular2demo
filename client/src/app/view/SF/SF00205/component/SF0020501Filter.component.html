@@ -1,0 +1,127 @@
+<div class="deal-search-panel__body" id="search-panel_detail">
+    <!--Period filter-->
+    <div class="deal-search-panel__block01">
+        <h3 class="h6 deal-search-panel__heading">
+            <label class="control-label--material text-nowrap" for="select-previod-type">対象期間</label>
+        </h3>
+        <div class="form-inline">
+            <!--Time type-->
+            <select id="select-previod-type" name="select-previod-type" class="form-control input-sm"
+                    [(ngModel)]="periodType">
+                <option *ngFor="let item of mstPeriodType" [value]="item.id">{{item.name}}</option>
+            </select>
+            <div class="form-material form-material--group">
+                <span class="form-material--group__addon">自</span>
+                <input date-input class="form-control input-sm" type="text"
+                       id="fromDate" name="fromDate" placeholder="YYYY年M月D日" [dateModel]="fromDate"
+                       [defaultDate]="sysDate"
+                       (dateModelChange)="dateChange($event,1)">
+            </div>
+            〜
+            <div class="form-material form-material--group">
+                <span class="form-material--group__addon">至</span>
+                <input date-input class="form-control input-sm" type="text"
+                       id="toDate" name="toDate" placeholder="YYYY年M月D日" [dateModel]="toDate" [defaultDate]="sysDate"
+                       (dateModelChange)="dateChange($event,2)">
+            </div>
+        </div>
+    </div>
+
+    <div class="deal-search-panel__block02">
+        <!--<h3 class="h6 deal-search-panel__heading text-nowrap">案件情報</h3>-->
+        <div class="form-horizontal--material_condensed">
+            <!--Branch & Pic filter-->
+            <div class="row">
+                <!--Branch-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2 control-label--material text-nowrap" style="margin-top: 7px" style="margin-top: 7px">支店</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <select class="form-control input-sm" [(ngModel)]="selectedDepartmentId">
+                                <option *ngFor="let item of departments; let idx = index" [ngValue]="item.id">
+                                    {{item.department}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!--PIC-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2 control-label--material text-nowrap" style="margin-top: 7px">担当</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <select class="form-control input-sm" [(ngModel)]="selectedPicId"
+                                    [disabled]="selectedDepartmentId==0">
+                                <option value="0" *ngIf="selectedDepartmentId==0">指定なし</option>
+                                <option *ngFor="let item of pics; let idx = index" [ngValue]="item.id">
+                                    {{item.username}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Deal filter-->
+            <div class="row push-15-t">
+                <!--Deal ID-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2 control-label--material text-nowrap" style="margin-top: 7px">案件ID</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <input type="text" class="form-control input-sm" placeholder="" value=""
+                                   [(ngModel)]="filter.dealCode" maxlength="10">
+                        </div>
+                    </div>
+                </div>
+
+                <!--Deal name-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2 control-label--material text-nowrap" style="margin-top: 7px">案件名</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <input type="text" class="form-control input-sm" placeholder="" value=""
+                                   [(ngModel)]="filter.dealName" maxlength="20">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Customer filter-->
+            <div class="row push-15-t">
+                <!--Customer ID-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2 control-label--material text-nowrap" style="margin-top: 7px">得意先ID</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <input type="text" class="form-control input-sm" placeholder="" value=""
+                                   [(ngModel)]="filter.customerCode" maxlength="10">
+                        </div>
+                    </div>
+                </div>
+
+                <!--Customer name-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2 control-label--material text-nowrap" style="margin-top: 7px">得意先名</label>
+                    <div class="col-sm-4">
+                        <div class="form-material">
+                            <input type="text" class="form-control input-sm" placeholder="" value=""
+                                   [(ngModel)]="filter.customerName" maxlength="20">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Search button-->
+            <div class="row push-15-t">
+                <div class="form-group pull-right push-15-r">
+                    <button class="btn btn-link" (click)="reset()">検索条件クリア</button>
+                    <button class="btn btn-success" prevent-dblclick [disable]="isDisable" (click)="doSearch()">絞り込む
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

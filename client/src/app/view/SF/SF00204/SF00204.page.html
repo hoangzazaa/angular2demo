@@ -1,0 +1,65 @@
+<div class="content">
+    <div class="block">
+        <div class="block-content deal-search-panel sf00204">
+            <div class="deal-search-panel__header">
+                <input class="js-tags-input form-control" type="text" style="width:95%" placeholder="Search.."
+                       js-tags-input [tags]="pageData.keywords" (tagsChange)="onKeywordsChange($event)">
+                <div class="push-5-t text-right">
+                    <a href="#search-panel_detail" aria-expanded="false" aria-controls="search-panel_detail"
+                       data-toggle="collapse" class="btn btn-sm btn-link collapsed"><i
+                            class="fa fa-angle-up fa-lg"></i>詳細</a>
+                </div>
+            </div>
+            <sf0020401-filter (advanceSearchRequested)="setAdvancedSearchOnAndStartSearch($event)"></sf0020401-filter>
+        </div>
+    </div>
+
+    <div id="productsList">
+        <p>該当件数 {{pageData.totalRecords}} 件</p>
+
+        <template ngFor let-productBox [ngForOf]="pageData.productBoxs" let-idx="index">
+            <!-- /製品情報 -->
+            <div class="panel panel-default sfr-panel-concern-item panel--product">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="panel-title__note">{{productBox.product.productCode}}</span>
+                        <button (click)="viewProductInfo(productBox.product, productBox.dealCode)"
+                                class="btn btn-link remove-padding panel-title__link">
+                            {{productBox.product.productName | ellipsis: 20}}
+                        </button>
+                        <div class="pull-right panel-title__flex-space">
+                            <span class="panel-title__date panel-title__date_label">更新日</span>
+                            <span class="panel-title__date panel-title__date_strong">{{productBox.product.updatedDate | date: 'yyyy/MM/dd'}}</span>
+                        </div>
+                        <a role="button" data-toggle="collapse" class="pull-right accordion-toggle"
+                           href="#panel_body{{idx}}"
+                           aria-expanded="true" aria-controls="panel_body01">
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </a>
+                    </h3>
+                </div>
+                <div class="panel-collapse collapse in" product-info id="panel_body{{idx}}"
+                     [mstLaminations]="pageData.mstLaminations"
+                     [productBox]="productBox"
+                     [index]="idx"
+                     [notUsingProduct]="true"
+                     (emitRedirectSF00302)="viewProductInfo(productBox.product, productBox.dealCode)"
+                     (emitAddProductToDeal)="addProductToDeal(productBox)"
+                >
+                </div>
+            </div>
+        </template>
+
+        <div *ngIf="pageData.productBoxs.length > 0">
+            <pagination-component [total]="pageData.totalRecords" [pageSize]="pageData.CONSTANTS.PAGE_SIZE"
+                                  (currentPageChange)="onPageChanged($event)"></pagination-component>
+        </div>
+        <!-- /.block-content -->
+        <div class="row">
+            <div class="push-10-t push-30-l">
+                <button class="btn btn-link text-info" (click)="backToSF00301()">戻る
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

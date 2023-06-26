@@ -1,0 +1,28 @@
+<div class="content sfn0402">
+
+    <!-- 基本情報 -->
+    <div class="block" sfn040201></div>
+
+    <!-- 売上実績 (得意先のみ) -->
+    <div class="block block-opt-refresh-icon4" sfn040202 *ngIf="showSP"></div>
+
+    <!-- 取引実績 -->
+    <div class="block block-opt-refresh-icon4" sfn040203 *ngIf="showRPC"></div>
+
+    <!-- 製品一覧 (得意先のみ) -->
+    <div class="block block-opt-refresh-icon4" sfn040205 *ngIf="showPPC"></div>
+
+    <!-- 届け先一覧 (得意先のみ) -->
+    <div class="block block-opt-refresh-icon4" sfn040207-shippingDestinationList *ngIf="showSDL"
+        [customer]="pageData.partner" [shippingDestinationList]="shippingDestinationList"
+        (showShippingDestination)="showShippingDestination(pageData.partner.code, $event)"></div>
+
+    <!-- メール送信モーダル -->
+    <sfn040206></sfn040206>
+
+    <div class="push-20-t push-20 row">
+        <div class="col-sm-6">
+            <button class="btn btn-link" (click)="goBack()">戻る</button>
+        </div>
+    </div>
+</div>

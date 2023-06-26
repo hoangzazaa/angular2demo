@@ -1,0 +1,19 @@
+version: '2.1'
+services:
+  app:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      args:
+        workdir: /sefuri
+    volumes:
+      - ..:/sefuri:cached
+      - ~/.ssh:/root/.ssh
+      - activator-data:/activator-dist-1.3.10/repository
+      - root:/root:cached
+volumes:
+  activator-data:
+    driver: local
+  root:
+    driver: local

@@ -1,0 +1,53 @@
+<div class="content sf00308">
+    <!-- deal info -->
+    <deal-info [dealInfo]="pageData.dealInfo"></deal-info>
+    <!-- /deal info -->
+    <div class="row push-20-t">
+        <div class="block">
+            <div class="block-content">
+                <!--navigation tab-->
+                <div class="panel-body block panel-body--has-tab_block">
+                    <ul class="nav nav-tabs nav-tabs-alt">
+                        <li class="active">
+                            <a href="#tab1" data-toggle="tab">用途・注文</a>
+                        </li>
+                        <li>
+                            <a href="#tab2" data-toggle="tab">形状・デザイン</a>
+                        </li>
+                        <li>
+                            <a href="#tab3" data-toggle="tab">製造仕様</a>
+                        </li>
+                        <li>
+                            <a href="#tab4" data-toggle="tab">梱包・配送</a>
+                        </li>
+                    </ul>
+                    <!--tab content-->
+                    <div class="tab-content">
+                        <!--tab 1-->
+                        <div class="tab-pane tab-pane--default active" sf0030801 (emitSave)="saveDataTab($event)"
+                             (emitCancel)="backToSF00301()"
+                             [pageData]="pageData" id="tab1"></div>
+                        <!--tab 2-->
+                        <div class="tab-pane tab-pane--default" sf0030802 (emitSave)="saveDataTab($event)"
+                             (emitCancel)="backToSF00301()"
+                             [pageData]="pageData" id="tab2"></div>
+                        <!--tab 3-->
+                        <div class="tab-pane tab-pane--default" sf0030803 (emitSave)="saveDataTab($event)"
+                             (emitCancel)="backToSF00301()"
+                             [pageData]="pageData" id="tab3"></div>
+                        <!--tab 4-->
+                        <div class="tab-pane tab-pane--default" sf0030804 (emitSave)="saveDataTab($event)"
+                             (emitCancel)="backToSF00301()"
+                             [pageData]="pageData" id="tab4"></div>
+                    </div>
+                    <!--tab content-->
+                </div>
+                <!-- end navigation tab-->
+            </div>
+        </div>
+        <div class="push-30-t push-20">
+            <button class="btn btn-link" (click)="backToSF00301()">戻る</button>
+        </div>
+    </div>
+</div>
+<!-- END Page Content -->

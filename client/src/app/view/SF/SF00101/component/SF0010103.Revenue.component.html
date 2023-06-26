@@ -1,0 +1,40 @@
+<div class="form-horizontal push-30-t">
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="overflow-scroll" style="width: 950px;margin: 0 auto;">
+                <div id="revenueOntable" class="handsontable"
+                     style="width: 950px;overflow: hidden; margin: 0 auto; max-height: 317px; min-height: 31px">
+                </div>
+            </div>
+            <div *ngIf="dataRows.length==0" style="text-align: center"><span>データがありません。</span></div>
+        </div>
+
+        <div class="form-group" style="max-width: 950px; margin: 0 auto; text-align: right;">
+            <div class="col-md-8 col-md-offset-4 push-10-t;" style="padding-right: 0px; padding-top: 10px">
+                <div class="text-muted text-right">(千円)</div>
+            </div>
+            <div class="col-md-8 col-md-offset-4 push-10-t" style="padding-right: 0px">
+                <table class="handsontable pull-right" style="width: 100%;">
+                    <thead>
+                    <tr>
+                        <th style="width: 25%">段ボール</th><!--Carton-->
+                        <th style="width: 25%">紙器</th><!--Hộp giấy-->
+                        <th style="width: 25%">商事</th><!--Hàng gia công-->
+                        <th style="width: 25%">合計(税抜)</th><!--Total-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-right">
+                        <td>{{product_Type0|numberFormat}}</td><!--fill actual value-->
+                        <td>{{product_Type1|numberFormat}}</td><!--fill actual value-->
+                        <td>{{product_Type2|numberFormat}}</td><!--fill actual value-->
+                        <td>{{sumTotal|numberFormat}}</td><!--fill actual value-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>

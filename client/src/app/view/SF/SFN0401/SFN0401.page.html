@@ -1,0 +1,19 @@
+<div class="content sfn0401">
+    <div class="block filter-panel">
+        <div class="block-content search-panel search-panel--customer" sfn040101></div>
+        <div class="triangle"></div>
+    </div>
+
+    <p>該当件数　{{ hits }}　件</p>
+
+    <div class="panel panel-default panel--customer" sfn040102
+         *ngFor="let partner of partners; let i = index" [index]="i"></div>
+
+    <pagination-component [total]="hits" [pageSize]="10" [(currentPage)]="page"></pagination-component>
+
+    <div class="push-20-t push-20 row">
+        <div class="col-sm-6">
+            <button class="btn btn-link" (click)="goBack()">戻る</button>
+        </div>
+    </div>
+</div>

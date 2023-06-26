@@ -1,0 +1,18 @@
+{
+  "status": "1",
+  "messages": [""],
+  "result": {
+    "sheet_sizes": [
+      {"id":"1", "name": "L半", "width":800, "height": 550, "grain": 0},
+      {"id":"2", "name": "L3", "width":800, "height": 365, "grain": 0},
+      {"id":"3", "name": "L4", "width":400, "height": 550, "grain": 0},
+      {"id":"4", "name": "L6", "width":400, "height": 366, "grain": 0},
+      {"id":"5", "name": "K全", "width":650, "height": 950, "grain": 0},
+      {"id":"6", "name": "K半", "width":650, "height": 475, "grain": 0},
+      {"id":"7", "name": "K3", "width":650, "height": 316, "grain": 0},
+      {"id":"12", "name": "K全", "width":950, "height": 650, "grain": 1},
+      {"id":"13", "name": "K半", "width":475, "height": 650, "grain": 1},
+      {"id":"14", "name": "K3", "width":316, "height": 650, "grain": 1}
+    ]
+  }
+}

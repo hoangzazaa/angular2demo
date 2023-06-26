@@ -1,0 +1,61 @@
+<div class="panel panel-default sfr-panel-concern-item panel--product pib-component" [class.panel--has_checkbox]="checkEnabled">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <label *ngIf="displayCheck" class="css-input css-checkbox css-checkbox-rounded css-checkbox-lg css-checkbox-success">
+                <input type="checkbox" [(ngModel)]="checked" [disabled]="!enableCheck">
+                <span></span>
+            </label>
+            <span class="panel-title__note">{{ productCode }}</span>
+            <button class="btn btn-link remove-padding panel-title__link" (click)="viewDetail()">
+                {{ productName }}
+            </button>
+            <div class="pull-right panel-title__flex-space">
+                <span class="panel-title__date panel-title__date_label">更新日</span>
+                <span class="panel-title__date panel-title__date_strong">{{ updateDate | date: 'yyyy/MM/dd'}}</span>
+            </div>
+            <a role="button" class="pull-right accordion-toggle" (click)="toggleBox()">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div #boxBody class="panel-collapse collapse in pad-10-b">
+        <div class="panel-body block panel-body--has-tab_block">
+            <ul class="nav nav-tabs nav-tabs-alt">
+                <li [class.active]="selectedTab == 1">
+                    <a>基本情報</a>
+                </li>
+                <li [class.active]="selectedTab == 2" class="disabled">
+                    <a>取引実績</a>
+                </li>
+                <li [class.active]="selectedTab == 3" class="disabled">
+                    <a>在庫数</a>
+                </li>
+                <li class="pull-right">
+                    <div class="block-options-simple">
+                        <a class="btn btn-link" (click)="viewDetail()"><strong>詳細</strong></a>
+                        <button class="btn btn-default"  [class.btn-primary]="true" (click)="exportPdf()">
+                            <strong *ngIf="!isCommercial">製造仕様書出力</strong>
+                            <strong *ngIf="isCommercial">商事発注書出力</strong>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+            <div class="tab-content" [ngSwitch]="selectedTab">
+                <div *ngSwitchDefault basic-info class="tab-pane tab-pane--default active"></div>
+            </div>
+        </div><!-- /品情報 -->
+        <hr style="margin: 0;"/>
+
+        <!--製造指示-->
+        <div *ngIf="!isCommercial" manufacture class="block block-transparent pib-block"></div>
+
+        <!--出荷予定-->
+        <div *ngFor="let shipping of shippings; let i = index" shipping [index]="i"
+             class="block block-transparent pib-block"></div>
+
+        <!--modal -->
+        <specify-time-modal></specify-time-modal>
+        <loading-address></loading-address>
+        <shipping-destination-modal></shipping-destination-modal>
+    </div>
+</div>

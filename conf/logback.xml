@@ -1,0 +1,51 @@
+<!-- https://www.playframework.com/documentation/latest/SettingsLogger -->
+<configuration>
+
+    <conversionRule conversionWord="coloredLevel" converterClass="play.api.libs.logback.ColoredLevel"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${application.home:-.}/logs/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${application.home:-.}/logs/application.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date[%thread][%level][%logger{5}]: %message%n%xException</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date[%thread][%level][%logger{5}]: %message%n%xException</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNCFILE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <appender name="ASYNCSTDOUT" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <logger name="play" level="INFO"/>
+    <logger name="application" level="DEBUG"/>
+
+    <!-- Off these ones as they are annoying, and anyway we manage configuration ourselves -->
+    <logger name="com.avaje" level="OFF"/>
+    <logger name="com.gargoylesoftware" level="OFF"/>
+    <logger name="com.google" level="OFF"/>
+    <logger name="org.asynchttpclient.netty" level="OFF"/>
+    <logger name="akka" level="OFF"/>
+    <logger name="com.zaxxer" level="OFF"/>
+    <logger name="com.amazonaws" level="OFF"/>
+    <logger name="org.apache" level="OFF"/>
+    <logger name="io.netty" level="OFF"/>
+    <logger name="net.sf" level="OFF"/>
+
+    <root level="INFO">
+        <appender-ref ref="ASYNCFILE"/>
+        <appender-ref ref="ASYNCSTDOUT"/>
+    </root>
+
+</configuration>

@@ -1,0 +1,40 @@
+<div class="summary-filter">
+    <div class="form-inline">
+        <div class="form-group">
+            <label class="deal-count">該当件数 <strong>{{dealTotal}}</strong> 件</label>
+            <label class="css-input css-radio css-radio-primary" for="radio-dealType-1">
+                <input id="radio-dealType-1" name="radio-dealType" type="radio"
+                       [(ngModel)]="dealType" [value]="1"><span></span>すべて
+            </label>
+            <label class="css-input css-radio css-radio-primary" for="radio-dealType-2">
+                <input id="radio-dealType-2" name="radio-dealType" type="radio"
+                       [(ngModel)]="dealType" [value]="2"><span></span>新版
+            </label>
+            <label class="css-input css-radio css-radio-primary" for="radio-dealType-3">
+                <input id="radio-dealType-3" name="radio-dealType" type="radio"
+                       [(ngModel)]="dealType" [value]="3"><span></span>在版
+            </label>
+        </div>
+    </div><!-- /.form-inline -->
+</div>
+
+<div class="panel panel-default summary-content">
+    <div id="dealRecordsCount" class="text-center" *ngIf="filterDeals.length==0">No record</div>
+    <table id="dealRecords" class="table table-condensed" *ngIf="filterDeals.length>0">
+        <tbody>
+        <tr *ngFor="let deal of filterDeals; let idx = index">
+            <div sf0050107 [deal]="deal" [index]="idx"></div>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>
+                <pagination-component [total]="dealTotal" [pageSize]="10" [currentPage]="selectedPage"
+                                      (currentPageChange)="selectPage($event)"></pagination-component>
+            </td>
+        </tr>
+        <tr>
+        </tr>
+        </tfoot>
+    </table>
+</div>

@@ -1,0 +1,96 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            出荷指示
+            <a role="button" data-toggle="collapse" class="pull-right accordion-toggle" href="#panel_body03"
+               aria-expanded="true" aria-controls="panel_body03">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse in" id="panel_body03">
+        <div class="panel-body">
+            <table class="table table-condensed">
+                <colgroup>
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                    <col style="width:10%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>製品ID</th>
+                    <th>製品名</th>
+                    <th>積込場所</th>
+                    <th>出荷数</th>
+                    <th>単価</th>
+                    <th>出荷日</th>
+                    <th>出荷便</th>
+                    <th>時間指定</th>
+                    <th>数量制限</th>
+                    <th>備考</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of shippingInstructions; let idx=index">
+                    <td>{{item.productCode}}</td>
+                    <td>{{item.productName | ellipsis}}</td>
+                    <td>
+                        <select [disabled]="dealInfo.confirmedOrder" class="form-control input-sm"
+                                [(ngModel)]="item.loadingAddressId">
+                            <option value="1">サック</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="form-control input-sm"
+                               number-input
+                               [disabled]="dealInfo.confirmedOrder"
+                               [(numberValue)]="item.quantity"
+                               [numberPrecision]="0">
+                    </td>
+                    <td>
+                        {{item.submittedPrice==null?'':'@'}}{{item.submittedPrice | numberFormat}}
+                    </td>
+                    <td>
+                        <input date-input class="form-control input-sm"
+                               type="text" placeholder="YYYY年M月D日"
+                               [dateModel]="item.shipDate" [defaultDate]="item.defaultShipDate"
+                               (dateModelChange)="item.setShipdate($event)">
+                    </td>
+                    <td>
+                        <select [disabled]="dealInfo.confirmedOrder" class="form-control input-sm"
+                                [(ngModel)]="item.shippingCompanyId">
+                            <option *ngFor="let company of shippingCompanyOptions; let i=index" [value]="company.id">
+                                {{company.name}}
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <select [disabled]="dealInfo.confirmedOrder" class="form-control input-sm" [(ngModel)]="item.shipTime">
+                            <option *ngFor="let spc of specifyTimeOptions" [value]="spc.id">{{spc.name}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select [disabled]="dealInfo.confirmedOrder" class="form-control input-sm"
+                                [(ngModel)]="item.limitQuantity">
+                            <option *ngFor="let limit of limitQuantityOptions; let i=index" [value]="limit.id">
+                                {{limit.name}}
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input [disabled]="dealInfo.confirmedOrder" type="text" [(ngModel)]="item.memo" placeholder=""
+                               class="form-control input-sm" maxlength="30">
+                    </td>
+                </tr>
+                <tbody>
+            </table>
+        </div>
+    </div>
+</div>
